@@ -43,4 +43,4 @@ The first broad Groq run exposed a noisy high-cardinality rule for continuous nu
 
 ## Submission screenshot capture
 
-Computer Use captured the running Streamlit app with the already-loaded `corrupted_outliers_corr.csv` fixture. A fresh UI question selected only `outlier_check` and `correlation_check` and produced the expected evidence-grounded report. Four unedited screenshots are stored in `docs/screenshots/`, and `PHASE2_SUBMISSION_TEMPLATE.md` links and captions them. The browser error-handling and target-specific examples remain uncaptured; the local repository also has no GitHub remote.
+Computer Use captured the running Streamlit app with the already-loaded `corrupted_outliers_corr.csv` fixture. A fresh UI question selected only `outlier_check` and `correlation_check` and produced the expected evidence-grounded report. Four unedited screenshots are stored in `docs/screenshots/`, and `PHASE2_SUBMISSION_TEMPLATE.md` links and captions them. The browser error-handling and target-specific examples remain uncaptured. The repository was later connected to `https://github.com/Parthivgod/csv-quality-agent`.

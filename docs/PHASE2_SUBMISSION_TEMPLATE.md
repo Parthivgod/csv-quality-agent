@@ -9,7 +9,7 @@
 
 ## 1. GitHub / Colab Link
 
-**Repository:** Pending. This local Git repository has no remote configured; add the public URL after the team publishes it. The official brief specifies three members while the Phase 1 proposal lists two, so the roster also needs instructor confirmation.
+**Repository:** [github.com/Parthivgod/csv-quality-agent](https://github.com/Parthivgod/csv-quality-agent). The official brief specifies three members while the Phase 1 proposal lists two, so the roster still needs instructor confirmation.
 
 ## 2. Current Progress
 
@@ -64,8 +64,9 @@ The first broad live Groq run treated continuous numeric `age` and `income` as h
 
 ### Required before sharing this Phase 2 submission
 
-1. **Public repository URL:** No Git remote is configured. Create or choose the team's GitHub repository. From the repository root, run `git remote add origin <actual-repository-URL>` and `git push -u origin main`. Put the actual URL in **Section 1** of this file and **GitHub Link** in [PHASE2_PROGRESS.md](PHASE2_PROGRESS.md). Do not replace the pending text with a guessed URL.
-2. **Team roster:** The official brief specifies three members, while the submitted Phase 1 proposal names Parthiv and Nilay. Confirm the accepted roster with the instructor. If a third member is required, update the team lines in this file, [PHASE2_PROGRESS.md](PHASE2_PROGRESS.md), and the responsibility note in [IMPLEMENTATION_NOTES.md](IMPLEMENTATION_NOTES.md).
+1. **Team roster:** The official brief specifies three members, while the submitted Phase 1 proposal names Parthiv and Nilay. Confirm the accepted roster with the instructor. If a third member is required, update the team lines in this file, [PHASE2_PROGRESS.md](PHASE2_PROGRESS.md), and the responsibility note in [IMPLEMENTATION_NOTES.md](IMPLEMENTATION_NOTES.md).
+
+The public repository URL is now recorded in Section 1. The committed code, README, and screenshot evidence are published there.
 
 ### Additional screenshots to strengthen the evidence
 

@@ -394,7 +394,7 @@ Mitigation:
 
 ## 8. Phase 2 Submission Checklist
 
-- [ ] GitHub repository URL
+- [x] GitHub repository URL
 - [x] README with setup/run steps
 - [x] current architecture diagram
 - [x] brief progress notes

@@ -37,4 +37,4 @@ The official Phase 2 brief asks for screenshot/output evidence from a partially 
 
 - Add links and captions for each newly created screenshot to [PHASE2_PROGRESS.md](PHASE2_PROGRESS.md) and [PHASE2_SUBMISSION_TEMPLATE.md](PHASE2_SUBMISSION_TEMPLATE.md). Mark a screenshot captured only after the file exists and its contents have been checked.
 - Keep the screenshots as actual app output. The five runs in [LIVE_GROQ_VALIDATION.md](LIVE_GROQ_VALIDATION.md) were service-level API tests, except for the later numeric UI run; do not label service-only results as UI screenshots.
-- The public GitHub URL and team-roster confirmation are separate submission items listed in [PHASE2_SUBMISSION_TEMPLATE.md](PHASE2_SUBMISSION_TEMPLATE.md).
+- The public GitHub URL is recorded in [PHASE2_SUBMISSION_TEMPLATE.md](PHASE2_SUBMISSION_TEMPLATE.md); team-roster confirmation remains.
