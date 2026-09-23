@@ -1,11 +1,12 @@
 # Phase 2 Screenshot Checklist
 
-Run `python -m streamlit run app.py` after configuring `.env`. Save genuine screenshots in `docs/screenshots/` with these names:
+The following genuine Streamlit screenshots were captured through Computer Use on 23 September 2026 using `corrupted_outliers_corr.csv` and a live Groq run:
 
-1. `01_upload.png`: upload `corrupted_missing_duplicates.csv`; include filename, dimensions, column/dtype table, and preview.
-2. `02_tool_trace.png`: ask “Why could this dataset cause problems during model training?”; include the observable tool trace.
-3. `03_structured_report.png`: on the same run, include an issue card with evidence, recommendation, and source tool.
-4. `04_error_handling.png`: upload an empty or malformed CSV and include the friendly validation error.
-5. `05_selective_target.png`: upload `corrupted_class_imbalance.csv`, select `label`, ask “Is my target distribution a problem?”, and show the shorter target-specific trace.
+1. [01_upload_profile.png](screenshots/01_upload_profile.png): loaded filename, dimensions, column/dtype table, and preview.
+2. [02_tool_trace.png](screenshots/02_tool_trace.png): live `outlier_check` and `correlation_check` trace.
+3. [03_structured_report.png](screenshots/03_structured_report.png): outlier report cards with evidence, impact, recommendation, and source tool.
+4. [03b_correlation_finding.png](screenshots/03b_correlation_finding.png): correlation finding and tools-used list.
 
-Capture the app's actual output. Do not paste scripted test output into a screenshot or present it as live provider behavior. Add the GitHub URL and screenshot paths to `PHASE2_PROGRESS.md` before submission.
+Additional optional captures for the final evidence set: `04_error_handling.png` after uploading an empty or malformed CSV, and `05_selective_target.png` after uploading `corrupted_class_imbalance.csv`, selecting `label`, and asking “Is my target distribution a problem?” The service-level results for those fixture types are documented separately; do not present them as UI captures.
+
+The public GitHub URL remains pending because no remote is configured. Keep the screenshots and submission paths synchronized with `PHASE2_PROGRESS.md`.

@@ -136,7 +136,7 @@ An expected deterministic finding from the first fixture is `age: 6/30 values mi
 
 `python -m pytest -q` runs local tests without a paid API call. The integration tests execute the actual LangChain agent graph with a scripted chat model, so tool selection, trace collection, parsing, and evidence validation are exercised. They do not establish live Groq model reliability.
 
-See [Phase 2 progress](docs/PHASE2_PROGRESS.md), [live Groq validation](docs/LIVE_GROQ_VALIDATION.md), [implementation notes](docs/IMPLEMENTATION_NOTES.md), and [screenshot checklist](docs/SCREENSHOT_CHECKLIST.md). The GitHub remote and UI screenshots must be added by the team before submission.
+See [Phase 2 progress](docs/PHASE2_PROGRESS.md), [submission update](docs/PHASE2_SUBMISSION_TEMPLATE.md), [live Groq validation](docs/LIVE_GROQ_VALIDATION.md), [implementation notes](docs/IMPLEMENTATION_NOTES.md), and [captured screenshots](docs/SCREENSHOT_CHECKLIST.md). The GitHub remote and team roster confirmation remain submission tasks.
 
 ## Troubleshooting
 
@@ -148,4 +148,4 @@ See [Phase 2 progress](docs/PHASE2_PROGRESS.md), [live Groq validation](docs/LIV
 
 ## Phase 3 remaining work
 
-Collect live-model results and screenshots, evaluate at least five scenarios including a tool failure, incorporate instructor feedback, make sample input/output evidence, record the 5–7 minute demo, write the 3–4 page technical report, and finalize contribution statements.
+Expand the documented live-model and UI evidence, evaluate a failed or unexpected tool call, incorporate instructor feedback, prepare the 5–7 minute demo and 3–4 page technical report, and finalize contribution statements.

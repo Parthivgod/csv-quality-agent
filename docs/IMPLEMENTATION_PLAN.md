@@ -334,9 +334,10 @@ At least five scenarios should eventually be documented for Phase 3:
 ## 6. Evidence to Commit
 
 Recommended:
-- `docs/screenshots/01_upload.png`
+- `docs/screenshots/01_upload_profile.png`
 - `docs/screenshots/02_tool_trace.png`
 - `docs/screenshots/03_structured_report.png`
+- `docs/screenshots/03b_correlation_finding.png`
 - `docs/screenshots/04_error_handling.png`
 - `docs/phase2_progress.md`
 
@@ -392,15 +393,15 @@ Mitigation:
 ## 8. Phase 2 Submission Checklist
 
 - [ ] GitHub repository URL
-- [ ] README with setup/run steps
-- [ ] current architecture diagram
-- [ ] brief progress notes
-- [ ] screenshot of uploaded dataset
-- [ ] screenshot of agent tool trace
-- [ ] screenshot/output of structured report
-- [ ] at least one corrupted fixture committed
-- [ ] basic tests passing
-- [ ] known limitations listed
+- [x] README with setup/run steps
+- [x] current architecture diagram
+- [x] brief progress notes
+- [x] screenshot of uploaded dataset
+- [x] screenshot of agent tool trace
+- [x] screenshot/output of structured report
+- [x] at least one corrupted fixture committed
+- [x] basic tests passing
+- [x] known limitations listed
 
 ---
 

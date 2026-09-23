@@ -27,7 +27,7 @@ The supplied folder had no architecture PNG even though the Markdown documents r
 
 ## Validation boundary
 
-The fresh `.venv` installed `requirements.txt` successfully, `pip check` found no broken requirements, 19 tests passed, compilation passed, and Streamlit returned HTTP 200 on port 8503. Local tests cover deterministic diagnostics, CSV errors, tool wrappers, two successful agent paths, a numeric path, missing-target handling, parser repair, and the initial Streamlit render. No live Mistral/OpenAI request was run because neither provider key is configured. Live provider screenshots and a public GitHub link remain submission tasks.
+At the initial validation point, the fresh `.venv` installed `requirements.txt` successfully, `pip check` found no broken requirements, 19 tests passed, compilation passed, and Streamlit returned HTTP 200 on port 8503. Local tests covered deterministic diagnostics, CSV errors, tool wrappers, two successful agent paths, a numeric path, missing-target handling, parser repair, and the initial Streamlit render. No live Mistral/OpenAI request was run because neither provider key was configured. Subsequent Groq validation is recorded below and in `LIVE_GROQ_VALIDATION.md`.
 
 ## Provider update
 
@@ -40,3 +40,7 @@ References: [Groq model ID](https://console.groq.com/docs/model/openai/gpt-oss-1
 The user first placed the Groq key in tracked `.env.example`. It was moved to the ignored `.env` without printing it, and `.env.example` was cleared before committing any new work.
 
 The first broad Groq run exposed a noisy high-cardinality rule for continuous numeric fields. The rule now tests categorical fields and identifier-named numeric fields. A unit test covers the distinction. The first missing-target run gave a generic limitation; report validation now adds an explicit target-selection instruction. Both cases were rerun live. See `LIVE_GROQ_VALIDATION.md` for the observed results.
+
+## Submission screenshot capture
+
+Computer Use captured the running Streamlit app with the already-loaded `corrupted_outliers_corr.csv` fixture. A fresh UI question selected only `outlier_check` and `correlation_check` and produced the expected evidence-grounded report. Four unedited screenshots are stored in `docs/screenshots/`, and `PHASE2_SUBMISSION_TEMPLATE.md` links and captions them. The browser error-handling and target-specific examples remain uncaptured; the local repository also has no GitHub remote.

@@ -20,4 +20,4 @@ The first no-target run gave an underspecified limitation. Report validation now
 
 ## Validation boundary
 
-The clean virtual environment passed 22 tests. The restarted Streamlit page showed `groq / openai/gpt-oss-120b` and “API key configured”; its health endpoint returned HTTP 200. Browser upload and screenshot capture were not performed in this run. LLM tool choices and wording may vary between runs; these are observed results for the stated fixtures and questions.
+The clean virtual environment passed 22 tests. The restarted Streamlit page showed `groq / openai/gpt-oss-120b` and “API key configured”; its health endpoint returned HTTP 200. A subsequent live Streamlit UI run using the numeric-issues question selected only `outlier_check` and `correlation_check`. Its tool trace and report were captured in [the Phase 2 screenshot set](SCREENSHOT_CHECKLIST.md). The other scenarios above were service-level API runs. LLM tool choices and wording may vary between runs; these are observed results for the stated fixtures and questions.

@@ -32,7 +32,7 @@ The DataFrame stays local. The LLM sees schema and aggregate tool results.
 
 For `corrupted_missing_duplicates.csv`, the deterministic tools found 6/30 missing `age` values (20.0%), 3/30 missing `income` values (10.0%), 2 duplicate rows (6.67%), and one constant feature. These match the fixture manifest.
 
-For `corrupted_class_imbalance.csv` with target `label`, the class tool found 90 `negative` and 10 `positive` rows, a 9.0:1 ratio. The scripted agent path used only `class_imbalance_check` for the target-distribution question.
+For `corrupted_class_imbalance.csv` with target `label`, the class tool found 90 `negative` and 10 `positive` rows, a 9.0:1 ratio. Both a scripted agent test and a separate live Groq service run used only `class_imbalance_check` for a target-distribution question.
 
 ## Example Tool Trace
 
@@ -45,7 +45,7 @@ Actual trace shape from the local scripted-model integration test:
 4. constant_columns_check ok  1 constant and 0 near-constant columns.
 ```
 
-The target-distribution question produces a one-tool trace. These are test-model traces, not a live Mistral/OpenAI run.
+The trace block above is from a scripted test model. Live Groq observations are recorded in `LIVE_GROQ_VALIDATION.md` and the captured UI trace below.
 
 ## Current Output
 
@@ -61,7 +61,14 @@ The first LangChain tool wrapper accidentally exposed internal callable argument
 
 ## Screenshots
 
-No live-agent screenshots have been captured. Use `SCREENSHOT_CHECKLIST.md` after setting a provider key; do not represent the scripted test output as a live model screenshot.
+Four genuine Computer Use screenshots now document one live Groq UI run with `corrupted_outliers_corr.csv` and the question “Do the numerical features contain suspicious values or relationships?” The agent called `outlier_check` and `correlation_check`; the report showed 1/30 IQR outlier in each of `feature_x` and `feature_y` and Pearson r = 1.0 between them.
+
+- [Uploaded CSV and dataset profile](screenshots/01_upload_profile.png)
+- [Selected tool-call trace](screenshots/02_tool_trace.png)
+- [Structured report and outlier evidence](screenshots/03_structured_report.png)
+- [Correlation finding](screenshots/03b_correlation_finding.png)
+
+See `PHASE2_SUBMISSION_TEMPLATE.md` for captions and the remaining submission blockers. No browser error-handling or target-specific screenshot has been captured yet.
 
 ## Current Limitations
 
@@ -69,7 +76,7 @@ CSV parsing supports UTF-8 and Windows-1252 and is limited to small/medium educa
 
 ## Remaining Work for Phase 3
 
-Expand live Groq evaluation, capture real UI screenshots, push the GitHub repository, assess one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
+Expand live Groq evaluation, capture additional UI error/target examples if needed, publish the GitHub repository, assess one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
 
 ## Provider Update
 
