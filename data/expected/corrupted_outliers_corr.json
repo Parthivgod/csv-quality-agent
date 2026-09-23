@@ -1,0 +1,16 @@
+{
+  "expected_issues": [
+    "outliers",
+    "high_correlation"
+  ],
+  "expected_columns": {
+    "outliers": [
+      "feature_x",
+      "feature_y"
+    ],
+    "high_correlation": [
+      "feature_x",
+      "feature_y"
+    ]
+  }
+}

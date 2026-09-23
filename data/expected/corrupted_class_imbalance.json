@@ -1,0 +1,18 @@
+{
+  "expected_issues": [
+    "class_imbalance",
+    "high_cardinality"
+  ],
+  "expected_columns": {
+    "class_imbalance": [
+      "label"
+    ],
+    "high_cardinality": [
+      "record_id"
+    ]
+  },
+  "expected_counts": {
+    "negative": 90,
+    "positive": 10
+  }
+}

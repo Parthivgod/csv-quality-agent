@@ -1,0 +1,21 @@
+{
+  "expected_issues": [
+    "missing_values",
+    "duplicates",
+    "constant_column"
+  ],
+  "expected_columns": {
+    "missing_values": [
+      "age",
+      "income"
+    ],
+    "constant_column": [
+      "constant_feature"
+    ]
+  },
+  "expected_counts": {
+    "duplicates": 2,
+    "age_missing": 6,
+    "income_missing": 3
+  }
+}
