@@ -60,9 +60,25 @@ The first broad live Groq run treated continuous numeric `age` and `income` as h
 - The target must be selected for class-imbalance assessment. The app does not automatically clean data or confirm data leakage from correlation alone.
 - Groq API access is required for live agent orchestration. Model tool choices and wording may vary between runs.
 
-## 8. Remaining Submission Items
+## 8. Exactly What Remains
 
-- Publish the repository and insert its URL above.
-- Confirm the team roster with the instructor.
-- Capture a browser validation-error example and a target-specific UI example if required for the final evidence set.
-- For Phase 3, evaluate a failed or unexpected tool call, incorporate instructor feedback, prepare the demo video and technical report, and finalize contribution statements.
+### Required before sharing this Phase 2 submission
+
+1. **Public repository URL:** No Git remote is configured. Create or choose the team's GitHub repository. From the repository root, run `git remote add origin <actual-repository-URL>` and `git push -u origin main`. Put the actual URL in **Section 1** of this file and **GitHub Link** in [PHASE2_PROGRESS.md](PHASE2_PROGRESS.md). Do not replace the pending text with a guessed URL.
+2. **Team roster:** The official brief specifies three members, while the submitted Phase 1 proposal names Parthiv and Nilay. Confirm the accepted roster with the instructor. If a third member is required, update the team lines in this file, [PHASE2_PROGRESS.md](PHASE2_PROGRESS.md), and the responsibility note in [IMPLEMENTATION_NOTES.md](IMPLEMENTATION_NOTES.md).
+
+### Additional screenshots to strengthen the evidence
+
+The existing four screenshots in Section 5 already show the uploaded dataset, live tool trace, and structured report. [SCREENSHOT_CHECKLIST.md](SCREENSHOT_CHECKLIST.md) gives exact click-by-click instructions for these **uncaptured** additions:
+
+| Save as | Upload file | UI label / choice | Exact question | Capture |
+| --- | --- | --- | --- | --- |
+| `docs/screenshots/04_error_handling.png` | `data/samples/invalid_header_only.csv` | **Upload CSV** after **Reset dataset and report** | None | **The CSV has no data rows.** and **No valid CSV loaded**. |
+| `docs/screenshots/05_selective_target.png` | `data/samples/corrupted_class_imbalance.csv` | **Target column (optional)** → **label** | `Is my target distribution a problem?` | Selected target plus the actual **Tool-call trace** after **Run Triage**. |
+| `docs/screenshots/06_class_report.png` (optional) | Same class-imbalance run | Keep **label** selected | Same question | **Structured diagnosis** with the class counts/ratio and recommendation. |
+
+After capturing, verify each image and add its link to Section 5 and the **Screenshots** section of `PHASE2_PROGRESS.md`. The files above are planned paths; they are not present yet.
+
+### Phase 3 work, separate from the Phase 2 hand-in
+
+Evaluate a failed or unexpected tool call, incorporate instructor feedback, prepare the 5–7 minute demo and 3–4 page technical report, and finalize contribution statements.

@@ -339,7 +339,9 @@ Recommended:
 - `docs/screenshots/03_structured_report.png`
 - `docs/screenshots/03b_correlation_finding.png`
 - `docs/screenshots/04_error_handling.png`
-- `docs/phase2_progress.md`
+- `docs/screenshots/05_selective_target.png`
+- `docs/screenshots/06_class_report.png` (optional)
+- `docs/PHASE2_PROGRESS.md`
 
 Also commit:
 - sample fixture CSVs,

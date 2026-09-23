@@ -68,7 +68,7 @@ Four genuine Computer Use screenshots now document one live Groq UI run with `co
 - [Structured report and outlier evidence](screenshots/03_structured_report.png)
 - [Correlation finding](screenshots/03b_correlation_finding.png)
 
-See `PHASE2_SUBMISSION_TEMPLATE.md` for captions and the remaining submission blockers. No browser error-handling or target-specific screenshot has been captured yet.
+See [PHASE2_SUBMISSION_TEMPLATE.md](PHASE2_SUBMISSION_TEMPLATE.md) for captions and the required repository/roster decisions. [SCREENSHOT_CHECKLIST.md](SCREENSHOT_CHECKLIST.md) names the exact files, UI labels, question, and steps for the two additional screenshots. No browser error-handling or target-specific screenshot has been captured yet.
 
 ## Current Limitations
 
@@ -76,7 +76,7 @@ CSV parsing supports UTF-8 and Windows-1252 and is limited to small/medium educa
 
 ## Remaining Work for Phase 3
 
-Expand live Groq evaluation, capture additional UI error/target examples if needed, publish the GitHub repository, assess one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
+For the Phase 2 hand-in, publish the GitHub repository and confirm the team roster. The error/target UI examples are additional evidence with exact instructions in `SCREENSHOT_CHECKLIST.md`. Phase 3 work remains: expand live Groq evaluation, assess one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
 
 ## Provider Update
 
