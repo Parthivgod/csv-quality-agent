@@ -64,3 +64,11 @@ def test_clean_missing_and_duplicates() -> None:
     frame = pd.read_csv("data/samples/clean_small.csv")
     assert not missing_values_check(frame)["findings"]
     assert duplicate_rows_check(frame)["data"]["duplicate_count"] == 0
+
+
+def test_high_cardinality_ignores_continuous_numeric_features() -> None:
+    frame = pd.DataFrame({"age": list(range(25)), "income": list(range(100, 125)),
+                          "student_id": list(range(25)),
+                          "record_code": [f"R{i}" for i in range(25)]})
+    candidates = high_cardinality_check(frame)["data"]["candidates"]
+    assert [item["column"] for item in candidates] == ["student_id", "record_code"]

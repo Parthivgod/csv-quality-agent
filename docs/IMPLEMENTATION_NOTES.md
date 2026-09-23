@@ -34,3 +34,9 @@ The fresh `.venv` installed `requirements.txt` successfully, `pip check` found n
 At the user's request, Groq's `openai/gpt-oss-120b` became the default through `langchain-groq`. The key belongs in the Git-ignored root `.env` as `GROQ_API_KEY`. The model ID was verified against Groq's model documentation, and LangChain documents `ChatGroq` with local tool calling support. Earlier Mistral/OpenAI options remain available. A live Groq request still requires the user's key; local construction and tests do not establish live behavior.
 
 References: [Groq model ID](https://console.groq.com/docs/model/openai/gpt-oss-120b), [LangChain ChatGroq setup](https://docs.langchain.com/oss/python/integrations/chat/groq).
+
+## Live-run repairs
+
+The user first placed the Groq key in tracked `.env.example`. It was moved to the ignored `.env` without printing it, and `.env.example` was cleared before committing any new work.
+
+The first broad Groq run exposed a noisy high-cardinality rule for continuous numeric fields. The rule now tests categorical fields and identifier-named numeric fields. A unit test covers the distinction. The first missing-target run gave a generic limitation; report validation now adds an explicit target-selection instruction. Both cases were rerun live. See `LIVE_GROQ_VALIDATION.md` for the observed results.

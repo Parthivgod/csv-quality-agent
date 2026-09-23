@@ -109,7 +109,7 @@ def test_numeric_and_missing_target_scenarios() -> None:
     no_target = run_triage(pd.read_csv("data/samples/corrupted_class_imbalance.csv"),
                            "Is my target imbalanced?", model=model)
     assert no_target.trace == []
-    assert no_target.report.limitations
+    assert "Select a target column to assess class imbalance." in no_target.report.limitations
 
 
 def test_report_rejects_unsupported_evidence_and_retries_once() -> None:

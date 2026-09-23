@@ -16,7 +16,7 @@ The repository has a Streamlit app, CSV validation, an in-memory DataFrame, a co
 
 ## Working Components
 
-The initial Streamlit page starts without an API key. Upload/profile behavior is implemented. The automated agent workflow runs with a scripted local chat model and selects different tools for different questions. A live provider test awaits a configured API key.
+The initial Streamlit page starts without an API key. Upload/profile behavior is implemented. The automated agent workflow runs with a scripted local chat model and selects different tools for different questions. Live Groq runs have now also selected different tools and produced validated reports; see `LIVE_GROQ_VALIDATION.md`.
 
 ## Diagnostic Tools Implemented
 
@@ -65,14 +65,16 @@ No live-agent screenshots have been captured. Use `SCREENSHOT_CHECKLIST.md` afte
 
 ## Current Limitations
 
-No provider API key is configured in the development environment, so live selection quality and report wording remain unverified. CSV parsing supports UTF-8 and Windows-1252 and is limited to small/medium educational datasets. The target must be selected for class-imbalance analysis. No automatic cleaning or advanced leakage detection is implemented.
+CSV parsing supports UTF-8 and Windows-1252 and is limited to small/medium educational datasets. The target must be selected for class-imbalance analysis. No automatic cleaning or advanced leakage detection is implemented. Tool choice and wording can vary across live model runs; the observed Groq runs are documented separately.
 
 ## Remaining Work for Phase 3
 
-Run live Groq scenarios, capture real UI screenshots, push the GitHub repository, assess at least five questions and one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
+Expand live Groq evaluation, capture real UI screenshots, push the GitHub repository, assess one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
 
 ## Provider Update
 
-The default model is now Groq-hosted `openai/gpt-oss-120b`. Configure `GROQ_API_KEY` in the root `.env`. The earlier Mistral/OpenAI validation notes above describe the initial implementation; live Groq evaluation remains pending until a key is supplied.
+The default model is now Groq-hosted `openai/gpt-oss-120b`. Configure `GROQ_API_KEY` in the root `.env`. The earlier Mistral/OpenAI validation notes above describe the initial implementation. Live Groq evaluation results are in `LIVE_GROQ_VALIDATION.md`.
 
 After the provider change, the clean virtual environment passed 21 tests, compilation, and `pip check`. The provider tests construct `ChatGroq` and bind the diagnostic tools without making an API request.
+
+After the live-run repairs, the suite passed 22 tests. Five live scenarios were run, including distinct tool selections and missing-target handling.

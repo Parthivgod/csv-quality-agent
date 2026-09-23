@@ -24,7 +24,7 @@ DESCRIPTIONS = {
     "missing_values_check": "Use for missing, null or incomplete data. Returns counts, percentages and severity by column. Do not use for duplicates, outliers or imbalance.",
     "duplicate_rows_check": "Use for exact duplicate rows or repeated records. Returns count and percentage. Do not assume duplicates are invalid; do not use for missing values.",
     "constant_columns_check": "Use for constant or almost unchanging features. Returns columns and dominant fractions. Do not use for high-cardinality IDs.",
-    "high_cardinality_check": "Use for potential ID columns or features with many unique values. Returns unique ratios. Do not recommend removal without context; do not use for constants.",
+    "high_cardinality_check": "Use for potential ID columns or high-cardinality categories. Returns unique ratios for categorical fields and identifier-named numeric fields. Do not flag ordinary continuous numeric features or recommend removal without context; do not use for constants.",
     "outlier_check": "Use for extreme numeric values and IQR outliers. Returns bounds and counts. Do not use for categorical fields or treat all outliers as errors.",
     "class_imbalance_check": "Use only for selected classification target distributions or class imbalance. Returns counts, proportions and majority/minority ratio. Do not use without a target.",
     "correlation_check": "Use for relationships between numeric features or possible redundancy. Returns pairs with high absolute Pearson correlation. Do not claim confirmed leakage.",

@@ -136,7 +136,7 @@ An expected deterministic finding from the first fixture is `age: 6/30 values mi
 
 `python -m pytest -q` runs local tests without a paid API call. The integration tests execute the actual LangChain agent graph with a scripted chat model, so tool selection, trace collection, parsing, and evidence validation are exercised. They do not establish live Groq model reliability.
 
-See [Phase 2 progress](docs/PHASE2_PROGRESS.md), [implementation notes](docs/IMPLEMENTATION_NOTES.md), and [screenshot checklist](docs/SCREENSHOT_CHECKLIST.md). The GitHub remote and live-provider screenshots must be added by the team before submission.
+See [Phase 2 progress](docs/PHASE2_PROGRESS.md), [live Groq validation](docs/LIVE_GROQ_VALIDATION.md), [implementation notes](docs/IMPLEMENTATION_NOTES.md), and [screenshot checklist](docs/SCREENSHOT_CHECKLIST.md). The GitHub remote and UI screenshots must be added by the team before submission.
 
 ## Troubleshooting
 

@@ -15,7 +15,8 @@ class ReportParseError(ValueError):
         self.raw_response = raw_response
 
 
-def _validate_evidence(report: DataQualityReport, observations: list[dict]) -> DataQualityReport:
+def _validate_evidence(report: DataQualityReport, observations: list[dict],
+                       question: str, target: str | None) -> DataQualityReport:
     allowed = {(event["tool"], finding["issue"], finding["severity"], finding.get("column"),
                 finding["evidence"], finding["impact"], finding["recommendation"])
                for event in observations for finding in event["result"].get("findings", [])}
@@ -27,6 +28,10 @@ def _validate_evidence(report: DataQualityReport, observations: list[dict]) -> D
     for event in observations:
         if event["status"] in {"skipped", "error"} and event["summary"] not in report.limitations:
             report.limitations.append(event["summary"])
+    if target is None and any(term in question.lower() for term in ("target", "imbalan", "class distribution")):
+        limitation = "Select a target column to assess class imbalance."
+        if limitation not in report.limitations:
+            report.limitations.append(limitation)
     return report
 
 
@@ -44,7 +49,7 @@ def create_report(model: Runnable, question: str, target: str | None,
             if attempt:
                 payload["question"] = question + "\nYour previous JSON was invalid or unsupported. Repair it by using only exact supplied findings."
             raw = chain.invoke(payload)
-            return _validate_evidence(parser.parse(raw), observations)
+            return _validate_evidence(parser.parse(raw), observations, question, target)
         except Exception as exc:
             if attempt:
                 raise ReportParseError(f"Structured report validation failed after one retry: {exc}", raw) from exc
