@@ -69,4 +69,10 @@ No provider API key is configured in the development environment, so live select
 
 ## Remaining Work for Phase 3
 
-Run live Mistral/OpenAI scenarios, capture real UI screenshots, push the GitHub repository, assess at least five questions and one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
+Run live Groq scenarios, capture real UI screenshots, push the GitHub repository, assess at least five questions and one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
+
+## Provider Update
+
+The default model is now Groq-hosted `openai/gpt-oss-120b`. Configure `GROQ_API_KEY` in the root `.env`. The earlier Mistral/OpenAI validation notes above describe the initial implementation; live Groq evaluation remains pending until a key is supplied.
+
+After the provider change, the clean virtual environment passed 21 tests, compilation, and `pip check`. The provider tests construct `ChatGroq` and bind the diagnostic tools without making an API request.

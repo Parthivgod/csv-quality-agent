@@ -7,11 +7,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+PROVIDER_API_KEYS = {
+    "groq": "GROQ_API_KEY",
+    "mistral": "MISTRAL_API_KEY",
+    "openai": "OPENAI_API_KEY",
+}
+
 
 @dataclass(frozen=True)
 class Settings:
-    provider: str = os.getenv("LLM_PROVIDER", "mistral").lower()
-    model: str = os.getenv("LLM_MODEL", "mistral-small-latest")
+    provider: str = os.getenv("LLM_PROVIDER", "groq").lower()
+    model: str = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
     max_tool_calls: int = int(os.getenv("MAX_TOOL_CALLS", "6"))
     max_upload_mb: int = int(os.getenv("MAX_UPLOAD_MB", "20"))
     missing_medium_pct: float = float(os.getenv("MISSING_MEDIUM_PCT", "5"))
@@ -32,5 +38,10 @@ class Settings:
 
 
 def provider_ready(settings: Settings) -> bool:
-    key = "MISTRAL_API_KEY" if settings.provider == "mistral" else "OPENAI_API_KEY"
-    return bool(os.getenv(key)) if settings.provider in {"mistral", "openai"} else False
+    key = provider_key_name(settings)
+    return bool(os.getenv(key)) if key else False
+
+
+def provider_key_name(settings: Settings) -> str | None:
+    """Return the environment variable needed by the selected provider."""
+    return PROVIDER_API_KEYS.get(settings.provider)

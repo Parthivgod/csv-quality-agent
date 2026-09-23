@@ -4,7 +4,7 @@ import hashlib
 
 import streamlit as st
 
-from src.config import Settings, provider_ready
+from src.config import Settings, provider_key_name, provider_ready
 from src.data.loader import CSVLoadError, load_csv
 from src.diagnostics.profile import dataset_profile
 from src.services.triage_service import TriageError, run_triage
@@ -65,7 +65,7 @@ def main() -> None:
             st.session_state.pop("triage_result", None)
             st.session_state.pop("triage_error", None)
         st.caption(f"Model: {settings.provider} / {settings.model}")
-        st.write("API key configured" if provider_ready(settings) else "API key not configured")
+        st.write("API key configured" if provider_ready(settings) else f"{provider_key_name(settings) or 'Provider key'} not configured")
 
     if not loaded:
         st.info("Upload a CSV to see its profile and ask a question.")
@@ -87,7 +87,11 @@ def main() -> None:
         question = st.text_area("Data-quality question", value=EXAMPLES[0])
         submitted = st.form_submit_button("Run Triage", disabled=not provider_ready(settings))
     if not provider_ready(settings):
-        st.info("Set the selected provider's API key in .env to enable agent triage. Dataset preview works without it.")
+        key_name = provider_key_name(settings)
+        if key_name:
+            st.info(f"Set {key_name} in .env to enable agent triage. Dataset preview works without it.")
+        else:
+            st.error(f"Unsupported LLM_PROVIDER: {settings.provider}.")
     if submitted:
         with st.spinner("The agent is selecting and running diagnostics..."):
             try:

@@ -155,7 +155,7 @@ Output parser → one repair attempt → raw fallback for debugging if still inv
 
 ## 6. Implemented Runtime Details
 
-- `src/agent/factory.py` constructs a Mistral or OpenAI LangChain chat model and a `create_agent` graph. `ChatPromptTemplate` renders the agent's system prompt from schema context, selected target, tool descriptions, and call budget.
+- `src/agent/factory.py` constructs a Groq, Mistral, or OpenAI LangChain chat model and a `create_agent` graph. Groq's `openai/gpt-oss-120b` is the default. `ChatPromptTemplate` renders the agent's system prompt from schema context, selected target, tool descriptions, and call budget.
 - `src/agent/tools.py` creates an isolated set of `StructuredTool` closures for each run. Each closure accesses the current in-memory DataFrame and records its own deterministic result. No DataFrame is serialized into a tool argument.
 - `src/services/trace.py` records observable calls with a lock, so parallel tool requests respect the diagnostic budget. Failed, repeated, and over-budget calls are visible as `error` or `skipped` events.
 - `src/agent/report_chain.py` implements `REPORT_PROMPT | model | StrOutputParser()` followed by `PydanticOutputParser`. Every issue must exactly match an observed deterministic finding. Invalid output gets one retry, then the UI receives a readable error and raw report text for debugging.

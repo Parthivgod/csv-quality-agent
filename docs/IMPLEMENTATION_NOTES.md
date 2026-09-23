@@ -28,3 +28,9 @@ The supplied folder had no architecture PNG even though the Markdown documents r
 ## Validation boundary
 
 The fresh `.venv` installed `requirements.txt` successfully, `pip check` found no broken requirements, 19 tests passed, compilation passed, and Streamlit returned HTTP 200 on port 8503. Local tests cover deterministic diagnostics, CSV errors, tool wrappers, two successful agent paths, a numeric path, missing-target handling, parser repair, and the initial Streamlit render. No live Mistral/OpenAI request was run because neither provider key is configured. Live provider screenshots and a public GitHub link remain submission tasks.
+
+## Provider update
+
+At the user's request, Groq's `openai/gpt-oss-120b` became the default through `langchain-groq`. The key belongs in the Git-ignored root `.env` as `GROQ_API_KEY`. The model ID was verified against Groq's model documentation, and LangChain documents `ChatGroq` with local tool calling support. Earlier Mistral/OpenAI options remain available. A live Groq request still requires the user's key; local construction and tests do not establish live behavior.
+
+References: [Groq model ID](https://console.groq.com/docs/model/openai/gpt-oss-120b), [LangChain ChatGroq setup](https://docs.langchain.com/oss/python/integrations/chat/groq).

@@ -204,3 +204,11 @@ The current LangChain API builds the agent graph with `create_agent`. Each tool 
 **Status:** Accepted in Phase 2 implementation
 
 Pydantic checks the report structure. The service additionally checks that every issue, severity, column, evidence, impact, and recommendation matches a finding returned by the named source tool. This is stricter than JSON parsing alone and prevents unsupported numeric claims in the final report.
+
+---
+
+## ADR-017 — Groq GPT OSS 120B as default model
+
+**Status:** Accepted after user request
+
+Set `LLM_PROVIDER=groq`, `LLM_MODEL=openai/gpt-oss-120b`, and use `GROQ_API_KEY` from the root `.env`. The provider factory preserves the earlier Mistral and OpenAI adapters. The diagnostics, tool trace, and report validation do not depend on the chosen provider.
