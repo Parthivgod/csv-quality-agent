@@ -29,17 +29,17 @@
 <text x="700" y="229" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">8 exact checks + resource guards</text>
 <rect x="300" y="175" width="240" height="80" rx="8" fill="#edf3f8" stroke="#173c62"/>
 <text x="420" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#173c62">Groq + LangChain agent</text>
-<text x="420" y="229" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">Chooses checks + public purpose</text>
+<text x="420" y="229" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">gpt-oss-120b chooses checks</text>
 <rect x="20" y="175" width="240" height="80" rx="8" fill="#edf3f8" stroke="#173c62"/>
 <text x="140" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#173c62">Compact schema + question</text>
 <text x="140" y="229" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">Target / numeric subset / no raw rows</text>
 <rect x="20" y="325" width="240" height="80" rx="8" fill="#edf3f8" stroke="#173c62"/>
 <text x="140" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#173c62">Observable tool trace</text>
-<text x="140" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">Purpose, evidence, status, coverage</text>
+<text x="140" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">Status, bounded evidence, coverage</text>
 <rect x="300" y="325" width="240" height="80" rx="8" fill="#edf3f8" stroke="#173c62"/>
 <text x="420" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#173c62">LCEL + output parser</text>
 <text x="420" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">Prompt | model | parser + one retry</text>
 <rect x="580" y="325" width="240" height="80" rx="8" fill="#edf3f8" stroke="#173c62"/>
-<text x="700" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#173c62">Report + evidence + UI</text>
-<text x="700" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">LLM synthesis / exact findings</text>
+<text x="700" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#173c62">Validated report + UI</text>
+<text x="700" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#253746">Exact issue matches, downloads</text>
 </svg>

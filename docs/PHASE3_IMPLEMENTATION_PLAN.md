@@ -153,3 +153,7 @@ Implementation, automated validation, local benchmarks, fresh live traces, actua
 4. Verify the final report is 3–4 pages, the repository/evidence links work, and the instructor can access the video and package.
 
 Future engineering improvements are a genuine streaming upload service, a broader hardware/workload benchmark, and multi-user process-level resource isolation. Automatic cleaning, model training, Spark and cloud deployment remain outside this phase.
+
+## LLM synthesis revision - 1 October 2026
+
+The current report preserves an LLM-written summary, source-linked interpretation and suggested next steps. Brief tool-choice explanations appear in progress and beside trace entries. Verified findings and deterministic scope/limitations remain separate. **149 tests passed in 10.31s**; fresh Groq runs and captures 11-13 are documented in [synthesis validation](evaluation/phase3/llm_synthesis/README.md). The 122-test run, original screenshots, live attempts and size measurements above describe the prior release and remain preserved. The current 6:30 demo script demonstrates a no-finding 60/40 target distribution with a useful explanation. No benchmark rerun is claimed.

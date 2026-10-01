@@ -5,7 +5,7 @@ import pandas as pd
 import pytest
 from langchain_core.runnables import RunnableLambda
 
-from src.agent.report_chain import create_report
+from src.agent.report_chain import ReportParseError, create_report
 from src.agent.tools import bound_observation
 from src.config import Settings
 from src.data.context_builder import build_context
@@ -25,12 +25,18 @@ def test_observation_byte_cap_and_complete_findings():
 
 def test_report_summary_and_limits_cannot_invent_evidence():
     response = json.dumps({"summary": "Every column has 100% missing values.", "issues": [],
-                           "tools_used": [], "limitations": ["Invented model statistic"]})
+                           "tools_used": [], "limitations": ["Invented model statistic"],
+                           "interpretation": [{"text": "Only the selected check and available coverage were assessed.", "source_tools": ["missing_values_check"]}],
+                           "next_steps": ["Review the check's actual coverage before deciding what to inspect next."]})
     observation = {"tool": "missing_values_check", "status": "ok", "summary": "No missing values",
                    "result": {"findings": [], "execution": {"output_limitation": "Partial output"}}}
-    report = create_report(RunnableLambda(lambda _: response), "Any missing?", None, [observation])
-    assert "100%" not in report.summary
-    assert report.limitations == ["Partial output"]
+    calls = []
+    def unsupported(_):
+        calls.append(True)
+        return response
+    with pytest.raises(ReportParseError, match="numeric value absent"):
+        create_report(RunnableLambda(unsupported), "Any missing?", None, [observation])
+    assert len(calls) == 2
 
 
 def test_nonfinite_statistics_use_strict_json_and_disclose_replacement():

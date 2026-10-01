@@ -1,0 +1,24 @@
+{
+  "id": "T07",
+  "attempt": "T07_missing_target_live_1790849167114060100",
+  "utc_time": "2026-10-01T10:06:07.114060+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "corrupted_class_imbalance.csv",
+  "sha256": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+  "target": null,
+  "question": "Is my target distribution a problem?",
+  "controlled_failure_injection": false,
+  "status": "error",
+  "error_message": "Triage could not complete: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `[provider organization]` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5815, Requested 2344. Please try again in 1.1925s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+  "cause_type": "RateLimitError",
+  "reasons": [
+    "TriageError"
+  ],
+  "actual_calls": [],
+  "latency_seconds": 16.37067,
+  "trace_file": "T07_missing_target_live_1790849167114060100_trace.json",
+  "report_file": "T07_missing_target_live_1790849167114060100_report.json",
+  "result_file": "T07_missing_target_live_1790849167114060100_result.json"
+}

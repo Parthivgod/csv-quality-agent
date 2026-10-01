@@ -37,7 +37,10 @@ class ScriptedChatModel(BaseChatModel):
             if not observations and "target" in human.lower():
                 limitations.append("Select a target column to assess class imbalance.")
             content = json.dumps({"summary": "Diagnosis based on selected diagnostics.", "issues": issues,
-                                  "tools_used": [o["tool"] for o in observations], "limitations": limitations})
+                                  "tools_used": [o["tool"] for o in observations], "limitations": limitations,
+                                  "interpretation": [{"text": "This observation applies to the selected check and its stated coverage.",
+                                                      "source_tools": [o["tool"]]} for o in observations[:6]],
+                                  "next_steps": ["Review supplied evidence and limitations before deciding on data changes."]})
             return ChatResult(generations=[ChatGeneration(message=AIMessage(content=content))])
 
         question = next((str(m.content).lower() for m in messages if isinstance(m, HumanMessage)), "")
@@ -63,7 +66,10 @@ def test_tool_wrapper_calls_pure_diagnostic() -> None:
     frame = pd.read_csv("data/samples/corrupted_missing_duplicates.csv")
     trace = TraceCollector(6)
     tools = {tool.name: tool for tool in build_tools(frame, None, Settings(), trace)}
-    assert all(tool.args == {} for tool in tools.values())
+    assert all(set(tool.args) == {"reason"} for tool in tools.values())
+    assert all(tool.args_schema.model_fields["reason"].default == ""
+               and not tool.args_schema.model_fields["reason"].is_required()
+               for tool in tools.values())
     observation = json.loads(tools["duplicate_rows_check"].invoke({}))
     assert observation["data"]["duplicate_count"] == 2
     assert trace.events[0]["tool"] == "duplicate_rows_check"
@@ -116,7 +122,8 @@ def test_report_rejects_unsupported_evidence_and_retries_once() -> None:
     responses = iter([json.dumps({"summary": "wrong", "issues": [{"issue": "Fake", "severity": "high",
         "column": None, "evidence": "invented", "impact": "x", "recommendation": "x",
         "source_tool": "missing_values_check"}], "tools_used": [], "limitations": []}),
-        json.dumps({"summary": "No supported issue", "issues": [], "tools_used": [], "limitations": []})])
+        json.dumps({"summary": "No supported issue", "issues": [], "tools_used": [], "limitations": [],
+                    "next_steps": ["Ask a focused quality question and inspect the relevant local checks."]})])
     report = create_report(RunnableLambda(lambda _: next(responses)), "Any issue?", None, [])
     assert report.issues == []
     with pytest.raises(ReportParseError) as exc_info:

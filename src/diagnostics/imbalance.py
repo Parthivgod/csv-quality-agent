@@ -16,7 +16,8 @@ def class_imbalance_check(frame: pd.DataFrame, target: str | None) -> dict:
                 "summary": "Selected target has too many distinct values for a class-imbalance check.",
                 "data": {"unique_classes": int(len(counts))}, "findings": []}
     total = int(counts.sum())
-    classes = [{"class": str(label), "count": int(count), "proportion": round(int(count) / total, 4)}
+    classes = [{"class": str(label), "count": int(count), "proportion": round(int(count) / total, 4),
+                "percentage": round(int(count) / total * 100, 4)}
                for label, count in counts.items()]
     ratio = round(float(counts.iloc[0] / counts.iloc[-1]), 4)
     findings = []
@@ -30,4 +31,5 @@ def class_imbalance_check(frame: pd.DataFrame, target: str | None) -> dict:
             "summary": f"Target {target} has {len(classes)} classes; majority/minority ratio {ratio}:1.",
             "data": {"target": target, "classes": classes, "majority_class": classes[0]["class"],
                      "minority_class": classes[-1]["class"], "majority_minority_ratio": ratio,
+                     "thresholds_ratio": {"medium": 3.0, "high": 9.0},
                      "missing_target_count": int(frame[target].isna().sum())}, "findings": findings}

@@ -44,8 +44,11 @@ class DatasetScriptedModel(BaseChatModel):
                 issues = [{"issue": "Invented failure", "severity": "high", "column": "x",
                            "evidence": "made-up count", "impact": "made-up impact",
                            "recommendation": "made-up action", "source_tool": "outlier_check"}]
-            response = {"summary": "Invented 100% clean dataset", "issues": issues,
-                        "tools_used": ["made-up tool"], "limitations": ["Invented complete scan"]}
+            response = {"summary": "The selected diagnostics returned evidence for contextual review.", "issues": issues,
+                        "tools_used": ["made-up tool"], "limitations": ["Invented complete scan"],
+                        "interpretation": [{"text": "This observation applies to the selected check and its stated coverage.",
+                                            "source_tools": [item["tool"]]} for item in observations[:6]],
+                        "next_steps": ["Review the supplied evidence and limitations before changing the dataset."]}
             message = AIMessage(content=json.dumps(response))
         else:
             completed = sum(isinstance(m, ToolMessage) for m in messages)

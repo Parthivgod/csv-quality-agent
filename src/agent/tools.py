@@ -8,7 +8,7 @@ from collections.abc import Callable
 
 import pandas as pd
 from langchain_core.tools import StructuredTool
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 
 from src.config import Settings
 from src.diagnostics.profile import dataset_profile
@@ -19,7 +19,7 @@ from src.diagnostics.cardinality import high_cardinality_check
 from src.diagnostics.outliers import outlier_check
 from src.diagnostics.imbalance import class_imbalance_check
 from src.diagnostics.correlation import correlation_check
-from src.services.trace import TraceCollector
+from src.services.trace import TraceCollector, normalize_selection_reason
 from src.services.evidence import sanitize_statistics
 
 
@@ -35,8 +35,19 @@ DESCRIPTIONS = {
 }
 
 
-class NoArgs(BaseModel):
-    """All diagnostics operate on the DataFrame held by this request."""
+class DiagnosticArgs(BaseModel):
+    """Dataset, target and coverage remain fixed by the current request."""
+
+    model_config = ConfigDict(extra="forbid")
+    reason: StrictStr = Field(default="", max_length=300,
+        description="Optional brief user-facing explanation of why this check answers the question. No private reasoning or unverified findings.")
+
+    @field_validator("reason", mode="before")
+    @classmethod
+    def normalize_reason(cls, value):
+        if isinstance(value, str):
+            return normalize_selection_reason(value)
+        return value  # StrictStr rejects numbers, bools, collections and null.
 
 
 def build_tools(frame: pd.DataFrame, target: str | None, settings: Settings,
@@ -61,8 +72,9 @@ def build_tools(frame: pd.DataFrame, target: str | None, settings: Settings,
         functions = {name: (lambda n=name: handle_check(n)) for name in DESCRIPTIONS}
     tools = []
     for name, diagnostic in functions.items():
-        def make_run(_name: str, _diagnostic: Callable[[], dict]) -> Callable[[], str]:
-            def run() -> str:
+        def make_run(_name: str, _diagnostic: Callable[[], dict]) -> Callable[..., str]:
+            def run(reason: str = "") -> str:
+                reason = normalize_selection_reason(reason)
                 with trace.lock:
                     if len(trace.events) >= settings.max_tool_attempts:
                         raise RuntimeError("Maximum attempted diagnostic events reached.")
@@ -82,7 +94,7 @@ def build_tools(frame: pd.DataFrame, target: str | None, settings: Settings,
                         started = time.perf_counter()
                         try:
                             if progress:
-                                progress(f"Running {_name}")
+                                progress(f"Running {_name}" + (f" — {reason}" if reason else ""))
                             result = _diagnostic()
                         except Exception as exc:
                             result = {"status": "error", "tool": _name,
@@ -94,12 +106,14 @@ def build_tools(frame: pd.DataFrame, target: str | None, settings: Settings,
                         result["execution"].setdefault("backend", "pandas" if isinstance(frame, pd.DataFrame) else frame.backend)
                     trace.full_results.append(result)
                     result = bound_observation(result, settings)
-                    trace.add(_name, {}, result)
+                    trace.add(_name, {"reason": reason} if reason else {}, result)
                 return json.dumps(result, ensure_ascii=False)
             return run
 
         tools.append(StructuredTool.from_function(
-            func=make_run(name, diagnostic), name=name, description=DESCRIPTIONS[name], args_schema=NoArgs))
+            func=make_run(name, diagnostic), name=name,
+            description=DESCRIPTIONS[name] + " Supply a brief optional reason explaining relevance to the user's question before running the check.",
+            args_schema=DiagnosticArgs))
     return tools
 
 

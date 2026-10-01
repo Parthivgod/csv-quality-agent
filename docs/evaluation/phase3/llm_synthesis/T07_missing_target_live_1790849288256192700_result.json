@@ -1,0 +1,31 @@
+{
+  "id": "T07",
+  "attempt": "T07_missing_target_live_1790849288256192700",
+  "utc_time": "2026-10-01T10:08:08.256192+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "corrupted_class_imbalance.csv",
+  "sha256": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+  "target": null,
+  "question": "Is my target distribution a problem?",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [],
+  "actual_calls": [],
+  "run_metadata": {
+    "backend": "pandas",
+    "rows": 100,
+    "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0,
+    "total_seconds": 2.7334,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "latency_seconds": 2.755446,
+  "trace_file": "T07_missing_target_live_1790849288256192700_trace.json",
+  "report_file": "T07_missing_target_live_1790849288256192700_report.json",
+  "result_file": "T07_missing_target_live_1790849288256192700_result.json"
+}

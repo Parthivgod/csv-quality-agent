@@ -1,0 +1,67 @@
+{
+  "summary": "The numerical features show some suspicious patterns. Two columns, feature_x and feature_y, each contain one outlier (3.33% of their 30 values) outside the IQR‑based bounds. Additionally, feature_x and feature_y are perfectly correlated (Pearson r = 1.0), exceeding the 0.95 threshold for strong correlation.",
+  "issues": [
+    {
+      "issue": "IQR outliers",
+      "severity": "medium",
+      "column": "feature_x",
+      "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+      "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+      "recommendation": "Inspect these observations and the domain before any capping or removal.",
+      "source_tool": "outlier_check"
+    },
+    {
+      "issue": "IQR outliers",
+      "severity": "medium",
+      "column": "feature_y",
+      "evidence": "1/30 values outside [-26, 90] (3.33%)",
+      "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+      "recommendation": "Inspect these observations and the domain before any capping or removal.",
+      "source_tool": "outlier_check"
+    },
+    {
+      "issue": "Strong feature correlation",
+      "severity": "medium",
+      "column": "feature_x, feature_y",
+      "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+      "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+      "recommendation": "Review feature provenance and model assumptions before dropping either feature.",
+      "source_tool": "correlation_check"
+    }
+  ],
+  "tools_used": [
+    "outlier_check",
+    "correlation_check"
+  ],
+  "limitations": [],
+  "interpretation": [
+    {
+      "text": "A single outlier in feature_x and feature_y (3.33% of values) could stem from data entry errors, measurement glitches, or genuine extreme cases; further domain review is needed.",
+      "source_tools": [
+        "outlier_check"
+      ]
+    },
+    {
+      "text": "Feature_x and feature_y are perfectly correlated (r = 1.0), indicating they provide duplicate information, which may be redundant or reflect leakage from the data generation process.",
+      "source_tools": [
+        "correlation_check"
+      ]
+    },
+    {
+      "text": "Because the analysis is based on only 30 observations, both the outlier detection and the perfect correlation are sensitive to a few points, so conclusions should be made cautiously.",
+      "source_tools": [
+        "outlier_check",
+        "correlation_check"
+      ]
+    }
+  ],
+  "next_steps": [
+    "Examine the specific rows flagged as outliers in feature_x and feature_y.",
+    "Consult domain experts to verify whether the extreme values are plausible.",
+    "Consider applying robust scaling or capping if the outliers are deemed problematic.",
+    "Investigate how feature_x and feature_y were generated to understand their perfect correlation.",
+    "Test model performance with and without one of the correlated features.",
+    "Document any preprocessing decisions regarding outliers and correlated features."
+  ],
+  "assessment_summary": "3 verified finding(s) from 2 completed diagnostic(s). Results apply to the selected checks and their stated coverage."
+}

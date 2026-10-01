@@ -85,11 +85,11 @@ def architecture():
         (300, 25, "Strict CSV contract", "Encoding, rows, full-column types"),
         (580, 25, "DatasetHandle", "Pandas <=20 MiB / DuckDB + Parquet"),
         (580, 175, "Selected diagnostic tools", "8 exact checks + resource guards"),
-        (300, 175, "Groq + LangChain agent", "Chooses checks + public purpose"),
+        (300, 175, "Groq + LangChain agent", "gpt-oss-120b chooses checks"),
         (20, 175, "Compact schema + question", "Target / numeric subset / no raw rows"),
-        (20, 325, "Observable tool trace", "Purpose, evidence, status, coverage"),
+        (20, 325, "Observable tool trace", "Status, bounded evidence, coverage"),
         (300, 325, "LCEL + output parser", "Prompt | model | parser + one retry"),
-        (580, 325, "Report + evidence + UI", "LLM synthesis / exact findings"),
+        (580, 325, "Validated report + UI", "Exact issue matches, downloads"),
     ]
     edges = [(260, 65, 300, 65), (540, 65, 580, 65), (700, 105, 700, 175),
              (700, 105, 700, 145), (700, 145, 140, 145), (140, 145, 140, 175),
@@ -132,8 +132,6 @@ def main():
     parser.add_argument("--verified-limit-mb", type=int, required=True)
     parser.add_argument("--import-budget-seconds", type=int, default=120)
     parser.add_argument("--upload-evidence", type=Path)
-    parser.add_argument("--synthesis-manifest", type=Path,
-                        help="Separate revision evidence: test_count, test_record, cases[{id,status,actual_calls,latency_seconds,evidence}]")
     parser.add_argument("--draft", action="store_true", help="Write layout preview only under ignored tmp/pdfs")
     args = parser.parse_args()
     if args.test_count < 1:
@@ -141,27 +139,6 @@ def main():
     if args.upload_evidence and not args.upload_evidence.is_file():
         parser.error("Upload evidence must refer to an existing saved measurement")
     upload = json.loads(args.upload_evidence.read_text(encoding="utf-8")) if args.upload_evidence else None
-    revision = json.loads(args.synthesis_manifest.read_text(encoding="utf-8")) if args.synthesis_manifest else None
-    revision_ui = None
-    if not args.draft and not revision:
-        parser.error("The final synthesis revision requires a separate verified evidence manifest")
-    if revision:
-        if revision.get("test_count") != args.test_count or not revision.get("cases"):
-            parser.error("Revision manifest must contain the supplied fresh test count and live cases")
-        for item in revision["cases"]:
-            record_path = ROOT / item["evidence"]
-            if not record_path.is_file():
-                parser.error("Each revision case must reference saved original evidence")
-            recorded = json.loads(record_path.read_text(encoding="utf-8"))
-            if any(item[key] != recorded[key] for key in ("id", "status", "actual_calls", "latency_seconds")):
-                parser.error("Revision case summaries must exactly match their saved result records")
-        if not (ROOT / revision["test_record"]).is_file():
-            parser.error("Revision test record is required")
-        test_text = (ROOT / revision["test_record"]).read_text(encoding="utf-8")
-        if not re.search(rf"\b{args.test_count} passed\b", test_text):
-            parser.error("Supplied test count must occur in the separate revision test record")
-        if revision.get("ui_evidence"):
-            revision_ui = json.loads((ROOT / revision["ui_evidence"]).read_text(encoding="utf-8"))
     if upload and not (upload.get("final") and upload.get("completed_upload") and upload.get("dataset", {}).get("rows")):
         parser.error("Upload measurement must verify a completed dataset, not an idle sampling window")
     scenarios, benchmarks = latest_scenarios(), latest_benchmarks()
@@ -203,7 +180,7 @@ def main():
         markdown.extend(["<!-- page break -->", ""])
 
     heading("CSV Data Quality Triage Agent", True)
-    paragraph("Lab 9 - Activity 2 | Phase 3 technical report | 1 October 2026 | LLM synthesis revision" + (" | DRAFT" if args.draft else ""))
+    paragraph("Lab 9 - Activity 2 | Phase 3 technical report | 1 October 2026" + (" | DRAFT" if args.draft else ""))
     heading("1. Problem and implemented workflow")
     paragraph("CSV defects can distort machine-learning preparation. The application answers a user's diagnostic question using selected deterministic checks, with evidence and contextual recommendations. It does not clean datasets or train models. The local release upload limit is " + str(args.verified_limit_mb) + " MiB (MiB = 1,048,576 bytes); supported shapes and measured boundaries are reported on page 4.")
     story.append(Image(str(ASSETS / "phase3_architecture.png"), width=500, height=256))
@@ -214,9 +191,9 @@ def main():
         ["ChatPromptTemplate", "Agent instructions include question, schema, target, allowed tools and budgets."],
         ["Agent + StructuredTool", "create_agent asks Groq openai/gpt-oss-120b to select from eight checks."],
         ["LCEL chain", "REPORT_PROMPT | model | StrOutputParser produces candidate report JSON."],
-        ["PydanticOutputParser", "Parses LLM summary, cited interpretations and proposed next steps; exact issue validation plus narrative guards; one repair attempt."],
+        ["PydanticOutputParser", "Validates report shape; issue fields must exactly match emitted tool findings; one repair attempt."],
     ], [125, 375])
-    paragraph("The Groq API uses langchain-groq and an ignored root .env key. Raw datasets and row previews stay local. Schema, questions, aggregate evidence and class labels can reach the provider and may be sensitive. An optional brief public reason explains each check before execution and appears in progress/trace; private chain of thought is not recorded.")
+    paragraph("The Groq API is accessed through langchain-groq using an ignored root .env key. Raw datasets and row previews stay local. Schema, questions, aggregate evidence and categorical class labels can reach the provider; these summaries can still contain sensitive information. Observable tool events are displayed; model reasoning is not recorded.")
 
     page()
     heading("2. Implementation and exact diagnostics")
@@ -228,39 +205,27 @@ def main():
         ["Constants", "Distinct categories include null; near-constant dominant fraction at least 95%."],
         ["Cardinality", "Eligible categorical or identifier-named columns; at least 20 observations and 90% unique ratio."],
         ["Outliers", "Finite numeric values, exact Type-7 quartiles and 1.5 x IQR bounds; at least four observations."],
-        ["Imbalance", "Selected target; exact class counts, rounded percentages and unchanged ratio 3/9 thresholds; unsuitable/long-label targets skipped."],
+        ["Imbalance", "Selected target; exact class counts; ratio 3/9 thresholds; unsuitable/long-label targets skipped."],
         ["Correlation", "Exact finite pairwise Pearson r; target excluded; |r| at least 0.95; does not establish leakage."],
     ], [92,408])
     heading("Execution controls and evidence integrity")
     paragraph("An owned background job admits one heavy operation. DuckDB uses a 1 GB memory setting, two threads and 2 GiB spill allowance; the session storage quota is 4 GiB. Query cancellation interrupts the connection and waits for active work before cleanup. Reset, replacement and failed import close handles; abandoned storage cleanup checks ownership. Memory settings do not guarantee whole-process RSS.")
     paragraph("Numeric scans require at most 20 selected columns; full-row duplicates are guarded above 50 columns. Exact quartiles use one shared aggregate state plus a conservative allocation check. A resource-limited operation is skipped or fails visibly; it never silently samples. Six executed checks, twelve attempted events, twenty emitted findings and a 16 KiB observation cap bound orchestration. Full local evidence is separately downloadable.")
-    paragraph("Structured issues must exactly match transmitted successful findings; missing supported issues are restored. The LLM-written summary, cited interpretation and proposed next steps are retained. tools_used, limitations and assessment_summary are derived from actual events and coverage. Caches include dataset, scope and thresholds; cache hits are disclosed.")
-    paragraph("Interpretation citations must name called tools. Narrative numbers must occur in observed results, restricted to cited tools for interpretation; broad clean/safe/leakage assurances are rejected. These guards do not prove correct number-to-column attachment, causality or semantic accuracy. Qualitative interpretation and suggestions remain model output requiring review; exact issue matching is a separate stronger guarantee.")
+    paragraph("Every issue is matched to the transmitted finding's tool, type, severity, column, evidence, impact and recommendation. Missing supported findings are restored. Summary and limitations are rebuilt from observed checks, errors and coverage. Deterministic caches include dataset, selected scope and thresholds; cache hits are disclosed.")
 
     page()
     heading("3. Evaluation and failure handling")
-    paragraph("The original 1 October 2026 baseline had 122 passing tests and the live results below. Its PDF/MD/results are archived in submission/archive/phase3_original_122_tests/. Tests cover backend parity, adversarial CSV values, actual interruption, cancellation, cleanup/cache and both handles through the LangChain graph. These original live and scaling records remain historical evidence; no new 250 MiB benchmark was run for the synthesis revision.")
+    paragraph(f"The current verified automated suite contains {args.test_count} passing tests. It includes backend parity, quoting/null/infinity/leading-zero cases, actual long-query interruption, import cancellation, cleanup and cache invalidation, and scripted full LangChain graph tests for both handles. Scripted tests establish wiring and evidence enforcement; live scenarios below measure real Groq behavior. Original attempts and retries remain saved.")
     names = {"T01":"Missing values", "T02":"Broad quality", "T03":"Target imbalance", "T04":"Outlier/correlation", "T05":"Unsuitable target", "T06":"Injected tool failure", "T07":"No target selected", "T08":"Clean missing check", "T09":"Header-only upload"}
     live = [s for s in scenarios if s["mode"] == "live Groq"]
     table(["ID / case", "Latest result", "Actual evidence / elapsed"], [[
         f"{s['id']} {names.get(s['id'], '')}", s["status"],
         (", ".join(s.get("actual_calls", [])) or "No tool calls") + f"; {s.get('latency_seconds',0):.2f} s"
     ] for s in live], [130,70,300])
-    if revision:
-        heading("LLM synthesis revision: fresh verification")
-        paragraph(f"The revised suite has {args.test_count} passing tests; its separate record is {revision['test_record']}. Fresh live cases below verify model-written synthesis, cited interpretation, deterministic assessment and visible public selection reasons. Runtime success and numeric/citation guards do not establish full semantic proof.")
-        table(["Fresh case", "Result", "Calls / elapsed"], [[
-            item.get("label", item["id"]), item["status"], (", ".join(item["actual_calls"]) or "No tool calls") + f"; {item['latency_seconds']:.2f} s"
-        ] for item in revision["cases"]], [130,70,300])
-        paragraph("N01 explains the observed 60/40 distribution and 1.5 ratio with no flagged issue, using unchanged 3/9 thresholds. T07 provides target-selection guidance without a diagnostic call. Its first revision attempt failed with HTTP 429; that record remains alongside the successful retry. Public selection reasons appear only when a check is called.")
-        if revision_ui:
-            paragraph(f"A separate fresh browser run of the moderate target case took {revision_ui['run']['total_seconds']:.4f}s. Its downloaded ui_evidence.json and screenshots 11_llm_summary, 12_llm_interpretation and 13_llm_next_steps show the public selection reason, LLM synthesis, verified scope and suggested actions.")
-    elif args.draft:
-        heading("LLM synthesis revision: verification pending")
-        paragraph("Revised test count and three fresh live cases are pending. The original 122 tests and original scenario timings above are not revision results.")
     heading("Observed challenge and controlled failure")
-    paragraph("Original attempts retain triage errors, repeated checks and Groq HTTP 429. T06 injects an exception only into the duplicate diagnostic: its trace records the error and a limitation, with no invented count. T05 uses an unsuitable record_id target. T09 rejects a header-only upload before any provider request despite the harness live-mode label. Unsupported issues are rejected after one repair retry; selected coverage remains visible.")
-    paragraph("Original evidence: docs/evaluation/phase3/scenarios/*_result.json plus companion trace/report JSON and scenario_results.md. Revision evidence: docs/evaluation/phase3/llm_synthesis/. Raw records retain hashes, prompts, target, provider/model, actual calls and latency. Scripted tests establish wiring and guard behavior; live records establish observed provider behavior.")
+    paragraph("Early live attempts included retained triage errors, repeated diagnostic calls in the controlled-failure case, and provider throttling. Automated adversarial tests separately confirm that unsupported report issues are rejected after a repair retry. Supported findings and limitations are preserved deterministically. Provider HTTP 429 is retained as a real external failure rather than counted as a passing tool-selection case. Latest per-case results appear above; history remains in the scenario index.")
+    paragraph("T06 deliberately replaces only the duplicate diagnostic in the evaluation harness with an exception. This is controlled failure injection with live orchestration, not an organic dataset defect. Its trace records error, the report includes a limitation, and no duplicate count is invented. T05 uses record_id as an unsuitable target and should return a visible skipped check. Invalid uploads stop before triage; a missing target yields a target-selection limitation.")
+    paragraph("Evidence: docs/evaluation/phase3/scenarios/*_result.json records hashes, prompts, target, provider/model, calls, status and latency; companion trace/report JSON records observations. scenario_results.md retains attempt history. T09 stops during input validation and makes no provider request even though it belongs to the live-mode harness. Unit and integration files provide API-free reproduction.")
 
     page()
     heading("4. Measured scaling, limits and submission")
@@ -297,7 +262,7 @@ def main():
         canvas.line(47,40,548,40)
         canvas.setFont("Helvetica", 8)
         canvas.setFillColor(BLUE)
-        canvas.drawString(47,27,"CSV Data Quality Triage Agent | Phase 3 synthesis revision | 1 October 2026")
+        canvas.drawString(47,27,"CSV Data Quality Triage Agent | Phase 3 | 1 October 2026")
         canvas.drawRightString(548,27,str(doc.page))
     pdf = destination / "Phase3_Technical_Report.pdf"
     doc = SimpleDocTemplate(str(pdf), pagesize=A4, leftMargin=47, rightMargin=47,
@@ -307,7 +272,7 @@ def main():
     if page_count != 4:
         raise RuntimeError(f"Technical report must be four pages; produced {page_count}")
     (destination / "Phase3_Technical_Report.md").write_text("\n".join(markdown), encoding="utf-8")
-    results = ["# Phase 3 measured results", "", "LLM synthesis revision, 1 October 2026. Original benchmark/live measurements below are retained, not rerun or relabeled. [Original 122-test report and source](../submission/archive/phase3_original_122_tests/).", "", "Original automated baseline: **122 passed**. [Original test, dependency and compile results](evaluation/phase3/test_results.txt).", "", "## Original live Groq scenarios", "", "| ID | Result | Calls | Seconds |", "| --- | --- | --- | --- |"]
+    results = ["# Phase 3 measured results", "", "Generated 1 October 2026 from saved evidence; latest attempts are summarized and original attempts retained.", "", f"Automated verification supplied after testing: **{args.test_count} passed**. [Saved test, dependency and compile results](evaluation/phase3/test_results.txt).", "", "## Live Groq scenarios", "", "| ID | Result | Calls | Seconds |", "| --- | --- | --- | --- |"]
     for s in live:
         results.append(f"| {s['id']} | {s['status']} | {', '.join(s.get('actual_calls', []))} | {s.get('latency_seconds',0):.2f} |")
     results.extend(["", "[All attempts and evidence](evaluation/phase3/scenarios/scenario_results.md)", "", "## Diagnostic benchmarks", "", "| Profile | MiB | Runs | Max import s | Peak RSS MiB | Peak temp MiB | Gate |", "| --- | --- | --- | --- | --- | --- | --- |"])
@@ -317,14 +282,6 @@ def main():
     if upload:
         data = upload["dataset"]
         results.extend(["", "## Actual browser upload", "", f"Completed **{data['file_bytes']:,} bytes / {data['rows']:,} rows / {data['column_count']} columns** in DuckDB. Import **{data['import_seconds']:.3f}s**, excluding HTTP transfer; live Groq missing-value diagnosis **{upload['live_run_seconds']:.4f}s**. Sampled peak app/worker RSS **{upload['peak_app_and_worker_rss_bytes']/1024**2:.2f} MiB** includes the Streamlit buffer but excludes browser RSS. One desktop upload; OS cache and desktop load uncontrolled.", "", "[Original downloaded app evidence](evaluation/phase3/ui/large_evidence.json), [resource record](evaluation/phase3/ui/large_upload_resources.json), and [browser validation](evaluation/phase3/ui/UI_VALIDATION.md). Earlier idle/rejected sampling windows are not successful upload evidence."])
-    if revision:
-        results.extend(["", "## LLM synthesis revision: fresh verification", "", f"**{args.test_count} passing tests**. [Separate revision test record]({revision['test_record'].replace('docs/', '', 1)}).", "", "| Case | Status | Calls | Seconds | Evidence |", "| --- | --- | --- | --- | --- |"])
-        for item in revision["cases"]:
-            evidence_path = item["evidence"].replace("docs/", "", 1)
-            results.append(f"| {item['id']} | {item['status']} | {', '.join(item['actual_calls'])} | {item['latency_seconds']:.2f} | [Original evidence]({evidence_path}) |")
-        results.extend(["", "N01 explains the observed 60/40 class distribution and ratio 1.5 without a flagged issue under the unchanged 3/9 thresholds. T07 provides target-selection guidance with no diagnostic call. Its first revision HTTP 429 failure remains saved alongside the successful retry.", "", "The model-written summary, cited interpretations and next-step suggestions are retained. Exact issue matching and deterministic assessment/coverage remain separate. Cited tools must have been called and narrative numeric literals must occur in observed results (restricted to cited tools for interpretations). Broad clean/safe/leakage assurances are rejected. Numeric containment, which can include execution metadata, does not prove correct number-to-column attachment or semantic validity. Public pre-call reasons explain relevance and are not private chain of thought.", "", "The imbalance observations now include class percentages and the unchanged 3/9 ratio thresholds. No scaling benchmark was rerun for this revision."])
-        if revision_ui:
-            results.extend(["", f"A separate fresh browser run took **{revision_ui['run']['total_seconds']:.4f}s**. [Original downloaded revision evidence](evaluation/phase3/llm_synthesis/ui_evidence.json). Computer-use screenshots: [summary and public tool purpose](screenshots/phase3/11_llm_summary.jpg), [cited interpretation](screenshots/phase3/12_llm_interpretation.jpg), [proposed next steps](screenshots/phase3/13_llm_next_steps.jpg). These are fresh revision evidence, separate from the original 250 MiB upload."])
     if not args.draft:
         (ROOT / "docs" / "PHASE3_RESULTS.md").write_text("\n".join(results)+"\n", encoding="utf-8")
     print(json.dumps({"report": str(pdf), "pages": page_count, "latest_live_scenarios": len(live), "benchmark_groups": len(benchmarks)}))

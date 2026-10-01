@@ -1,0 +1,72 @@
+[
+  {
+    "sequence": 1,
+    "tool": "class_imbalance_check",
+    "arguments": {
+      "reason": "Check the distribution of the selected target column 'label' to see if class imbalance may affect modeling."
+    },
+    "status": "ok",
+    "summary": "Target label has 2 classes; majority/minority ratio 1.5:1.",
+    "selection_reason": "Check the distribution of the selected target column 'label' to see if class imbalance may affect modeling.",
+    "result": {
+      "status": "ok",
+      "tool": "class_imbalance_check",
+      "summary": "Target label has 2 classes; majority/minority ratio 1.5:1.",
+      "data": {
+        "target": "label",
+        "classes": [
+          {
+            "class": "negative",
+            "count": 60,
+            "proportion": 0.6,
+            "percentage": 60.0
+          },
+          {
+            "class": "positive",
+            "count": 40,
+            "proportion": 0.4,
+            "percentage": 40.0
+          }
+        ],
+        "majority_class": "negative",
+        "minority_class": "positive",
+        "majority_minority_ratio": 1.5,
+        "thresholds_ratio": {
+          "medium": 3.0,
+          "high": 9.0
+        },
+        "missing_target_count": 0
+      },
+      "findings": [],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+        "rows": 100,
+        "columns_checked": [
+          "label"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 1.11,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "label"
+          ],
+          "ignored_columns": [
+            "record_id",
+            "feature"
+          ]
+        },
+        "columns_omitted": 0,
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

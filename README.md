@@ -9,8 +9,10 @@ A local Streamlit application for investigating CSV quality before model trainin
 - Strict CSV validation, full-column type inference, bounded preview, and cached basic metadata.
 - Pandas for files up to 20 MB; DuckDB with local Parquet for larger files. Forced Pandas imports above the small-file threshold are rejected.
 - Eight deterministic diagnostics, selected by the agent under execution and output budgets.
-- Ordered tool trace with status, arguments, backend, exactness, timing, cache use, and coverage.
-- Evidence-backed findings with severity, impact, recommendations, and explicit failed/skipped-check limitations.
+- Brief LLM explanations of tool choices, shown during execution and alongside the ordered tool trace.
+- Tool trace with status, arguments, backend, exactness, timing, cache use, and coverage.
+- LLM-written summary, source-linked interpretation, and suggested next steps, including when no issue threshold is triggered.
+- Separate verified findings with severity, impact, recommendations, and explicit failed/skipped-check limitations.
 - Background import/triage, cancellation, owned temporary storage cleanup, and stale-report invalidation.
 - Downloadable JSON containing the question, dataset fingerprint, trace, report, and local tool results.
 
@@ -53,6 +55,7 @@ Upload a file, or open **Try a sample**, select a fixture, and click **Load samp
 | --- | --- | --- | --- |
 | `corrupted_missing_duplicates.csv` | None | `Does this CSV contain missing data?` | Missing age/income values |
 | `corrupted_missing_duplicates.csv` | None | `Why could this dataset cause problems during model training?` | Missing values, duplicates, constant feature |
+| `class_distribution_moderate.csv` | `label` | `Is my target distribution a problem? Explain what the observed distribution means and suggest next steps.` | 60/40 distribution, ratio 1.5, explanatory report with no flagged issue |
 | `corrupted_class_imbalance.csv` | `label` | `Is my target distribution a problem?` | 90/10 target distribution, ratio 9 |
 | `corrupted_outliers_corr.csv` | None | `Do the numerical features contain suspicious values or relationships?` | Two IQR outlier findings and correlation 1 |
 | `invalid_header_only.csv` | None | Upload only | Friendly no-data-rows error |
@@ -72,7 +75,7 @@ Tool choices can vary between live model runs. The computed statistics are deter
 | `StructuredTool` wrappers | `src/agent/tools.py` |
 | LCEL chain and `PydanticOutputParser` | `src/agent/report_chain.py` |
 
-The eight checks are profile, missing values, full-row duplicates, constant/near-constant columns, eligible high-cardinality columns, IQR outliers, selected-target class imbalance, and Pearson correlation. The agent has six executed checks and twelve attempted events per run by default. Report issues must match tool findings; the final summary and limitations are derived from validated evidence.
+The eight checks are profile, missing values, full-row duplicates, constant/near-constant columns, eligible high-cardinality columns, IQR outliers, selected-target class imbalance, and Pearson correlation. The agent has six executed checks and twelve attempted events per run by default. Report issues must exactly match tool findings. The LLM writes the summary, interpretation, and proposed next steps; code independently derives the scope caption and failed/skipped/partial-check limitations. Interpretations cite actual tool calls. Validation rejects numeric values absent from supplied observations, with one bounded repair attempt. These checks do not prove every natural-language inference: review the model interpretation against its cited evidence. The report before this update remains in the submission archive.
 
 The dataset stays in local app storage. Groq receives the question, schema, target, and aggregate observations, including category labels when relevant. These can still contain sensitive information. Raw row samples are not included in the model context.
 
@@ -97,7 +100,7 @@ The dataset stays in local app storage. Groq receives the question, schema, targ
 .\.venv\Scripts\python.exe -m compileall -q app.py src scripts tests
 ```
 
-The current suite passes **122 tests** covering both backends, exact diagnostic parity, adversarial CSVs, resource/cancellation guards, full LangChain integration, output/report validation, and actual Streamlit sample/reset/replacement flows. Scripted models test wiring without API calls. [Fresh live scenarios](docs/evaluation/phase3/scenarios/scenario_results.md), [UI validation](docs/evaluation/phase3/ui/UI_VALIDATION.md), and size benchmarks are recorded separately; successes, failures, and retries are retained.
+The current suite passes **149 tests** covering both backends, exact diagnostic parity, adversarial CSVs, resource/cancellation guards, full LangChain integration, output/report validation, and actual Streamlit sample/reset/replacement flows. Scripted models test wiring without API calls. [Fresh synthesis checks](docs/evaluation/phase3/llm_synthesis/README.md), [original Phase 3 live scenarios](docs/evaluation/phase3/scenarios/scenario_results.md), [UI validation](docs/evaluation/phase3/ui/UI_VALIDATION.md), and size benchmarks are recorded separately; successes, failures, and retries are retained.
 
 Generate and benchmark synthetic data (large files are ignored by Git):
 

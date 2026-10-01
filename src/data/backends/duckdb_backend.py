@@ -395,7 +395,8 @@ class DuckDBDataset:
         counts = self._rows(f"SELECT {q}, count(*) n FROM (SELECT *, row_number() OVER () source_order FROM dataset) "
                             f"WHERE {q} IS NOT NULL GROUP BY {q} ORDER BY n DESC, min(source_order)")
         total = self.row_count - self.null_counts[target]
-        classes = [{"class": str(label), "count": n, "proportion": round(n / total, 4)} for label, n in counts]
+        classes = [{"class": str(label), "count": n, "proportion": round(n / total, 4),
+                    "percentage": round(n / total * 100, 4)} for label, n in counts]
         ratio = round(counts[0][1] / counts[-1][1], 4)
         findings = []
         if ratio >= 3:
@@ -405,6 +406,7 @@ class DuckDBDataset:
                              "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."})
         data = {"target": target, "classes": classes, "majority_class": classes[0]["class"],
                 "minority_class": classes[-1]["class"], "majority_minority_ratio": ratio,
+                "thresholds_ratio": {"medium": 3.0, "high": 9.0},
                 "missing_target_count": self.null_counts[target]}
         return _result(name, f"Target {target} has {len(classes)} classes; majority/minority ratio {ratio}:1.", data, findings), [target]
 

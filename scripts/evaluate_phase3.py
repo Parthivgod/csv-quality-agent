@@ -79,7 +79,11 @@ class ScenarioModel(BaseChatModel):
             issues = [{**finding, "source_tool": observation["tool"]}
                       for observation in observations for finding in observation.get("findings", [])]
             limitations = [o["summary"] for o in observations if o["status"] in {"skipped", "error"}]
-            content = json.dumps({"summary": "Selected diagnostics completed.", "issues": issues,
+            interpretation = [{"text": "These observations apply to the selected check; review its coverage before changing data.",
+                               "source_tools": [o["tool"]]} for o in observations[:6]]
+            content = json.dumps({"summary": "The selected checks provide evidence for contextual review; unassessed checks remain limitations.",
+                                  "issues": issues, "interpretation": interpretation,
+                                  "next_steps": ["Review the supplied observations and coverage before deciding on any data change."],
                                   "tools_used": [o["tool"] for o in observations], "limitations": limitations})
             message = AIMessage(content=content)
         else:

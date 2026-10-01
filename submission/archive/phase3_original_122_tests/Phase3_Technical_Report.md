@@ -1,6 +1,6 @@
 # CSV Data Quality Triage Agent
 
-Lab 9 - Activity 2 | Phase 3 technical report | 1 October 2026 | LLM synthesis revision
+Lab 9 - Activity 2 | Phase 3 technical report | 1 October 2026
 
 ## 1. Problem and implemented workflow
 
@@ -17,9 +17,9 @@ Figure 1. Implemented selective tool workflow.
 | ChatPromptTemplate | Agent instructions include question, schema, target, allowed tools and budgets. |
 | Agent + StructuredTool | create_agent asks Groq openai/gpt-oss-120b to select from eight checks. |
 | LCEL chain | REPORT_PROMPT / model / StrOutputParser produces candidate report JSON. |
-| PydanticOutputParser | Parses LLM summary, cited interpretations and proposed next steps; exact issue validation plus narrative guards; one repair attempt. |
+| PydanticOutputParser | Validates report shape; issue fields must exactly match emitted tool findings; one repair attempt. |
 
-The Groq API uses langchain-groq and an ignored root .env key. Raw datasets and row previews stay local. Schema, questions, aggregate evidence and class labels can reach the provider and may be sensitive. An optional brief public reason explains each check before execution and appears in progress/trace; private chain of thought is not recorded.
+The Groq API is accessed through langchain-groq using an ignored root .env key. Raw datasets and row previews stay local. Schema, questions, aggregate evidence and categorical class labels can reach the provider; these summaries can still contain sensitive information. Observable tool events are displayed; model reasoning is not recorded.
 
 <!-- page break -->
 
@@ -35,7 +35,7 @@ The uploader is copied and hashed in chunks once. Strict validation handles UTF-
 | Constants | Distinct categories include null; near-constant dominant fraction at least 95%. |
 | Cardinality | Eligible categorical or identifier-named columns; at least 20 observations and 90% unique ratio. |
 | Outliers | Finite numeric values, exact Type-7 quartiles and 1.5 x IQR bounds; at least four observations. |
-| Imbalance | Selected target; exact class counts, rounded percentages and unchanged ratio 3/9 thresholds; unsuitable/long-label targets skipped. |
+| Imbalance | Selected target; exact class counts; ratio 3/9 thresholds; unsuitable/long-label targets skipped. |
 | Correlation | Exact finite pairwise Pearson r; target excluded; /r/ at least 0.95; does not establish leakage. |
 
 ## Execution controls and evidence integrity
@@ -44,15 +44,13 @@ An owned background job admits one heavy operation. DuckDB uses a 1 GB memory se
 
 Numeric scans require at most 20 selected columns; full-row duplicates are guarded above 50 columns. Exact quartiles use one shared aggregate state plus a conservative allocation check. A resource-limited operation is skipped or fails visibly; it never silently samples. Six executed checks, twelve attempted events, twenty emitted findings and a 16 KiB observation cap bound orchestration. Full local evidence is separately downloadable.
 
-Structured issues must exactly match transmitted successful findings; missing supported issues are restored. The LLM-written summary, cited interpretation and proposed next steps are retained. tools_used, limitations and assessment_summary are derived from actual events and coverage. Caches include dataset, scope and thresholds; cache hits are disclosed.
-
-Interpretation citations must name called tools. Narrative numbers must occur in observed results, restricted to cited tools for interpretation; broad clean/safe/leakage assurances are rejected. These guards do not prove correct number-to-column attachment, causality or semantic accuracy. Qualitative interpretation and suggestions remain model output requiring review; exact issue matching is a separate stronger guarantee.
+Every issue is matched to the transmitted finding's tool, type, severity, column, evidence, impact and recommendation. Missing supported findings are restored. Summary and limitations are rebuilt from observed checks, errors and coverage. Deterministic caches include dataset, selected scope and thresholds; cache hits are disclosed.
 
 <!-- page break -->
 
 ## 3. Evaluation and failure handling
 
-The original 1 October 2026 baseline had 122 passing tests and the live results below. Its PDF/MD/results are archived in submission/archive/phase3_original_122_tests/. Tests cover backend parity, adversarial CSV values, actual interruption, cancellation, cleanup/cache and both handles through the LangChain graph. These original live and scaling records remain historical evidence; no new 250 MiB benchmark was run for the synthesis revision.
+The current verified automated suite contains 122 passing tests. It includes backend parity, quoting/null/infinity/leading-zero cases, actual long-query interruption, import cancellation, cleanup and cache invalidation, and scripted full LangChain graph tests for both handles. Scripted tests establish wiring and evidence enforcement; live scenarios below measure real Groq behavior. Original attempts and retries remain saved.
 
 | ID / case | Latest result | Actual evidence / elapsed |
 | --- | --- | --- |
@@ -66,25 +64,13 @@ The original 1 October 2026 baseline had 122 passing tests and the live results 
 | T08 Clean missing check | pass | missing_values_check; 15.96 s |
 | T09 Header-only upload | pass | No tool calls; 0.02 s |
 
-## LLM synthesis revision: fresh verification
-
-The revised suite has 149 passing tests; its separate record is docs/evaluation/phase3/llm_synthesis/test_results.txt. Fresh live cases below verify model-written synthesis, cited interpretation, deterministic assessment and visible public selection reasons. Runtime success and numeric/citation guards do not establish full semantic proof.
-
-| Fresh case | Result | Calls / elapsed |
-| --- | --- | --- |
-| N01 Moderate 60/40 | pass | class_imbalance_check; 5.12 s |
-| T04 Numeric features | pass | outlier_check, correlation_check; 27.78 s |
-| T07 Missing target | pass | No tool calls; 2.76 s |
-
-N01 explains the observed 60/40 distribution and 1.5 ratio with no flagged issue, using unchanged 3/9 thresholds. T07 provides target-selection guidance without a diagnostic call. Its first revision attempt failed with HTTP 429; that record remains alongside the successful retry. Public selection reasons appear only when a check is called.
-
-A separate fresh browser run of the moderate target case took 4.6215s. Its downloaded ui_evidence.json and screenshots 11_llm_summary, 12_llm_interpretation and 13_llm_next_steps show the public selection reason, LLM synthesis, verified scope and suggested actions.
-
 ## Observed challenge and controlled failure
 
-Original attempts retain triage errors, repeated checks and Groq HTTP 429. T06 injects an exception only into the duplicate diagnostic: its trace records the error and a limitation, with no invented count. T05 uses an unsuitable record_id target. T09 rejects a header-only upload before any provider request despite the harness live-mode label. Unsupported issues are rejected after one repair retry; selected coverage remains visible.
+Early live attempts included retained triage errors, repeated diagnostic calls in the controlled-failure case, and provider throttling. Automated adversarial tests separately confirm that unsupported report issues are rejected after a repair retry. Supported findings and limitations are preserved deterministically. Provider HTTP 429 is retained as a real external failure rather than counted as a passing tool-selection case. Latest per-case results appear above; history remains in the scenario index.
 
-Original evidence: docs/evaluation/phase3/scenarios/*_result.json plus companion trace/report JSON and scenario_results.md. Revision evidence: docs/evaluation/phase3/llm_synthesis/. Raw records retain hashes, prompts, target, provider/model, actual calls and latency. Scripted tests establish wiring and guard behavior; live records establish observed provider behavior.
+T06 deliberately replaces only the duplicate diagnostic in the evaluation harness with an exception. This is controlled failure injection with live orchestration, not an organic dataset defect. Its trace records error, the report includes a limitation, and no duplicate count is invented. T05 uses record_id as an unsuitable target and should return a visible skipped check. Invalid uploads stop before triage; a missing target yields a target-selection limitation.
+
+Evidence: docs/evaluation/phase3/scenarios/*_result.json records hashes, prompts, target, provider/model, calls, status and latency; companion trace/report JSON records observations. scenario_results.md retains attempt history. T09 stops during input validation and makes no provider request even though it belongs to the live-mode harness. Unit and integration files provide API-free reproduction.
 
 <!-- page break -->
 

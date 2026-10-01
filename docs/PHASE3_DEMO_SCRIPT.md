@@ -4,7 +4,7 @@
 
 ## 1. Prepare and rehearse
 
-1. Read [UI validation](evaluation/phase3/ui/UI_VALIDATION.md), [test results](evaluation/phase3/test_results.txt), and [verified benchmark summary](evaluation/phase3/benchmarks/benchmark_verified_summary.md). Use the final evaluated commit when recording.
+1. Read [UI validation](evaluation/phase3/ui/UI_VALIDATION.md), [current synthesis tests](evaluation/phase3/llm_synthesis/test_results.txt), and [verified benchmark summary](evaluation/phase3/benchmarks/benchmark_verified_summary.md). Use the final evaluated commit when recording.
 2. Configure ignored root `.env`: `LLM_PROVIDER=groq`, `LLM_MODEL=openai/gpt-oss-120b`, `GROQ_API_KEY=your_key`. Keep the key and `.env` off screen. The app displays **API key configured** without revealing it.
 3. Start from the repository root in PowerShell:
 
@@ -23,7 +23,7 @@
 | Case | File | Target | Exact `Data-quality question` |
 | --- | --- | --- | --- |
 | A: numerical investigation | `data/samples/corrupted_outliers_corr.csv` | **None selected** | `Do the numerical features contain suspicious values or relationships?` |
-| B: selected target | `data/samples/corrupted_class_imbalance.csv` | **label** | `Is my target distribution a problem?` |
+| B: selected target with no flagged issue | `data/samples/class_distribution_moderate.csv` | **label** | `Is my target distribution a problem? Explain what the observed distribution means and suggest next steps.` |
 
 Use **Upload CSV** to choose the file. For a reliable rehearsal shortcut, open **Try a sample**, choose the same filename in **Sample CSV**, and click **Load sample CSV**; identify that input as the bundled sample. Wait for **Dataset overview** before asking the question. Click **Run Triage**, then inspect **Tool-call trace** and **Structured diagnosis**.
 
@@ -45,7 +45,7 @@ Use **Upload CSV** to choose the file. For a reliable rehearsal shortcut, open *
 
 > “The upload is copied and validated once. Small files use Pandas; larger files use DuckDB and a local Parquet dataset. The user can select a target and a bounded set of numeric columns. The LLM receives the question, schema and aggregate observations, while raw rows stay local. Schema and aggregates can still be sensitive.
 >
-> “Four LangChain components work together. A prompt template supplies the rules and context. The Groq-hosted GPT OSS 120B agent chooses from eight structured tools. An LCEL chain formats the observations, and a Pydantic parser validates the report. Our own validator requires every issue to match a real tool finding; failed, skipped or limited checks become limitations. The trace and JSON download expose the actual calls and evidence.
+> “Four LangChain components work together. A prompt template supplies the rules and context. The Groq-hosted GPT OSS 120B agent chooses from eight structured tools. An LCEL chain asks the model to write a summary, interpretation and suggested next steps from the observations, and a Pydantic parser validates the report. Our own validator requires every issue to match a real tool finding; failed, skipped or limited checks become limitations. Brief tool-choice explanations appear during execution and in the trace. Verified findings, model interpretation and suggested actions have separate labels. The JSON download preserves each layer.
 >
 > “The release accepts up to 250 MiB on our documented local setup. It uses caching, bounded output, spill settings, cancellation and explicit scope guards. The uploader still keeps a memory buffer, so the disk-backed backend does not eliminate upload memory.”
 
@@ -75,14 +75,14 @@ If the agent omits a check, describe the observed coverage. Do not splice a diff
 
 **Actions:**
 
-1. Upload `corrupted_class_imbalance.csv`.
+1. Upload `class_distribution_moderate.csv`.
 2. Select **label** in **Target column (optional)**.
 3. Paste case B's exact question; click **Run Triage**.
-4. Show the actual class-imbalance trace and corresponding report.
+4. Show the model's brief tool-choice explanation, then its **LLM summary**, **Verified findings**, **LLM interpretation** and **Suggested next steps**.
 
 **Say:**
 
-> “This question needs a selected target. There are ninety negative and ten positive labels: a nine-to-one class ratio. The rule marks this as high severity and recommends class-aware evaluation and justified handling. It does not automatically resample the data. Selecting an unsuitable target or omitting it produces an explicit limitation rather than an invented distribution.”
+> “This question needs a selected target. There are sixty negative and forty positive labels: a ratio of one point five to one. The tool does not flag it because the medium threshold is three to one. The model still explains the modest skew and proposes class-aware evaluation. The summary and interpretation are model-written; the counts and thresholds come from tools. Suggested next steps have not been performed, and the app does not automatically resample data.”
 
 If the two runs finish early, use at most 15 seconds to show an already imported large dataset, saying **“This dataset was imported before recording.”** Otherwise reserve the benchmark screen for the final segment.
 
@@ -106,7 +106,7 @@ Show [controlled-failure evidence](evaluation/phase3/scenarios/scenario_results.
 
 **Say:**
 
-> “Nine live scenarios have successful recorded attempts, and 122 automated tests passed. Earlier errors remain, including a Groq rate-limit error followed by a successful retry. Scripted, API, browser and benchmark evidence are separate.
+> “The original nine evaluation scenarios include input rejection, and 149 automated tests now pass. Fresh reporting runs cover modest imbalance, numerical features and a missing target. Earlier errors remain, including a Groq rate-limit error followed by a successful retry. Scripted, API, browser and benchmark evidence are separate.
 >
 > “The size ladder reaches 250 MiB across five profiles. Required counts matched the generator. Large statistical tools were exercised; independent numerical correctness comes from controlled small fixtures. Unassessed statistics are not counted as verified.
 >

@@ -1,0 +1,46 @@
+{
+  "revision": "LLM synthesis",
+  "date": "2026-10-01",
+  "baseline_test_count": 122,
+  "test_count": 149,
+  "test_record": "docs/evaluation/phase3/llm_synthesis/test_results.txt",
+  "cases": [
+    {
+      "id": "N01",
+      "status": "pass",
+      "actual_calls": [
+        "class_imbalance_check"
+      ],
+      "latency_seconds": 5.123336,
+      "label": "N01 Moderate 60/40",
+      "evidence": "docs/evaluation/phase3/llm_synthesis/N01_moderate_synthesis_live_1790849109222287800_result.json",
+      "report": "docs/evaluation/phase3/llm_synthesis/N01_moderate_synthesis_live_1790849109222287800_report.json",
+      "trace": "docs/evaluation/phase3/llm_synthesis/N01_moderate_synthesis_live_1790849109222287800_trace.json"
+    },
+    {
+      "id": "T04",
+      "status": "pass",
+      "actual_calls": [
+        "outlier_check",
+        "correlation_check"
+      ],
+      "latency_seconds": 27.777156,
+      "label": "T04 Numeric features",
+      "evidence": "docs/evaluation/phase3/llm_synthesis/T04_numeric_live_1790849139329035600_result.json",
+      "report": "docs/evaluation/phase3/llm_synthesis/T04_numeric_live_1790849139329035600_report.json",
+      "trace": "docs/evaluation/phase3/llm_synthesis/T04_numeric_live_1790849139329035600_trace.json"
+    },
+    {
+      "id": "T07",
+      "status": "pass",
+      "actual_calls": [],
+      "latency_seconds": 2.755446,
+      "label": "T07 Missing target",
+      "evidence": "docs/evaluation/phase3/llm_synthesis/T07_missing_target_live_1790849288256192700_result.json",
+      "report": "docs/evaluation/phase3/llm_synthesis/T07_missing_target_live_1790849288256192700_report.json",
+      "trace": "docs/evaluation/phase3/llm_synthesis/T07_missing_target_live_1790849288256192700_trace.json"
+    }
+  ],
+  "benchmarks_rerun": false,
+  "ui_evidence": "docs/evaluation/phase3/llm_synthesis/ui_evidence.json"
+}

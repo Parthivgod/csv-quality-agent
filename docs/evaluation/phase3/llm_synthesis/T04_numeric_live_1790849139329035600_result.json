@@ -1,0 +1,34 @@
+{
+  "id": "T04",
+  "attempt": "T04_numeric_live_1790849139329035600",
+  "utc_time": "2026-10-01T10:05:39.329035+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "corrupted_outliers_corr.csv",
+  "sha256": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+  "target": null,
+  "question": "Do the numerical features contain suspicious values or relationships?",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [],
+  "actual_calls": [
+    "outlier_check",
+    "correlation_check"
+  ],
+  "run_metadata": {
+    "backend": "pandas",
+    "rows": 30,
+    "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0076,
+    "total_seconds": 27.756,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "latency_seconds": 27.777156,
+  "trace_file": "T04_numeric_live_1790849139329035600_trace.json",
+  "report_file": "T04_numeric_live_1790849139329035600_report.json",
+  "result_file": "T04_numeric_live_1790849139329035600_result.json"
+}

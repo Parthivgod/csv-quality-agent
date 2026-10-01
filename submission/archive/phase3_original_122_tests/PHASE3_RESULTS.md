@@ -1,10 +1,10 @@
 # Phase 3 measured results
 
-LLM synthesis revision, 1 October 2026. Original benchmark/live measurements below are retained, not rerun or relabeled. [Original 122-test report and source](../submission/archive/phase3_original_122_tests/).
+Generated 1 October 2026 from saved evidence; latest attempts are summarized and original attempts retained.
 
-Original automated baseline: **122 passed**. [Original test, dependency and compile results](evaluation/phase3/test_results.txt).
+Automated verification supplied after testing: **122 passed**. [Saved test, dependency and compile results](evaluation/phase3/test_results.txt).
 
-## Original live Groq scenarios
+## Live Groq scenarios
 
 | ID | Result | Calls | Seconds |
 | --- | --- | --- | --- |
@@ -45,21 +45,3 @@ The PDF includes latest recorded results. Video, real feedback form, roster/dead
 Completed **262,143,987 bytes / 3,274,752 rows / 13 columns** in DuckDB. Import **36.093s**, excluding HTTP transfer; live Groq missing-value diagnosis **3.9375s**. Sampled peak app/worker RSS **1312.97 MiB** includes the Streamlit buffer but excludes browser RSS. One desktop upload; OS cache and desktop load uncontrolled.
 
 [Original downloaded app evidence](evaluation/phase3/ui/large_evidence.json), [resource record](evaluation/phase3/ui/large_upload_resources.json), and [browser validation](evaluation/phase3/ui/UI_VALIDATION.md). Earlier idle/rejected sampling windows are not successful upload evidence.
-
-## LLM synthesis revision: fresh verification
-
-**149 passing tests**. [Separate revision test record](evaluation/phase3/llm_synthesis/test_results.txt).
-
-| Case | Status | Calls | Seconds | Evidence |
-| --- | --- | --- | --- | --- |
-| N01 | pass | class_imbalance_check | 5.12 | [Original evidence](evaluation/phase3/llm_synthesis/N01_moderate_synthesis_live_1790849109222287800_result.json) |
-| T04 | pass | outlier_check, correlation_check | 27.78 | [Original evidence](evaluation/phase3/llm_synthesis/T04_numeric_live_1790849139329035600_result.json) |
-| T07 | pass |  | 2.76 | [Original evidence](evaluation/phase3/llm_synthesis/T07_missing_target_live_1790849288256192700_result.json) |
-
-N01 explains the observed 60/40 class distribution and ratio 1.5 without a flagged issue under the unchanged 3/9 thresholds. T07 provides target-selection guidance with no diagnostic call. Its first revision HTTP 429 failure remains saved alongside the successful retry.
-
-The model-written summary, cited interpretations and next-step suggestions are retained. Exact issue matching and deterministic assessment/coverage remain separate. Cited tools must have been called and narrative numeric literals must occur in observed results (restricted to cited tools for interpretations). Broad clean/safe/leakage assurances are rejected. Numeric containment, which can include execution metadata, does not prove correct number-to-column attachment or semantic validity. Public pre-call reasons explain relevance and are not private chain of thought.
-
-The imbalance observations now include class percentages and the unchanged 3/9 ratio thresholds. No scaling benchmark was rerun for this revision.
-
-A separate fresh browser run took **4.6215s**. [Original downloaded revision evidence](evaluation/phase3/llm_synthesis/ui_evidence.json). Computer-use screenshots: [summary and public tool purpose](screenshots/phase3/11_llm_summary.jpg), [cited interpretation](screenshots/phase3/12_llm_interpretation.jpg), [proposed next steps](screenshots/phase3/13_llm_next_steps.jpg). These are fresh revision evidence, separate from the original 250 MiB upload.

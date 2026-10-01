@@ -1,6 +1,6 @@
 # Architecture
 
-Implemented Phase 3 architecture, reviewed 1 October 2026, with the LLM synthesis revision on the same date. The original Phase 2 diagram remains in `docs/assets/csv_agent_architecture.png`. The earlier Phase 3 architecture/report and 122-test results are preserved in `submission/archive/phase3_original_122_tests/`; its benchmark and live-run records remain unchanged.
+Implemented Phase 3 architecture, reviewed 1 October 2026. The original Phase 2 diagram remains in `docs/assets/csv_agent_architecture.png` as historical evidence.
 
 ![Implemented Phase 3 workflow](assets/phase3_architecture.png)
 
@@ -20,16 +20,13 @@ flowchart TD
     H --> C[Bounded schema and row count]
     UI[Question, target, numeric subset] --> A[Groq gpt-oss-120b LangChain agent]
     C --> A
-    A -->|Optional public selection reason| T[Selected StructuredTools]
+    A --> T[Selected StructuredTools]
     T -->|Aggregate observations| A
     T --> H
     T --> E[Tool trace and bounded aggregate observations]
     E --> R[LCEL reporting chain]
-    R --> O[Pydantic plus exact issue and narrative guards]
-    E --> F[Deterministic assessment and coverage]
-    O --> X[LLM summary, cited interpretation, proposed next steps]
-    F --> X
-    X --> Y[UI and downloadable evidence]
+    R --> O[Pydantic parsing and exact finding validation]
+    O --> X[UI report, limitations and downloadable evidence]
 ```
 
 The user chooses a question and optional target/subset. The agent selects relevant checks; ingestion computes only necessary metadata. It does not automatically run all eight diagnostics.
@@ -46,8 +43,8 @@ The user chooses a question and optional target/subset. The agent selects releva
 | Reference backend | `src/data/backends/pandas_backend.py` | Existing deterministic diagnostics, shared guards, cache and provenance |
 | Disk backend | `src/data/backends/duckdb_backend.py` | Typed Parquet, SQL aggregates, finite statistics, resource guards, owned query interruption |
 | Context and agent | `src/data/context_builder.py`, `src/agent/factory.py`, `src/agent/prompt.py` | Schema context and PromptTemplate; Groq model; actual `create_agent` graph |
-| Tools and trace | `src/agent/tools.py`, `src/services/trace.py` | Optional public selection reason; execution/attempt/output budgets; bounded observations; full local results; status/coverage |
-| Report | `src/agent/report_chain.py`, `src/models/schemas.py` | LCEL synthesis; Pydantic; one repair attempt; exact issue matching; narrative guards; deterministic assessment/limits |
+| Tools and trace | `src/agent/tools.py`, `src/services/trace.py` | Execution/attempt/output budgets; bounded observations; full local results; actual status/coverage |
+| Report | `src/agent/report_chain.py`, `src/models/schemas.py` | LCEL, Pydantic, one repair attempt, exact issue matching and deterministic summary/limits |
 | Service/jobs | `src/services/triage_service.py`, `src/services/jobs.py` | Isolated request, metadata, heavy-job admission, cancellation lifecycle |
 
 ## Data and privacy boundaries
@@ -56,21 +53,7 @@ The user chooses a question and optional target/subset. The agent selects releva
 - The provider receives the question, schema/types, shape, target/subset and selected aggregate observations.
 - Class-label distributions can contain raw categorical labels; these aggregate summaries can still be sensitive. Very long labels are guarded.
 - A Groq key belongs in the ignored root `.env` as `GROQ_API_KEY`. It is not sent in evidence or committed.
-- The trace shows observable calls, arguments, status, aggregate evidence, exactness, cache use and coverage. An optional `reason` explains a check's relevance before it runs; it is a brief public explanation, not private chain of thought. The prompt excludes raw rows, secrets and file contents from this explanation.
-
-## Report synthesis and validation boundaries
-
-The LCEL model writes the report `summary`, up to six `interpretation` entries (`text`, `source_tools`) and up to six `next_steps`. Interpretation connects observed evidence to the user's question; next steps are suggestions, not actions performed. The model-written summary is retained.
-
-Separate deterministic layers keep the evidence reviewable:
-
-1. Each structured issue must exactly match a successful transmitted tool finding, including its evidence, severity and recommendation. Missing supported findings are restored and repeated identical issues are deduplicated.
-2. `tools_used`, `limitations` and `assessment_summary` are derived from actual events and their coverage. The assessment counts verified findings and completed checks without replacing the LLM summary.
-3. Interpretation citations must name actual called tools. Numeric literals in an interpretation must occur in the cited observations; summary and next-step numbers must occur somewhere in the observed results. Text length and broad cleanliness/safety/leakage assurance guards also apply. A failed candidate gets one repair attempt.
-
-These narrative guards do **not** prove that a number belongs to the stated column or statistic, or that an interpretation is semantically valid. Numeric containment can include execution metadata. Tool citation confirms an observed call, not causal support for every sentence; a skipped/error tool supports explaining a limitation. Qualitative interpretations and suggested next steps remain LLM output and require review. Exact issue validation is stronger than these narrative checks.
-
-Class imbalance observations expose exact counts, rounded proportions/percentages and the existing ratio thresholds (medium 3, high 9), allowing the model to explain a mild skew even when there is no flagged issue. The thresholds and flagging rule are unchanged; a no-findings result does not establish that the entire dataset is balanced or clean.
+- The trace shows observable calls, arguments, status, aggregate evidence, exactness, cache use and coverage. It does not reveal model reasoning.
 
 ## Exactness and resource scope
 
@@ -89,7 +72,7 @@ The uploader itself retains a Streamlit in-memory buffer. Disk-backed diagnostic
 | Tool exception | Safe error status/summary in trace; report includes limitation and no invented issue |
 | Scope/resource limit | Explicit skip/error and eligible coverage; no full-scan claim |
 | Provider failure/throttling | Triage error; local handle remains available for a new run |
-| Unsupported report | Exact issue/narrative guards; one repair attempt; readable failure with trace retained |
+| Unsupported report | Exact issue validation; one repair attempt; readable failure with trace retained |
 | Cancel | Event plus owned query interrupt; wait for active work before cleanup |
 | Reset or new upload | Close prior handle; invalidate report/results; remove owned storage |
 
@@ -101,4 +84,3 @@ The uploader itself retains a Streamlit in-memory buffer. Disk-backed diagnostic
 - `tests/integration/test_dataset_pipeline.py`: both handles through the actual LangChain graph with scripted model output and evidence validation.
 - `docs/evaluation/phase3/scenarios/`: live/scripted attempts and controlled failure injection.
 - `docs/evaluation/phase3/benchmarks/`: reproducible size/shape results, resource measurements and original failed attempts.
-- `docs/evaluation/phase3/llm_synthesis/`: separate revision tests and fresh live evidence; the original 122-test record and scaling benchmarks are not relabeled as revision runs.

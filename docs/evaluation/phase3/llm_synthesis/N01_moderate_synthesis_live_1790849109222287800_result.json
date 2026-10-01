@@ -1,0 +1,33 @@
+{
+  "id": "N01",
+  "attempt": "N01_moderate_synthesis_live_1790849109222287800",
+  "utc_time": "2026-10-01T10:05:09.222287+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "class_distribution_moderate.csv",
+  "sha256": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+  "target": "label",
+  "question": "Is my target distribution a problem? Explain what the observed distribution means and suggest next steps.",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [],
+  "actual_calls": [
+    "class_imbalance_check"
+  ],
+  "run_metadata": {
+    "backend": "pandas",
+    "rows": 100,
+    "dataset_hash": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+    "target": "label",
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0014,
+    "total_seconds": 5.0849,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "latency_seconds": 5.123336,
+  "trace_file": "N01_moderate_synthesis_live_1790849109222287800_trace.json",
+  "report_file": "N01_moderate_synthesis_live_1790849109222287800_report.json",
+  "result_file": "N01_moderate_synthesis_live_1790849109222287800_result.json"
+}
