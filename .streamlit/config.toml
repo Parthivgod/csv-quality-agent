@@ -1,2 +1,4 @@
 [server]
-maxUploadSize = 20
+# Transport allowance includes multipart framing; the widget and loader enforce 250 MB.
+maxUploadSize = 251
+address = "127.0.0.1"

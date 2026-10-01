@@ -1,0 +1,22 @@
+{
+  "id": "T09",
+  "attempt": "T09_invalid_input_live_1790832801405734300",
+  "utc_time": "2026-10-01T05:33:21.405734+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "invalid_header_only.csv",
+  "sha256": "0188d75befa224cca295b1c2ccb91dc3ea72f399aabc4772028f6edecf4889df",
+  "target": null,
+  "question": "Upload only; triage must not run.",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [
+    "Invalid input rejected before agent execution."
+  ],
+  "error_type": "CSVLoadError",
+  "latency_seconds": 0.021354,
+  "trace_file": "T09_invalid_input_live_1790832801405734300_trace.json",
+  "report_file": "T09_invalid_input_live_1790832801405734300_report.json",
+  "result_file": "T09_invalid_input_live_1790832801405734300_result.json"
+}

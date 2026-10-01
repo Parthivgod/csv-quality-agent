@@ -1,0 +1,34 @@
+{
+  "utc_time": "2026-10-01T06:21:08.235489+00:00",
+  "pid": 33652,
+  "mode": "actual Streamlit browser upload and local backend; browser RSS excluded",
+  "sampling_interval_seconds": 0.05,
+  "sampling_window_seconds": 149.125,
+  "baseline_app_rss_bytes": 57450496,
+  "peak_app_and_worker_rss_bytes": 1376751616,
+  "peak_owned_temp_bytes": 562470858,
+  "samples": 2179,
+  "final": true,
+  "rss_budget_bytes": 2147483648,
+  "rss_budget_pass": true,
+  "completed_upload": true,
+  "upload_evidence_file": "large_evidence.json",
+  "dataset": {
+    "filename": "tall_numeric_250MiB.csv",
+    "sha256": "af5521abc1b31bc89495128e9813e0c27c4e49749c5d12376272f8677bd3b8b0",
+    "file_bytes": 262143987,
+    "rows": 3274752,
+    "column_count": 13,
+    "backend": "duckdb",
+    "encoding": "utf-8-sig",
+    "import_seconds": 36.093
+  },
+  "import_seconds": 36.093,
+  "live_run_seconds": 3.9375,
+  "limitations": [
+    "One browser upload on this desktop, not a concurrent-user capacity test.",
+    "RSS includes Streamlit upload buffer and local backend; browser memory excluded.",
+    "Sampling window includes waiting and diagnosis; import_seconds excludes HTTP upload transfer.",
+    "OS file cache and desktop load were uncontrolled."
+  ]
+}

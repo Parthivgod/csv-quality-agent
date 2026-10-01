@@ -1,0 +1,471 @@
+{
+  "run": {
+    "run_id": "quoted_unicode_250MiB_r2_1790833854028950600",
+    "utc_time": "2026-10-01T05:50:54.028950+00:00",
+    "profile": "quoted_unicode",
+    "seed": 2026,
+    "file_bytes": 262143892,
+    "rows": 2092984,
+    "columns": 6,
+    "numeric_columns": 3,
+    "backend": "duckdb",
+    "upload_included": false,
+    "api_report_seconds": 0,
+    "cache_state": "new handle; OS cache uncontrolled",
+    "release_ingest_limit_seconds": 120
+  },
+  "manifest": {
+    "generator_version": "phase3-v1",
+    "profile": "quoted_unicode",
+    "seed": 2026,
+    "requested_mib": 250.0,
+    "size_unit": "MiB = 1,048,576 bytes; last complete record at or below target",
+    "file": "quoted_unicode_250MiB.csv",
+    "file_bytes": 262143892,
+    "sha256": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+    "rows": 2092984,
+    "columns": 6,
+    "column_names": [
+      "record_id",
+      "description",
+      "city",
+      "value",
+      "nullable",
+      "label"
+    ],
+    "numeric_columns": [
+      "record_id",
+      "value",
+      "nullable"
+    ],
+    "expected": {
+      "null_counts": {
+        "record_id": 0,
+        "description": 0,
+        "city": 0,
+        "value": 0,
+        "nullable": 209299,
+        "label": 0
+      },
+      "duplicate_count": 20929,
+      "target": "label",
+      "class_counts": {
+        "negative": 1904615,
+        "positive": 188369
+      }
+    },
+    "ground_truth_source": "Deterministic row construction, counted while generating; independent of application diagnostics."
+  },
+  "observations": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 0.0011928999997508072,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 209299,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "209299/2092984 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+          "rows": 2092984,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.69,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "description",
+            "city",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 0.7665612000000692,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "20929 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 20929,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "20929/2092984 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+          "rows": 2092984,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 766.214,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "description",
+            "city",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 0.033948599999803264,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1111:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 1904615,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 188369,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1111,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1111:1; counts [{'class': 'negative', 'count': 1904615, 'proportion': 0.91}, {'class': 'positive', 'count': 188369, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+          "rows": 2092984,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 33.651,
+          "cache_hit": false,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "ingest": {
+    "seconds": 18.954554200000075,
+    "shape_correct": true,
+    "fingerprint_match": true
+  },
+  "cache_repeats": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 7.039999991320656e-05,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 209299,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "209299/2092984 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+          "rows": 2092984,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.05,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "description",
+            "city",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 5.199999986871262e-05,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "20929 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 20929,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "20929/2092984 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+          "rows": 2092984,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.038,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "description",
+            "city",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 5.510000028152717e-05,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1111:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 1904615,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 188369,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1111,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1111:1; counts [{'class': 'negative', 'count': 1904615, 'proportion': 0.91}, {'class': 'positive', 'count': 188369, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "f2fc9cf0ec0cec38ff8757a2152c3242af73441df19a6583e8cf402b9a9391d0",
+          "rows": 2092984,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.04,
+          "cache_hit": true,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "description",
+              "city",
+              "value",
+              "nullable"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "resources": {
+    "peak_process_and_child_rss_bytes": 1051131904,
+    "peak_owned_temp_bytes": 552173396,
+    "temp_measured": true
+  }
+}

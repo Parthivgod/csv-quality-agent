@@ -1,0 +1,10 @@
+{
+  "summary": "0 supported finding(s) from 0 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+  "issues": [],
+  "tools_used": [
+    "class_imbalance_check"
+  ],
+  "limitations": [
+    "Selected target has too many distinct values for a class-imbalance check."
+  ]
+}

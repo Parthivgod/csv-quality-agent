@@ -1,0 +1,7 @@
+{
+  "original_attempt": "T06_controlled_failure_live_1790832731062843700",
+  "original_record_status": "fail",
+  "reverified_status": "pass",
+  "reasons": [],
+  "verification_change": "A repeated-call skipped event must not erase the earlier observed controlled error. Original records unchanged."
+}

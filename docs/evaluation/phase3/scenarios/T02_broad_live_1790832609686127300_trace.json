@@ -1,0 +1,216 @@
+[
+  {
+    "sequence": 1,
+    "tool": "missing_values_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "2 columns contain missing values.",
+    "result": {
+      "status": "ok",
+      "tool": "missing_values_check",
+      "summary": "2 columns contain missing values.",
+      "data": {
+        "affected_columns": [
+          {
+            "column": "age",
+            "missing_count": 6,
+            "missing_pct": 20.0,
+            "severity": "medium"
+          },
+          {
+            "column": "income",
+            "missing_count": 3,
+            "missing_pct": 10.0,
+            "severity": "medium"
+          }
+        ],
+        "thresholds_pct": {
+          "medium": 5.0,
+          "high": 30.0
+        }
+      },
+      "findings": [
+        {
+          "issue": "Missing values",
+          "severity": "medium",
+          "column": "age",
+          "evidence": "6/30 values missing (20.0%)",
+          "impact": "Training may fail or estimates may be biased without appropriate handling.",
+          "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+        },
+        {
+          "issue": "Missing values",
+          "severity": "medium",
+          "column": "income",
+          "evidence": "3/30 values missing (10.0%)",
+          "impact": "Training may fail or estimates may be biased without appropriate handling.",
+          "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "cf6f6db7cf4508e60434ae9a321d8ba7f92bb2663a1d6a3a361219b6ecc0d76b",
+        "rows": 30,
+        "columns_checked": [
+          "age",
+          "income",
+          "city",
+          "constant_feature"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 1.061,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "age",
+            "income",
+            "city",
+            "constant_feature"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "age",
+            "income",
+            "city",
+            "constant_feature"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0,
+        "findings_total": 2,
+        "findings_omitted": 0
+      }
+    }
+  },
+  {
+    "sequence": 2,
+    "tool": "constant_columns_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "1 constant and 0 near-constant columns.",
+    "result": {
+      "status": "ok",
+      "tool": "constant_columns_check",
+      "summary": "1 constant and 0 near-constant columns.",
+      "data": {
+        "constant_columns": [
+          {
+            "column": "constant_feature",
+            "unique_count_including_null": 1,
+            "dominant_ratio": 1.0
+          }
+        ],
+        "near_constant_columns": [],
+        "near_constant_threshold": 0.95
+      },
+      "findings": [
+        {
+          "issue": "Constant column",
+          "severity": "medium",
+          "column": "constant_feature",
+          "evidence": "1 distinct values including null; dominant fraction 100.00%",
+          "impact": "This feature may provide little predictive information.",
+          "recommendation": "Review its role before excluding it from model inputs."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "cf6f6db7cf4508e60434ae9a321d8ba7f92bb2663a1d6a3a361219b6ecc0d76b",
+        "rows": 30,
+        "columns_checked": [
+          "age",
+          "income",
+          "city",
+          "constant_feature"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 2.018,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "age",
+            "income",
+            "city",
+            "constant_feature"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "age",
+            "income",
+            "city",
+            "constant_feature"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0,
+        "findings_total": 1,
+        "findings_omitted": 0
+      }
+    }
+  },
+  {
+    "sequence": 3,
+    "tool": "duplicate_rows_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "2 duplicate rows (6.67%). Contextual review is needed.",
+    "result": {
+      "status": "ok",
+      "tool": "duplicate_rows_check",
+      "summary": "2 duplicate rows (6.67%). Contextual review is needed.",
+      "data": {
+        "duplicate_count": 2,
+        "duplicate_pct": 6.67
+      },
+      "findings": [
+        {
+          "issue": "Duplicate rows",
+          "severity": "medium",
+          "column": null,
+          "evidence": "2/30 rows duplicate earlier rows (6.67%)",
+          "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+          "recommendation": "Review duplicate records in domain context before deduplication."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "cf6f6db7cf4508e60434ae9a321d8ba7f92bb2663a1d6a3a361219b6ecc0d76b",
+        "rows": 30,
+        "columns_checked": [
+          "age",
+          "income",
+          "city",
+          "constant_feature"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 0.727,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "age",
+            "income",
+            "city",
+            "constant_feature"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "age",
+            "income",
+            "city",
+            "constant_feature"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0,
+        "findings_total": 1,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

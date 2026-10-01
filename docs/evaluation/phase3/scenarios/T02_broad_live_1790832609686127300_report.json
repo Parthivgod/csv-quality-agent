@@ -1,0 +1,47 @@
+{
+  "summary": "4 supported finding(s) from 3 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+  "issues": [
+    {
+      "issue": "Missing values",
+      "severity": "medium",
+      "column": "age",
+      "evidence": "6/30 values missing (20.0%)",
+      "impact": "Training may fail or estimates may be biased without appropriate handling.",
+      "recommendation": "Investigate why values are missing, then choose justified imputation or removal.",
+      "source_tool": "missing_values_check"
+    },
+    {
+      "issue": "Missing values",
+      "severity": "medium",
+      "column": "income",
+      "evidence": "3/30 values missing (10.0%)",
+      "impact": "Training may fail or estimates may be biased without appropriate handling.",
+      "recommendation": "Investigate why values are missing, then choose justified imputation or removal.",
+      "source_tool": "missing_values_check"
+    },
+    {
+      "issue": "Constant column",
+      "severity": "medium",
+      "column": "constant_feature",
+      "evidence": "1 distinct values including null; dominant fraction 100.00%",
+      "impact": "This feature may provide little predictive information.",
+      "recommendation": "Review its role before excluding it from model inputs.",
+      "source_tool": "constant_columns_check"
+    },
+    {
+      "issue": "Duplicate rows",
+      "severity": "medium",
+      "column": null,
+      "evidence": "2/30 rows duplicate earlier rows (6.67%)",
+      "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+      "recommendation": "Review duplicate records in domain context before deduplication.",
+      "source_tool": "duplicate_rows_check"
+    }
+  ],
+  "tools_used": [
+    "missing_values_check",
+    "constant_columns_check",
+    "duplicate_rows_check"
+  ],
+  "limitations": []
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "sequence": 1,
+    "tool": "missing_values_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "0 columns contain missing values.",
+    "result": {
+      "status": "ok",
+      "tool": "missing_values_check",
+      "summary": "0 columns contain missing values.",
+      "data": {
+        "affected_columns": [],
+        "thresholds_pct": {
+          "medium": 5.0,
+          "high": 30.0
+        }
+      },
+      "findings": [],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "52b7157712bc8ba7a8bdadff39d0ec5e28e46b8ad73d5e05500d4f42e60ca951",
+        "rows": 12,
+        "columns_checked": [
+          "age",
+          "study_hours",
+          "group",
+          "label"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 0.809,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "age",
+            "study_hours",
+            "group",
+            "label"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "age",
+            "study_hours",
+            "group",
+            "label"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0,
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

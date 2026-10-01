@@ -1,0 +1,78 @@
+[
+  {
+    "sequence": 1,
+    "tool": "duplicate_rows_check",
+    "arguments": {},
+    "status": "error",
+    "summary": "Diagnostic failed: RuntimeError",
+    "result": {
+      "status": "error",
+      "tool": "duplicate_rows_check",
+      "summary": "Diagnostic failed: RuntimeError",
+      "data": {},
+      "findings": [],
+      "execution": {
+        "elapsed_ms": 0.28,
+        "exact": true,
+        "cache_hit": false,
+        "backend": "pandas",
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  },
+  {
+    "sequence": 2,
+    "tool": "duplicate_rows_check",
+    "arguments": {},
+    "status": "skipped",
+    "summary": "This diagnostic already ran; use its previous observation.",
+    "result": {
+      "status": "skipped",
+      "tool": "duplicate_rows_check",
+      "summary": "This diagnostic already ran; use its previous observation.",
+      "data": {},
+      "findings": [],
+      "execution": {
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  },
+  {
+    "sequence": 3,
+    "tool": "duplicate_rows_check",
+    "arguments": {},
+    "status": "skipped",
+    "summary": "This diagnostic already ran; use its previous observation.",
+    "result": {
+      "status": "skipped",
+      "tool": "duplicate_rows_check",
+      "summary": "This diagnostic already ran; use its previous observation.",
+      "data": {},
+      "findings": [],
+      "execution": {
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  },
+  {
+    "sequence": 4,
+    "tool": "duplicate_rows_check",
+    "arguments": {},
+    "status": "skipped",
+    "summary": "This diagnostic already ran; use its previous observation.",
+    "result": {
+      "status": "skipped",
+      "tool": "duplicate_rows_check",
+      "summary": "This diagnostic already ran; use its previous observation.",
+      "data": {},
+      "findings": [],
+      "execution": {
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "id": "T01",
+  "attempt": "T01_missing_live_1790832606589647000",
+  "utc_time": "2026-10-01T05:30:06.589647+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "corrupted_missing_duplicates.csv",
+  "sha256": "cf6f6db7cf4508e60434ae9a321d8ba7f92bb2663a1d6a3a361219b6ecc0d76b",
+  "target": null,
+  "question": "Does this CSV contain missing data?",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [],
+  "actual_calls": [
+    "missing_values_check"
+  ],
+  "run_metadata": {
+    "backend": "pandas",
+    "rows": 30,
+    "dataset_hash": "cf6f6db7cf4508e60434ae9a321d8ba7f92bb2663a1d6a3a361219b6ecc0d76b",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.001,
+    "total_seconds": 3.0755,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "latency_seconds": 3.091842,
+  "trace_file": "T01_missing_live_1790832606589647000_trace.json",
+  "report_file": "T01_missing_live_1790832606589647000_report.json",
+  "result_file": "T01_missing_live_1790832606589647000_result.json"
+}

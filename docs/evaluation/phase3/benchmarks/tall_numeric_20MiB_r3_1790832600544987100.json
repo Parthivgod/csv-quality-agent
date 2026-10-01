@@ -1,0 +1,591 @@
+{
+  "run": {
+    "run_id": "tall_numeric_20MiB_r3_1790832600544987100",
+    "utc_time": "2026-10-01T05:30:00.544987+00:00",
+    "profile": "tall_numeric",
+    "seed": 2026,
+    "file_bytes": 20971467,
+    "rows": 265569,
+    "columns": 13,
+    "numeric_columns": 12,
+    "backend": "duckdb",
+    "upload_included": false,
+    "api_report_seconds": 0,
+    "cache_state": "new handle; OS cache uncontrolled"
+  },
+  "manifest": {
+    "generator_version": "phase3-v1",
+    "profile": "tall_numeric",
+    "seed": 2026,
+    "requested_mib": 20.0,
+    "size_unit": "MiB = 1,048,576 bytes; last complete record at or below target",
+    "file": "tall_numeric_20MiB.csv",
+    "file_bytes": 20971467,
+    "sha256": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+    "rows": 265569,
+    "columns": 13,
+    "column_names": [
+      "record_id",
+      "feature_00",
+      "feature_01",
+      "feature_02",
+      "feature_03",
+      "feature_04",
+      "feature_05",
+      "feature_06",
+      "feature_07",
+      "feature_08",
+      "feature_09",
+      "nullable",
+      "label"
+    ],
+    "numeric_columns": [
+      "record_id",
+      "feature_00",
+      "feature_01",
+      "feature_02",
+      "feature_03",
+      "feature_04",
+      "feature_05",
+      "feature_06",
+      "feature_07",
+      "feature_08",
+      "feature_09",
+      "nullable"
+    ],
+    "expected": {
+      "null_counts": {
+        "record_id": 0,
+        "feature_00": 0,
+        "feature_01": 0,
+        "feature_02": 0,
+        "feature_03": 0,
+        "feature_04": 0,
+        "feature_05": 0,
+        "feature_06": 0,
+        "feature_07": 0,
+        "feature_08": 0,
+        "feature_09": 0,
+        "nullable": 26557,
+        "label": 0
+      },
+      "duplicate_count": 2655,
+      "target": "label",
+      "class_counts": {
+        "negative": 241668,
+        "positive": 23901
+      }
+    },
+    "ground_truth_source": "Deterministic row construction, counted while generating; independent of application diagnostics."
+  },
+  "observations": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 0.0008508000000801985,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 26557,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "26557/265569 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+          "rows": 265569,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.461,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 0.07332499999984066,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "2655 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 2655,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "2655/265569 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+          "rows": 265569,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 73.038,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 0.008650799999941228,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1112:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 241668,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 23901,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1112,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1112:1; counts [{'class': 'negative', 'count': 241668, 'proportion': 0.91}, {'class': 'positive', 'count': 23901, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+          "rows": 265569,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 8.35,
+          "cache_hit": false,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "ingest": {
+    "seconds": 3.520935400000326,
+    "shape_correct": true,
+    "fingerprint_match": true
+  },
+  "cache_repeats": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 6.359999997584964e-05,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 26557,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "26557/265569 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+          "rows": 265569,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.051,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 6.620000021939632e-05,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "2655 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 2655,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "2655/265569 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+          "rows": 265569,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.053,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 5.089999967822223e-05,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1112:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 241668,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 23901,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1112,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1112:1; counts [{'class': 'negative', 'count': 241668, 'proportion': 0.91}, {'class': 'positive', 'count': 23901, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "8dc5a25a71e304aa45e8f04ba13e927e971adf1c9a4c5378700950867f224ac6",
+          "rows": 265569,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.038,
+          "cache_hit": true,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "resources": {
+    "peak_process_and_child_rss_bytes": 166510592,
+    "peak_owned_temp_bytes": 41942979,
+    "temp_measured": true
+  }
+}

@@ -1,0 +1,73 @@
+[
+  {
+    "sequence": 1,
+    "tool": "class_imbalance_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "Target label has 2 classes; majority/minority ratio 9.0:1.",
+    "result": {
+      "status": "ok",
+      "tool": "class_imbalance_check",
+      "summary": "Target label has 2 classes; majority/minority ratio 9.0:1.",
+      "data": {
+        "target": "label",
+        "classes": [
+          {
+            "class": "negative",
+            "count": 90,
+            "proportion": 0.9
+          },
+          {
+            "class": "positive",
+            "count": 10,
+            "proportion": 0.1
+          }
+        ],
+        "majority_class": "negative",
+        "minority_class": "positive",
+        "majority_minority_ratio": 9.0,
+        "missing_target_count": 0
+      },
+      "findings": [
+        {
+          "issue": "Class imbalance",
+          "severity": "high",
+          "column": "label",
+          "evidence": "Majority/minority ratio 9.0:1; counts [{'class': 'negative', 'count': 90, 'proportion': 0.9}, {'class': 'positive', 'count': 10, 'proportion': 0.1}]",
+          "impact": "A classifier can favor common classes and hide poor minority recall.",
+          "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+        "rows": 100,
+        "columns_checked": [
+          "label"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 1.126,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "label"
+          ],
+          "ignored_columns": [
+            "record_id",
+            "feature_a",
+            "feature_b"
+          ]
+        },
+        "columns_omitted": 0,
+        "findings_total": 1,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

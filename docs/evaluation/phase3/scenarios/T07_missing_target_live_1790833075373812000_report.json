@@ -1,0 +1,8 @@
+{
+  "summary": "0 supported finding(s) from 0 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+  "issues": [],
+  "tools_used": [],
+  "limitations": [
+    "Select a target column to assess class imbalance."
+  ]
+}

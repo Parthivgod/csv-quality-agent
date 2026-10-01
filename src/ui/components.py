@@ -10,10 +10,14 @@ def show_trace(events: list[dict]) -> None:
     if not events:
         st.info("No diagnostic tool was called.")
     for event in events:
-        with st.expander(f"{event['sequence']}. {event['tool']} — {event['status']}", expanded=True):
+        with st.expander(f"{event['sequence']}. {event['tool']} — {event['status']}", expanded=False):
             st.write(event["summary"])
             st.caption(f"Arguments: {event['arguments']}")
-            st.json(event["result"]["data"])
+            st.json(event["result"]["data"], expanded=False)
+            if event["result"].get("execution"):
+                execution = event["result"]["execution"]
+                st.caption(f"{execution.get('backend', 'local')} · {execution.get('elapsed_ms', 0):.2f}ms · cache hit: {execution.get('cache_hit', False)} · omitted columns: {execution.get('columns_omitted', 0)}")
+                st.json(execution, expanded=False)
 
 
 def show_report(report: DataQualityReport) -> None:

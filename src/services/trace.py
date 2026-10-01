@@ -9,6 +9,9 @@ class TraceCollector:
     max_calls: int
     events: list[dict] = field(default_factory=list)
     lock: Lock = field(default_factory=Lock, repr=False)
+    full_results: list[dict] = field(default_factory=list, repr=False)
+    executed_calls: int = 0
+    local_compute_seconds: float = 0.0
 
     def add(self, tool: str, arguments: dict, result: dict) -> None:
         self.events.append({"sequence": len(self.events) + 1, "tool": tool,

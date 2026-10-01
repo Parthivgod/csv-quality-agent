@@ -1,0 +1,917 @@
+{
+  "run": {
+    "run_id": "null_heavy_250MiB_r2_1790833708934689200",
+    "utc_time": "2026-10-01T05:48:28.934689+00:00",
+    "profile": "null_heavy",
+    "seed": 2026,
+    "file_bytes": 262143945,
+    "rows": 4377678,
+    "columns": 14,
+    "numeric_columns": 13,
+    "backend": "duckdb",
+    "upload_included": false,
+    "api_report_seconds": 0,
+    "cache_state": "new handle; OS cache uncontrolled",
+    "release_ingest_limit_seconds": 120
+  },
+  "manifest": {
+    "generator_version": "phase3-v1",
+    "profile": "null_heavy",
+    "seed": 2026,
+    "requested_mib": 250.0,
+    "size_unit": "MiB = 1,048,576 bytes; last complete record at or below target",
+    "file": "null_heavy_250MiB.csv",
+    "file_bytes": 262143945,
+    "sha256": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+    "rows": 4377678,
+    "columns": 14,
+    "column_names": [
+      "record_id",
+      "feature_00",
+      "feature_01",
+      "feature_02",
+      "feature_03",
+      "feature_04",
+      "feature_05",
+      "feature_06",
+      "feature_07",
+      "feature_08",
+      "feature_09",
+      "feature_10",
+      "feature_11",
+      "label"
+    ],
+    "numeric_columns": [
+      "record_id",
+      "feature_00",
+      "feature_01",
+      "feature_02",
+      "feature_03",
+      "feature_04",
+      "feature_05",
+      "feature_06",
+      "feature_07",
+      "feature_08",
+      "feature_09",
+      "feature_10",
+      "feature_11"
+    ],
+    "expected": {
+      "null_counts": {
+        "record_id": 0,
+        "feature_00": 1459226,
+        "feature_01": 1459226,
+        "feature_02": 1459226,
+        "feature_03": 1459226,
+        "feature_04": 1459226,
+        "feature_05": 1459226,
+        "feature_06": 1459226,
+        "feature_07": 1459226,
+        "feature_08": 1459226,
+        "feature_09": 1459226,
+        "feature_10": 1459226,
+        "feature_11": 1459226,
+        "label": 0
+      },
+      "duplicate_count": 43776,
+      "target": "label",
+      "class_counts": {
+        "negative": 3983687,
+        "positive": 393991
+      }
+    },
+    "ground_truth_source": "Deterministic row construction, counted while generating; independent of application diagnostics."
+  },
+  "observations": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 0.0007678000001760665,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "12 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "feature_00",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_01",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_02",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_03",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_04",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_05",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_06",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_07",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_08",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_09",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_10",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_11",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_00",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_01",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_02",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_03",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_04",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_05",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_06",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_07",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_08",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_09",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_10",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_11",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+          "rows": 4377678,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.409,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "feature_10",
+            "feature_11",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 1.8445403999999144,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "43776 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 43776,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "43776/4377678 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+          "rows": 4377678,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 1844.068,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "feature_10",
+            "feature_11",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 0.06742029999986698,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1111:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 3983687,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 393991,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1111,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1111:1; counts [{'class': 'negative', 'count': 3983687, 'proportion': 0.91}, {'class': 'positive', 'count': 393991, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+          "rows": 4377678,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 67.169,
+          "cache_hit": false,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "ingest": {
+    "seconds": 80.56115660000023,
+    "shape_correct": true,
+    "fingerprint_match": true
+  },
+  "cache_repeats": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 9.829999999055872e-05,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "12 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "feature_00",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_01",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_02",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_03",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_04",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_05",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_06",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_07",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_08",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_09",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_10",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            },
+            {
+              "column": "feature_11",
+              "missing_count": 1459226,
+              "missing_pct": 33.33,
+              "severity": "high"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_00",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_01",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_02",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_03",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_04",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_05",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_06",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_07",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_08",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_09",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_10",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          },
+          {
+            "issue": "Missing values",
+            "severity": "high",
+            "column": "feature_11",
+            "evidence": "1459226/4377678 values missing (33.33%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+          "rows": 4377678,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.089,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "feature_10",
+            "feature_11",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 7.699999969190685e-05,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "43776 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 43776,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "43776/4377678 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+          "rows": 4377678,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.053,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "feature_10",
+            "feature_11",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 4.510000007940107e-05,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1111:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 3983687,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 393991,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1111,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1111:1; counts [{'class': 'negative', 'count': 3983687, 'proportion': 0.91}, {'class': 'positive', 'count': 393991, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "2223b963cac155c9f51b6cab97835aecf8a789f40cc6f64253fb4cad0d766d87",
+          "rows": 4377678,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.032,
+          "cache_hit": true,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "feature_10",
+              "feature_11"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "resources": {
+    "peak_process_and_child_rss_bytes": 1092157440,
+    "peak_owned_temp_bytes": 602804355,
+    "temp_measured": true
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "exported_utc": "2026-10-01T05:52:58.348193+00:00",
+  "dataset": {
+    "filename": "corrupted_class_imbalance.csv",
+    "sha256": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+    "file_bytes": 1959,
+    "rows": 100,
+    "column_count": 4,
+    "backend": "duckdb",
+    "encoding": "utf-8-sig"
+  },
+  "question": "Is my target distribution a problem?",
+  "target": "label",
+  "run": {
+    "backend": "duckdb",
+    "rows": 100,
+    "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+    "target": "label",
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0002,
+    "total_seconds": 4.5979,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "tool": "class_imbalance_check",
+      "arguments": {},
+      "status": "ok",
+      "summary": "Target label has 2 classes; majority/minority ratio 9.0:1.",
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 9.0:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 90,
+              "proportion": 0.9
+            },
+            {
+              "class": "positive",
+              "count": 10,
+              "proportion": 0.1
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 9.0,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 9.0:1; counts [{'class': 'negative', 'count': 90, 'proportion': 0.9}, {'class': 'positive', 'count': 10, 'proportion': 0.1}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+          "rows": 100,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.102,
+          "cache_hit": true,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "feature_a",
+              "feature_b"
+            ]
+          },
+          "findings_total": 1,
+          "findings_omitted": 0
+        }
+      }
+    }
+  ],
+  "full_tool_results": [
+    {
+      "status": "ok",
+      "tool": "class_imbalance_check",
+      "summary": "Target label has 2 classes; majority/minority ratio 9.0:1.",
+      "data": {
+        "target": "label",
+        "classes": [
+          {
+            "class": "negative",
+            "count": 90,
+            "proportion": 0.9
+          },
+          {
+            "class": "positive",
+            "count": 10,
+            "proportion": 0.1
+          }
+        ],
+        "majority_class": "negative",
+        "minority_class": "positive",
+        "majority_minority_ratio": 9.0,
+        "missing_target_count": 0
+      },
+      "findings": [
+        {
+          "issue": "Class imbalance",
+          "severity": "high",
+          "column": "label",
+          "evidence": "Majority/minority ratio 9.0:1; counts [{'class': 'negative', 'count': 90, 'proportion': 0.9}, {'class': 'positive', 'count': 10, 'proportion': 0.1}]",
+          "impact": "A classifier can favor common classes and hide poor minority recall.",
+          "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+        }
+      ],
+      "execution": {
+        "backend": "duckdb",
+        "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+        "rows": 100,
+        "exact": true,
+        "method": "exact SQL aggregates over typed Parquet",
+        "elapsed_ms": 0.102,
+        "cache_hit": true,
+        "columns_checked": [
+          "label"
+        ],
+        "columns_omitted": 0,
+        "coverage": {
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "label"
+          ],
+          "ignored_columns": [
+            "record_id",
+            "feature_a",
+            "feature_b"
+          ]
+        }
+      }
+    }
+  ],
+  "report": {
+    "summary": "1 supported finding(s) from 1 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+    "issues": [
+      {
+        "issue": "Class imbalance",
+        "severity": "high",
+        "column": "label",
+        "evidence": "Majority/minority ratio 9.0:1; counts [{'class': 'negative', 'count': 90, 'proportion': 0.9}, {'class': 'positive', 'count': 10, 'proportion': 0.1}]",
+        "impact": "A classifier can favor common classes and hide poor minority recall.",
+        "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling.",
+        "source_tool": "class_imbalance_check"
+      }
+    ],
+    "tools_used": [
+      "class_imbalance_check"
+    ],
+    "limitations": []
+  }
+}

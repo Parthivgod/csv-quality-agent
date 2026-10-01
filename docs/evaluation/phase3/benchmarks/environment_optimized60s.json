@@ -1,0 +1,22 @@
+{
+  "utc_time": "2026-10-01T05:35:30.906812+00:00",
+  "commit": "e5f57218f291942ad37bc52bcfabd4ffd71f5db9",
+  "working_tree_modified": true,
+  "source_snapshot_sha256": "f0381813233a4ca997959ca8cbb2aa3904c877b05f3a0a29e5b69df53fd124ce",
+  "python": "3.11.4",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+  "logical_cpus": 12,
+  "physical_memory_bytes": 16858472448,
+  "packages": {
+    "pandas": "2.3.3",
+    "duckdb": "1.5.0",
+    "streamlit": "1.64.0",
+    "langchain": "1.4.2",
+    "langchain-groq": "1.1.3",
+    "psutil": "7.2.2"
+  },
+  "measurement": "process + recursive child RSS (shared pages may count more than once); no browser or uploader",
+  "filesystem_cache": "OS cache uncontrolled; independent dataset imports do not imply disk-cold reads",
+  "API": "none; diagnostics only"
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "sequence": 1,
+    "tool": "class_imbalance_check",
+    "arguments": {},
+    "status": "skipped",
+    "summary": "Selected target has too many distinct values for a class-imbalance check.",
+    "result": {
+      "status": "skipped",
+      "tool": "class_imbalance_check",
+      "summary": "Selected target has too many distinct values for a class-imbalance check.",
+      "data": {
+        "unique_classes": 100
+      },
+      "findings": [],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+        "rows": 100,
+        "columns_checked": [
+          "record_id"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 1.775,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "record_id"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "record_id"
+          ],
+          "ignored_columns": [
+            "feature_a",
+            "feature_b",
+            "label"
+          ]
+        },
+        "columns_omitted": 0,
+        "findings_total": 0,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

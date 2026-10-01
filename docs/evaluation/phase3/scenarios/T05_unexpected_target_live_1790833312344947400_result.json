@@ -1,0 +1,33 @@
+{
+  "id": "T05",
+  "attempt": "T05_unexpected_target_live_1790833312344947400",
+  "utc_time": "2026-10-01T05:41:52.344947+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "corrupted_class_imbalance.csv",
+  "sha256": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+  "target": "record_id",
+  "question": "Check class imbalance in my selected target using the class imbalance tool.",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [],
+  "actual_calls": [
+    "class_imbalance_check"
+  ],
+  "run_metadata": {
+    "backend": "pandas",
+    "rows": 100,
+    "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+    "target": "record_id",
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0037,
+    "total_seconds": 4.2999,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "latency_seconds": 4.330422,
+  "trace_file": "T05_unexpected_target_live_1790833312344947400_trace.json",
+  "report_file": "T05_unexpected_target_live_1790833312344947400_report.json",
+  "result_file": "T05_unexpected_target_live_1790833312344947400_result.json"
+}

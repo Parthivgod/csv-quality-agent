@@ -1,0 +1,37 @@
+{
+  "summary": "3 supported finding(s) from 2 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+  "issues": [
+    {
+      "issue": "IQR outliers",
+      "severity": "medium",
+      "column": "feature_x",
+      "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+      "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+      "recommendation": "Inspect these observations and the domain before any capping or removal.",
+      "source_tool": "outlier_check"
+    },
+    {
+      "issue": "IQR outliers",
+      "severity": "medium",
+      "column": "feature_y",
+      "evidence": "1/30 values outside [-26, 90] (3.33%)",
+      "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+      "recommendation": "Inspect these observations and the domain before any capping or removal.",
+      "source_tool": "outlier_check"
+    },
+    {
+      "issue": "Strong feature correlation",
+      "severity": "medium",
+      "column": "feature_x, feature_y",
+      "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+      "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+      "recommendation": "Review feature provenance and model assumptions before dropping either feature.",
+      "source_tool": "correlation_check"
+    }
+  ],
+  "tools_used": [
+    "outlier_check",
+    "correlation_check"
+  ],
+  "limitations": []
+}

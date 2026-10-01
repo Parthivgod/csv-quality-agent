@@ -1,0 +1,30 @@
+{
+  "utc_time": "2026-10-01T05:41:34.399050+00:00",
+  "commit": "e5f57218f291942ad37bc52bcfabd4ffd71f5db9",
+  "working_tree_modified": true,
+  "source_snapshot_sha256": "1fdeca9ad38d9f99dc994739d6f8e50e0f9d6e65b6be1b64380c719e4ca61647",
+  "python": "3.11.4",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+  "logical_cpus": 12,
+  "physical_memory_bytes": 16858472448,
+  "packages": {
+    "pandas": "2.3.3",
+    "duckdb": "1.5.0",
+    "streamlit": "1.64.0",
+    "langchain": "1.4.2",
+    "langchain-groq": "1.1.3",
+    "psutil": "7.2.2"
+  },
+  "measurement": "process + recursive child RSS (shared pages may count more than once); no browser or uploader",
+  "filesystem_cache": "OS cache uncontrolled; independent dataset imports do not imply disk-cold reads",
+  "API": "none; diagnostics only",
+  "release_settings": {
+    "max_upload_mb": 250,
+    "import_timeout_seconds": 120,
+    "initial_import_goal_seconds": 60,
+    "duckdb_memory_limit": "1GB",
+    "duckdb_threads": 2,
+    "peak_rss_release_limit_bytes": 2147483648
+  }
+}

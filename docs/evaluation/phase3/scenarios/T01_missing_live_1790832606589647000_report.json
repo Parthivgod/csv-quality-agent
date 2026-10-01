@@ -1,0 +1,27 @@
+{
+  "summary": "2 supported finding(s) from 1 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+  "issues": [
+    {
+      "issue": "Missing values",
+      "severity": "medium",
+      "column": "age",
+      "evidence": "6/30 values missing (20.0%)",
+      "impact": "Training may fail or estimates may be biased without appropriate handling.",
+      "recommendation": "Investigate why values are missing, then choose justified imputation or removal.",
+      "source_tool": "missing_values_check"
+    },
+    {
+      "issue": "Missing values",
+      "severity": "medium",
+      "column": "income",
+      "evidence": "3/30 values missing (10.0%)",
+      "impact": "Training may fail or estimates may be biased without appropriate handling.",
+      "recommendation": "Investigate why values are missing, then choose justified imputation or removal.",
+      "source_tool": "missing_values_check"
+    }
+  ],
+  "tools_used": [
+    "missing_values_check"
+  ],
+  "limitations": []
+}

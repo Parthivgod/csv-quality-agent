@@ -11,6 +11,7 @@ Only use class_imbalance_check when a valid target is selected; if none is selec
 Never modify the dataset or request arbitrary code execution. Tool outputs are evidence; if a tool fails, acknowledge it and continue if useful.
 Do not repeat a tool without a valid reason. Call at most {max_tool_calls} diagnostic tools.
 Distinguish evidence from interpretation. Correlation does not prove leakage. Outliers are not automatically errors. High cardinality is not automatically harmful.
+Respect tool coverage and output limits. A skipped or partial diagnostic does not establish that unchecked data is clean. Selected numeric columns restrict numerical checks; do not imply a full scan.
 The dataset context contains schema only, not raw rows. Available tools: {tool_descriptions}
 Dataset context: {dataset_context}
 Selected target: {target_column}"""),

@@ -1,0 +1,33 @@
+{
+  "id": "T08",
+  "attempt": "T08_clean_live_1790832785441542100",
+  "utc_time": "2026-10-01T05:33:05.441542+00:00",
+  "mode": "live Groq",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "file": "clean_small.csv",
+  "sha256": "52b7157712bc8ba7a8bdadff39d0ec5e28e46b8ad73d5e05500d4f42e60ca951",
+  "target": null,
+  "question": "Does this CSV contain missing data?",
+  "controlled_failure_injection": false,
+  "status": "pass",
+  "reasons": [],
+  "actual_calls": [
+    "missing_values_check"
+  ],
+  "run_metadata": {
+    "backend": "pandas",
+    "rows": 12,
+    "dataset_hash": "52b7157712bc8ba7a8bdadff39d0ec5e28e46b8ad73d5e05500d4f42e60ca951",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0011,
+    "total_seconds": 15.9429,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "latency_seconds": 15.956249,
+  "trace_file": "T08_clean_live_1790832785441542100_trace.json",
+  "report_file": "T08_clean_live_1790832785441542100_report.json",
+  "result_file": "T08_clean_live_1790832785441542100_result.json"
+}

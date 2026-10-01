@@ -1,0 +1,1213 @@
+{
+  "run": {
+    "run_id": "high_unique_strings_250MiB_r1_1790834262145974100",
+    "utc_time": "2026-10-01T05:57:42.145974+00:00",
+    "profile": "high_unique_strings",
+    "seed": 2026,
+    "file_bytes": 262143831,
+    "rows": 1275518,
+    "columns": 6,
+    "numeric_columns": 3,
+    "backend": "duckdb",
+    "upload_included": false,
+    "api_report_seconds": 0,
+    "cache_state": "new handle; OS cache uncontrolled",
+    "release_ingest_limit_seconds": 120
+  },
+  "manifest": {
+    "generator_version": "phase3-v1",
+    "profile": "high_unique_strings",
+    "seed": 2026,
+    "requested_mib": 250.0,
+    "size_unit": "MiB = 1,048,576 bytes; last complete record at or below target",
+    "file": "high_unique_strings_250MiB.csv",
+    "file_bytes": 262143831,
+    "sha256": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+    "rows": 1275518,
+    "columns": 6,
+    "column_names": [
+      "record_id",
+      "category",
+      "payload",
+      "value",
+      "nullable",
+      "label"
+    ],
+    "numeric_columns": [
+      "record_id",
+      "value",
+      "nullable"
+    ],
+    "expected": {
+      "null_counts": {
+        "record_id": 0,
+        "category": 0,
+        "payload": 0,
+        "value": 0,
+        "nullable": 127552,
+        "label": 0
+      },
+      "duplicate_count": 12755,
+      "target": "label",
+      "class_counts": {
+        "negative": 1160722,
+        "positive": 114796
+      }
+    },
+    "ground_truth_source": "Deterministic row construction, counted while generating; independent of application diagnostics."
+  },
+  "observations": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 0.0010110000002896413,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 127552,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "127552/1275518 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.708,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 0.35167039999987537,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "12755 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 12755,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "12755/1275518 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 351.367,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 0.024322599999777594,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1112:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 1160722,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 114796,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1112,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1112:1; counts [{'class': 'negative', 'count': 1160722, 'proportion': 0.91}, {'class': 'positive', 'count': 114796, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 24.066,
+          "cache_hit": false,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "constant_columns_check",
+      "seconds": 0.49849619999986317,
+      "result": {
+        "status": "ok",
+        "tool": "constant_columns_check",
+        "summary": "0 constant and 0 near-constant columns.",
+        "data": {
+          "constant_columns": [],
+          "near_constant_columns": [],
+          "near_constant_threshold": 0.95
+        },
+        "findings": [],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 498.281,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "high_cardinality_check",
+      "seconds": 0.45439360000000306,
+      "result": {
+        "status": "ok",
+        "tool": "high_cardinality_check",
+        "summary": "3 potential high-cardinality columns.",
+        "data": {
+          "candidates": [
+            {
+              "column": "record_id",
+              "unique_count": 1262763,
+              "non_null_count": 1275518,
+              "unique_ratio": 0.99,
+              "possible_interpretation": "Potential identifier-like or high-cardinality feature; review context."
+            },
+            {
+              "column": "category",
+              "unique_count": 1262763,
+              "non_null_count": 1275518,
+              "unique_ratio": 0.99,
+              "possible_interpretation": "Potential identifier-like or high-cardinality feature; review context."
+            },
+            {
+              "column": "payload",
+              "unique_count": 1262763,
+              "non_null_count": 1275518,
+              "unique_ratio": 0.99,
+              "possible_interpretation": "Potential identifier-like or high-cardinality feature; review context."
+            }
+          ],
+          "ratio_threshold": 0.9,
+          "min_non_null": 20
+        },
+        "findings": [
+          {
+            "issue": "High-cardinality feature",
+            "severity": "low",
+            "column": "record_id",
+            "evidence": "1262763/1275518 non-null values unique (ratio 0.99)",
+            "impact": "Identifiers may encourage memorization or misleading numeric ordering; categories can expand encodings.",
+            "recommendation": "Determine whether the field is an identifier or useful predictor before changing it."
+          },
+          {
+            "issue": "High-cardinality feature",
+            "severity": "low",
+            "column": "category",
+            "evidence": "1262763/1275518 non-null values unique (ratio 0.99)",
+            "impact": "Identifiers may encourage memorization or misleading numeric ordering; categories can expand encodings.",
+            "recommendation": "Determine whether the field is an identifier or useful predictor before changing it."
+          },
+          {
+            "issue": "High-cardinality feature",
+            "severity": "low",
+            "column": "payload",
+            "evidence": "1262763/1275518 non-null values unique (ratio 0.99)",
+            "impact": "Identifiers may encourage memorization or misleading numeric ordering; categories can expand encodings.",
+            "recommendation": "Determine whether the field is an identifier or useful predictor before changing it."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 454.158,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "label"
+            ],
+            "ignored_columns": [
+              "value",
+              "nullable"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "outlier_check",
+      "seconds": 0.16811009999992166,
+      "result": {
+        "status": "ok",
+        "tool": "outlier_check",
+        "summary": "0 numeric columns have IQR outliers.",
+        "data": {
+          "columns": [
+            {
+              "column": "record_id",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -637758.5,
+              "upper_bound": 1913275.5,
+              "non_null_count": 1275518
+            },
+            {
+              "column": "value",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -5005.0,
+              "upper_bound": 15011.0,
+              "non_null_count": 1275518
+            },
+            {
+              "column": "nullable",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -5005.0,
+              "upper_bound": 15011.0,
+              "non_null_count": 1147966
+            }
+          ],
+          "method": "1.5 x IQR"
+        },
+        "findings": [],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 167.829,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "value",
+            "nullable"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "ignored_columns": [
+              "category",
+              "payload",
+              "label"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "correlation_check",
+      "seconds": 0.0542992000000595,
+      "result": {
+        "status": "ok",
+        "tool": "correlation_check",
+        "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+        "data": {
+          "pairs": [
+            {
+              "left": "value",
+              "right": "nullable",
+              "correlation": 1.0
+            }
+          ],
+          "threshold": 0.95
+        },
+        "findings": [
+          {
+            "issue": "Strong feature correlation",
+            "severity": "medium",
+            "column": "value, nullable",
+            "evidence": "Pearson r(value, nullable) = 1.0",
+            "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+            "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 53.994,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "value",
+            "nullable"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "ignored_columns": [
+              "category",
+              "payload",
+              "label"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "dataset_profile",
+      "seconds": 0.4748420000000806,
+      "result": {
+        "status": "ok",
+        "tool": "dataset_profile",
+        "summary": "Dataset has 1275518 rows and 6 columns.",
+        "data": {
+          "rows": 1275518,
+          "columns": 6,
+          "dtypes": {
+            "record_id": "int64",
+            "category": "object",
+            "payload": "object",
+            "value": "int64",
+            "nullable": "float64",
+            "label": "object"
+          },
+          "numeric_columns": [
+            "record_id",
+            "value",
+            "nullable"
+          ],
+          "categorical_columns": [
+            "category",
+            "payload",
+            "label"
+          ],
+          "unique_counts": {
+            "record_id": 1262763,
+            "category": 1262763,
+            "payload": 1262763,
+            "value": 10007,
+            "nullable": 10007,
+            "label": 2
+          },
+          "null_counts": {
+            "record_id": 0,
+            "category": 0,
+            "payload": 0,
+            "value": 0,
+            "nullable": 127552,
+            "label": 0
+          },
+          "truncated": false
+        },
+        "findings": [],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 474.569,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    }
+  ],
+  "ingest": {
+    "seconds": 14.63633720000007,
+    "shape_correct": true,
+    "fingerprint_match": true
+  },
+  "cache_repeats": [
+    {
+      "tool": "missing_values_check",
+      "seconds": 4.540000009001233e-05,
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 127552,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "127552/1275518 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.033,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "duplicate_rows_check",
+      "seconds": 4.330000001573353e-05,
+      "result": {
+        "status": "ok",
+        "tool": "duplicate_rows_check",
+        "summary": "12755 duplicate rows (1.0%). Contextual review is needed.",
+        "data": {
+          "duplicate_count": 12755,
+          "duplicate_pct": 1.0
+        },
+        "findings": [
+          {
+            "issue": "Duplicate rows",
+            "severity": "medium",
+            "column": null,
+            "evidence": "12755/1275518 rows duplicate earlier rows (1.0%)",
+            "impact": "Repeated observations may overweight patterns; some repeats may be legitimate.",
+            "recommendation": "Review duplicate records in domain context before deduplication."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.029,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "class_imbalance_check",
+      "seconds": 4.4099999740865314e-05,
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 10.1112:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 1160722,
+              "proportion": 0.91
+            },
+            {
+              "class": "positive",
+              "count": 114796,
+              "proportion": 0.09
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 10.1112,
+          "missing_target_count": 0
+        },
+        "findings": [
+          {
+            "issue": "Class imbalance",
+            "severity": "high",
+            "column": "label",
+            "evidence": "Majority/minority ratio 10.1112:1; counts [{'class': 'negative', 'count': 1160722, 'proportion': 0.91}, {'class': 'positive', 'count': 114796, 'proportion': 0.09}]",
+            "impact": "A classifier can favor common classes and hide poor minority recall.",
+            "recommendation": "Use stratified splits and per-class metrics; consider weighting or resampling."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.033,
+          "cache_hit": true,
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "constant_columns_check",
+      "seconds": 3.930000002583256e-05,
+      "result": {
+        "status": "ok",
+        "tool": "constant_columns_check",
+        "summary": "0 constant and 0 near-constant columns.",
+        "data": {
+          "constant_columns": [],
+          "near_constant_columns": [],
+          "near_constant_threshold": 0.95
+        },
+        "findings": [],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.028,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    },
+    {
+      "tool": "high_cardinality_check",
+      "seconds": 5.490000012287055e-05,
+      "result": {
+        "status": "ok",
+        "tool": "high_cardinality_check",
+        "summary": "3 potential high-cardinality columns.",
+        "data": {
+          "candidates": [
+            {
+              "column": "record_id",
+              "unique_count": 1262763,
+              "non_null_count": 1275518,
+              "unique_ratio": 0.99,
+              "possible_interpretation": "Potential identifier-like or high-cardinality feature; review context."
+            },
+            {
+              "column": "category",
+              "unique_count": 1262763,
+              "non_null_count": 1275518,
+              "unique_ratio": 0.99,
+              "possible_interpretation": "Potential identifier-like or high-cardinality feature; review context."
+            },
+            {
+              "column": "payload",
+              "unique_count": 1262763,
+              "non_null_count": 1275518,
+              "unique_ratio": 0.99,
+              "possible_interpretation": "Potential identifier-like or high-cardinality feature; review context."
+            }
+          ],
+          "ratio_threshold": 0.9,
+          "min_non_null": 20
+        },
+        "findings": [
+          {
+            "issue": "High-cardinality feature",
+            "severity": "low",
+            "column": "record_id",
+            "evidence": "1262763/1275518 non-null values unique (ratio 0.99)",
+            "impact": "Identifiers may encourage memorization or misleading numeric ordering; categories can expand encodings.",
+            "recommendation": "Determine whether the field is an identifier or useful predictor before changing it."
+          },
+          {
+            "issue": "High-cardinality feature",
+            "severity": "low",
+            "column": "category",
+            "evidence": "1262763/1275518 non-null values unique (ratio 0.99)",
+            "impact": "Identifiers may encourage memorization or misleading numeric ordering; categories can expand encodings.",
+            "recommendation": "Determine whether the field is an identifier or useful predictor before changing it."
+          },
+          {
+            "issue": "High-cardinality feature",
+            "severity": "low",
+            "column": "payload",
+            "evidence": "1262763/1275518 non-null values unique (ratio 0.99)",
+            "impact": "Identifiers may encourage memorization or misleading numeric ordering; categories can expand encodings.",
+            "recommendation": "Determine whether the field is an identifier or useful predictor before changing it."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.043,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "label"
+            ],
+            "ignored_columns": [
+              "value",
+              "nullable"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "outlier_check",
+      "seconds": 5.429999964690069e-05,
+      "result": {
+        "status": "ok",
+        "tool": "outlier_check",
+        "summary": "0 numeric columns have IQR outliers.",
+        "data": {
+          "columns": [
+            {
+              "column": "record_id",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -637758.5,
+              "upper_bound": 1913275.5,
+              "non_null_count": 1275518
+            },
+            {
+              "column": "value",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -5005.0,
+              "upper_bound": 15011.0,
+              "non_null_count": 1275518
+            },
+            {
+              "column": "nullable",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -5005.0,
+              "upper_bound": 15011.0,
+              "non_null_count": 1147966
+            }
+          ],
+          "method": "1.5 x IQR"
+        },
+        "findings": [],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.04,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "value",
+            "nullable"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "ignored_columns": [
+              "category",
+              "payload",
+              "label"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "correlation_check",
+      "seconds": 5.610000016531558e-05,
+      "result": {
+        "status": "ok",
+        "tool": "correlation_check",
+        "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+        "data": {
+          "pairs": [
+            {
+              "left": "value",
+              "right": "nullable",
+              "correlation": 1.0
+            }
+          ],
+          "threshold": 0.95
+        },
+        "findings": [
+          {
+            "issue": "Strong feature correlation",
+            "severity": "medium",
+            "column": "value, nullable",
+            "evidence": "Pearson r(value, nullable) = 1.0",
+            "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+            "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.04,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "value",
+            "nullable"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "value",
+              "nullable"
+            ],
+            "ignored_columns": [
+              "category",
+              "payload",
+              "label"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool": "dataset_profile",
+      "seconds": 6.330000041998574e-05,
+      "result": {
+        "status": "ok",
+        "tool": "dataset_profile",
+        "summary": "Dataset has 1275518 rows and 6 columns.",
+        "data": {
+          "rows": 1275518,
+          "columns": 6,
+          "dtypes": {
+            "record_id": "int64",
+            "category": "object",
+            "payload": "object",
+            "value": "int64",
+            "nullable": "float64",
+            "label": "object"
+          },
+          "numeric_columns": [
+            "record_id",
+            "value",
+            "nullable"
+          ],
+          "categorical_columns": [
+            "category",
+            "payload",
+            "label"
+          ],
+          "unique_counts": {
+            "record_id": 1262763,
+            "category": 1262763,
+            "payload": 1262763,
+            "value": 10007,
+            "nullable": 10007,
+            "label": 2
+          },
+          "null_counts": {
+            "record_id": 0,
+            "category": 0,
+            "payload": 0,
+            "value": 0,
+            "nullable": 127552,
+            "label": 0
+          },
+          "truncated": false
+        },
+        "findings": [],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "958ffd0c5f5c2ffbd95376e2b489cfad27527c123a67cebcd36abb0448d4ff7e",
+          "rows": 1275518,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.049,
+          "cache_hit": true,
+          "columns_checked": [
+            "record_id",
+            "category",
+            "payload",
+            "value",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "category",
+              "payload",
+              "value",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          }
+        }
+      }
+    }
+  ],
+  "resources": {
+    "peak_process_and_child_rss_bytes": 681197568,
+    "peak_owned_temp_bytes": 529119166,
+    "temp_measured": true
+  }
+}

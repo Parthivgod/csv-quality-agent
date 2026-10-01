@@ -1,0 +1,17 @@
+{
+  "utc_time": "2026-10-01T06:07:36.826022+00:00",
+  "pid": 21380,
+  "mode": "actual Streamlit browser upload and local backend; browser RSS excluded",
+  "sampling_interval_seconds": 0.05,
+  "sampling_window_seconds": 300.0,
+  "baseline_app_rss_bytes": 162217984,
+  "peak_app_and_worker_rss_bytes": 162934784,
+  "peak_owned_temp_bytes": 0,
+  "samples": 4466,
+  "final": true,
+  "rss_budget_bytes": 2147483648,
+  "rss_budget_pass": true,
+  "completed_upload": false,
+  "outcome": "No upload occurred during this window.",
+  "rss_budget_pass_is_only_for_sampling_window": true
+}

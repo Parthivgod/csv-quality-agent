@@ -78,6 +78,8 @@ CSV parsing supports UTF-8 and Windows-1252 and is limited to small/medium educa
 
 For the Phase 2 hand-in, confirm the team roster. The error/target UI examples are additional evidence with exact instructions in `SCREENSHOT_CHECKLIST.md`. Phase 3 work remains: expand live Groq evaluation, assess one failed tool call, incorporate instructor feedback, record the demo video, prepare the technical report, and finalize individual contribution statements.
 
+Planning update, 1 October 2026: the user selected a 250 MB local target. The [Phase 3 implementation plan](PHASE3_IMPLEMENTATION_PLAN.md), [timed demo script](PHASE3_DEMO_SCRIPT.md), and [evaluation/submission checklist](PHASE3_EVALUATION_AND_SUBMISSION.md) now define the proposed backend, acceptance gates, exact screenshot procedures, and remaining deliverables. Large-data support has not been implemented; the existing 20 MB limit remains.
+
 ## Provider Update
 
 The default model is now Groq-hosted `openai/gpt-oss-120b`. Configure `GROQ_API_KEY` in the root `.env`. The earlier Mistral/OpenAI validation notes above describe the initial implementation. Live Groq evaluation results are in `LIVE_GROQ_VALIDATION.md`.
@@ -85,3 +87,16 @@ The default model is now Groq-hosted `openai/gpt-oss-120b`. Configure `GROQ_API_
 After the provider change, the clean virtual environment passed 21 tests, compilation, and `pip check`. The provider tests construct `ChatGroq` and bind the diagnostic tools without making an API request.
 
 After the live-run repairs, the suite passed 22 tests. Five live scenarios were run, including distinct tool selections and missing-target handling.
+
+## Phase 3 completion update — 1 October 2026
+
+The Phase 2 notes above are historical. Phase 3 now implements the dataset boundary, strict shared CSV semantics, DuckDB/Parquet large-data backend, guarded exact tools, cancellation, bounded evidence and JSON export. The confirmed 250 MiB target was exercised across five profiles. The initial 60-second import goal missed; the documented release allowance is 120 seconds, with original failures retained.
+
+- [Implementation and measured completion record](PHASE3_IMPLEMENTATION_PLAN.md)
+- [Ready 6:30 demo recording script](PHASE3_DEMO_SCRIPT.md)
+- [Evaluation, exact screenshot steps and remaining student actions](PHASE3_EVALUATION_AND_SUBMISSION.md)
+- [Verified size/profile benchmarks](evaluation/phase3/benchmarks/benchmark_verified_summary.md)
+- [Fresh live Groq scenario evidence](evaluation/phase3/scenarios/scenario_results.md)
+- [Actual browser/capture record](evaluation/phase3/ui/UI_VALIDATION.md)
+
+The students still need to record the video, confirm truthful contribution statements, and resolve instructor feedback/form, roster and deadline instructions. Historical Phase 2 screenshots remain unchanged.

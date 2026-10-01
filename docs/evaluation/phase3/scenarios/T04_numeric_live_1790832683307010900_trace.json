@@ -1,0 +1,157 @@
+[
+  {
+    "sequence": 1,
+    "tool": "outlier_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "2 numeric columns have IQR outliers.",
+    "result": {
+      "status": "ok",
+      "tool": "outlier_check",
+      "summary": "2 numeric columns have IQR outliers.",
+      "data": {
+        "columns": [
+          {
+            "column": "feature_x",
+            "outlier_count": 1,
+            "outlier_pct": 3.33,
+            "lower_bound": -13.5,
+            "upper_bound": 44.5,
+            "non_null_count": 30
+          },
+          {
+            "column": "feature_y",
+            "outlier_count": 1,
+            "outlier_pct": 3.33,
+            "lower_bound": -26.0,
+            "upper_bound": 90.0,
+            "non_null_count": 30
+          },
+          {
+            "column": "feature_z",
+            "outlier_count": 0,
+            "outlier_pct": 0.0,
+            "lower_bound": -6.0,
+            "upper_bound": 16.0,
+            "non_null_count": 30
+          }
+        ],
+        "method": "1.5 x IQR"
+      },
+      "findings": [
+        {
+          "issue": "IQR outliers",
+          "severity": "medium",
+          "column": "feature_x",
+          "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+          "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+          "recommendation": "Inspect these observations and the domain before any capping or removal."
+        },
+        {
+          "issue": "IQR outliers",
+          "severity": "medium",
+          "column": "feature_y",
+          "evidence": "1/30 values outside [-26, 90] (3.33%)",
+          "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+          "recommendation": "Inspect these observations and the domain before any capping or removal."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+        "rows": 30,
+        "columns_checked": [
+          "feature_x",
+          "feature_y",
+          "feature_z"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 3.512,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0,
+        "findings_total": 2,
+        "findings_omitted": 0
+      }
+    }
+  },
+  {
+    "sequence": 2,
+    "tool": "correlation_check",
+    "arguments": {},
+    "status": "ok",
+    "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+    "result": {
+      "status": "ok",
+      "tool": "correlation_check",
+      "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+      "data": {
+        "pairs": [
+          {
+            "left": "feature_x",
+            "right": "feature_y",
+            "correlation": 1.0
+          }
+        ],
+        "threshold": 0.95
+      },
+      "findings": [
+        {
+          "issue": "Strong feature correlation",
+          "severity": "medium",
+          "column": "feature_x, feature_y",
+          "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+          "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+          "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+        "rows": 30,
+        "columns_checked": [
+          "feature_x",
+          "feature_y",
+          "feature_z"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 2.043,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0,
+        "findings_total": 1,
+        "findings_omitted": 0
+      }
+    }
+  }
+]

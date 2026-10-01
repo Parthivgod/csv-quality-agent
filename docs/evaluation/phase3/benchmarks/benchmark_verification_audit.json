@@ -1,0 +1,36 @@
+{
+  "original_csv": "benchmark_results.csv",
+  "original_csv_sha256": "a8c370a50194a79e30c4038ab0846bcae3409a69ecb36a57e5c73651565e63dd",
+  "verified_csv": "benchmark_results_verified.csv",
+  "utc_time": "2026-10-01T05:59:35.867792+00:00",
+  "policy": "Expected wide-schema skips validate the guard; exact duplicate counts/statistics remain unassessed. Original CSV and JSON unchanged.",
+  "adjusted_guards": [
+    {
+      "run_id": "wide_numeric_250MiB_r1_1790833898288844900",
+      "tool": "duplicate_rows_check",
+      "original_correctness_pass": "False",
+      "verified_correctness_pass": null,
+      "guard_pass": true,
+      "reason": "Expected wide-schema guard observed; exact count/statistics unassessed: Exact full-row duplicates are limited to 50 columns; this dataset is wider.",
+      "original_evidence": "wide_numeric_250MiB_r1_1790833898288844900.json"
+    },
+    {
+      "run_id": "wide_numeric_250MiB_r2_1790833970849046800",
+      "tool": "duplicate_rows_check",
+      "original_correctness_pass": "False",
+      "verified_correctness_pass": null,
+      "guard_pass": true,
+      "reason": "Expected wide-schema guard observed; exact count/statistics unassessed: Exact full-row duplicates are limited to 50 columns; this dataset is wider.",
+      "original_evidence": "wide_numeric_250MiB_r2_1790833970849046800.json"
+    },
+    {
+      "run_id": "wide_numeric_250MiB_r3_1790834049987877800",
+      "tool": "duplicate_rows_check",
+      "original_correctness_pass": "False",
+      "verified_correctness_pass": null,
+      "guard_pass": true,
+      "reason": "Expected wide-schema guard observed; exact count/statistics unassessed: Exact full-row duplicates are limited to 50 columns; this dataset is wider.",
+      "original_evidence": "wide_numeric_250MiB_r3_1790834049987877800.json"
+    }
+  ]
+}

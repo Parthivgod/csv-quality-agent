@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "exported_utc": "2026-10-01T06:26:22.627076+00:00",
+  "dataset": {
+    "filename": "corrupted_class_imbalance.csv",
+    "sha256": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+    "file_bytes": 1959,
+    "rows": 100,
+    "column_count": 4,
+    "backend": "pandas",
+    "encoding": "utf-8-sig",
+    "import_seconds": 0.187
+  },
+  "question": "Check class imbalance in my selected target using the class imbalance tool.",
+  "target": "record_id",
+  "run": {
+    "backend": "pandas",
+    "rows": 100,
+    "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+    "target": "record_id",
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0011,
+    "total_seconds": 5.0139,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "tool": "class_imbalance_check",
+      "arguments": {},
+      "status": "skipped",
+      "summary": "Selected target has too many distinct values for a class-imbalance check.",
+      "result": {
+        "status": "skipped",
+        "tool": "class_imbalance_check",
+        "summary": "Selected target has too many distinct values for a class-imbalance check.",
+        "data": {
+          "unique_classes": 100
+        },
+        "findings": [],
+        "execution": {
+          "backend": "pandas",
+          "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+          "rows": 100,
+          "columns_checked": [
+            "record_id"
+          ],
+          "exact": true,
+          "method": "pandas-reference",
+          "elapsed_ms": 0.738,
+          "cache_hit": false,
+          "contract_version": "phase3-v1",
+          "coverage": {
+            "columns_checked": [
+              "record_id"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id"
+            ],
+            "ignored_columns": [
+              "feature_a",
+              "feature_b",
+              "label"
+            ]
+          },
+          "columns_omitted": 0,
+          "findings_total": 0,
+          "findings_omitted": 0
+        }
+      }
+    }
+  ],
+  "full_tool_results": [
+    {
+      "status": "skipped",
+      "tool": "class_imbalance_check",
+      "summary": "Selected target has too many distinct values for a class-imbalance check.",
+      "data": {
+        "unique_classes": 100
+      },
+      "findings": [],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "ebdcdd000365bff228a107aca951ea53f7df0ca1a07a806712253981fe0fc04f",
+        "rows": 100,
+        "columns_checked": [
+          "record_id"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 0.738,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "record_id"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "record_id"
+          ],
+          "ignored_columns": [
+            "feature_a",
+            "feature_b",
+            "label"
+          ]
+        },
+        "columns_omitted": 0
+      }
+    }
+  ],
+  "report": {
+    "summary": "0 supported finding(s) from 0 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+    "issues": [],
+    "tools_used": [
+      "class_imbalance_check"
+    ],
+    "limitations": [
+      "Selected target has too many distinct values for a class-imbalance check."
+    ]
+  }
+}

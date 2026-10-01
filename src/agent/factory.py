@@ -18,13 +18,13 @@ def create_chat_model(settings: Settings) -> BaseChatModel:
         raise ValueError(f"{key_name} is missing. Set it in .env before running triage.")
     if settings.provider == "groq":
         from langchain_groq import ChatGroq
-        return ChatGroq(model=settings.model, temperature=0)
+        return ChatGroq(model=settings.model, temperature=0, timeout=45, max_retries=1)
     if settings.provider == "mistral":
         from langchain_mistralai import ChatMistralAI
-        return ChatMistralAI(model=settings.model, temperature=0)
+        return ChatMistralAI(model=settings.model, temperature=0, timeout=45, max_retries=1)
     if settings.provider == "openai":
         from langchain_openai import ChatOpenAI
-        return ChatOpenAI(model=settings.model, temperature=0)
+        return ChatOpenAI(model=settings.model, temperature=0, timeout=45, max_retries=1)
     raise AssertionError("All supported providers should be handled above")
 
 

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "exported_utc": "2026-10-01T06:20:30.578456+00:00",
+  "dataset": {
+    "filename": "tall_numeric_250MiB.csv",
+    "sha256": "af5521abc1b31bc89495128e9813e0c27c4e49749c5d12376272f8677bd3b8b0",
+    "file_bytes": 262143987,
+    "rows": 3274752,
+    "column_count": 13,
+    "backend": "duckdb",
+    "encoding": "utf-8-sig",
+    "import_seconds": 36.093
+  },
+  "question": "Does this CSV contain missing data?",
+  "target": null,
+  "run": {
+    "backend": "duckdb",
+    "rows": 3274752,
+    "dataset_hash": "af5521abc1b31bc89495128e9813e0c27c4e49749c5d12376272f8677bd3b8b0",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0006,
+    "total_seconds": 3.9375,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "tool": "missing_values_check",
+      "arguments": {},
+      "status": "ok",
+      "summary": "1 columns contain missing values.",
+      "result": {
+        "status": "ok",
+        "tool": "missing_values_check",
+        "summary": "1 columns contain missing values.",
+        "data": {
+          "affected_columns": [
+            {
+              "column": "nullable",
+              "missing_count": 327476,
+              "missing_pct": 10.0,
+              "severity": "medium"
+            }
+          ],
+          "thresholds_pct": {
+            "medium": 5.0,
+            "high": 30.0
+          }
+        },
+        "findings": [
+          {
+            "issue": "Missing values",
+            "severity": "medium",
+            "column": "nullable",
+            "evidence": "327476/3274752 values missing (10.0%)",
+            "impact": "Training may fail or estimates may be biased without appropriate handling.",
+            "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "af5521abc1b31bc89495128e9813e0c27c4e49749c5d12376272f8677bd3b8b0",
+          "rows": 3274752,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 0.338,
+          "cache_hit": false,
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "record_id",
+              "feature_00",
+              "feature_01",
+              "feature_02",
+              "feature_03",
+              "feature_04",
+              "feature_05",
+              "feature_06",
+              "feature_07",
+              "feature_08",
+              "feature_09",
+              "nullable",
+              "label"
+            ],
+            "ignored_columns": []
+          },
+          "findings_total": 1,
+          "findings_omitted": 0
+        }
+      }
+    }
+  ],
+  "full_tool_results": [
+    {
+      "status": "ok",
+      "tool": "missing_values_check",
+      "summary": "1 columns contain missing values.",
+      "data": {
+        "affected_columns": [
+          {
+            "column": "nullable",
+            "missing_count": 327476,
+            "missing_pct": 10.0,
+            "severity": "medium"
+          }
+        ],
+        "thresholds_pct": {
+          "medium": 5.0,
+          "high": 30.0
+        }
+      },
+      "findings": [
+        {
+          "issue": "Missing values",
+          "severity": "medium",
+          "column": "nullable",
+          "evidence": "327476/3274752 values missing (10.0%)",
+          "impact": "Training may fail or estimates may be biased without appropriate handling.",
+          "recommendation": "Investigate why values are missing, then choose justified imputation or removal."
+        }
+      ],
+      "execution": {
+        "backend": "duckdb",
+        "dataset_hash": "af5521abc1b31bc89495128e9813e0c27c4e49749c5d12376272f8677bd3b8b0",
+        "rows": 3274752,
+        "exact": true,
+        "method": "exact SQL aggregates over typed Parquet",
+        "elapsed_ms": 0.338,
+        "cache_hit": false,
+        "columns_checked": [
+          "record_id",
+          "feature_00",
+          "feature_01",
+          "feature_02",
+          "feature_03",
+          "feature_04",
+          "feature_05",
+          "feature_06",
+          "feature_07",
+          "feature_08",
+          "feature_09",
+          "nullable",
+          "label"
+        ],
+        "columns_omitted": 0,
+        "coverage": {
+          "columns_checked": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "record_id",
+            "feature_00",
+            "feature_01",
+            "feature_02",
+            "feature_03",
+            "feature_04",
+            "feature_05",
+            "feature_06",
+            "feature_07",
+            "feature_08",
+            "feature_09",
+            "nullable",
+            "label"
+          ],
+          "ignored_columns": []
+        }
+      }
+    }
+  ],
+  "report": {
+    "summary": "1 supported finding(s) from 1 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+    "issues": [
+      {
+        "issue": "Missing values",
+        "severity": "medium",
+        "column": "nullable",
+        "evidence": "327476/3274752 values missing (10.0%)",
+        "impact": "Training may fail or estimates may be biased without appropriate handling.",
+        "recommendation": "Investigate why values are missing, then choose justified imputation or removal.",
+        "source_tool": "missing_values_check"
+      }
+    ],
+    "tools_used": [
+      "missing_values_check"
+    ],
+    "limitations": []
+  }
+}

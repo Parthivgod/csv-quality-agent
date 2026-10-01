@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 3 — measured backend benchmark evidence</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6fa;color:#17243a;font:13px/1.45 system-ui,Segoe UI,sans-serif}
+main{max-width:1120px;margin:auto;padding:20px 22px}h1{font-size:24px;line-height:1.2;margin:0 0 5px}
+.subtitle{margin:0;color:#53657c}.stats{display:flex;gap:24px;flex-wrap:wrap;margin:14px 0 12px}
+.stat strong{display:inline-block;font-size:20px;color:#17509c;margin-right:5px}.stat{color:#526178}
+.notice{border-left:4px solid #cf9120;background:#fff4d9;padding:9px 12px;margin:0 0 12px;color:#583f12}
+.notice strong{color:#46300b}.table-wrap{overflow:auto;border:1px solid #d6dfeb;border-radius:8px;background:white}
+table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:8px 9px;border-bottom:1px solid #e7ecf3;text-align:right;white-space:nowrap}
+th{background:#e8eef7;color:#304560;font-weight:650;font-size:11px;line-height:1.25}th:first-child,td:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fafd}.failure{color:#944d04;font-weight:700;background:#fff0d2}
+.notes{margin:12px 0 6px;color:#465973;font-size:12px}.notes p{margin:5px 0}.sources{font-size:11px;color:#627289}a{color:#1b56a1}
+@media(max-width:700px){main{padding:16px}.stats{gap:10px 20px}h1{font-size:21px}}
+</style></head><body><main>
+<h1>Measured CSV backend results</h1>
+<p class="subtitle">Phase 3 · DuckDB CLI benchmark · verified 2026-10-01 · saved evidence, no simulated metrics</p>
+<div class="stats"><span class="stat"><strong>9</strong> size/profile groups</span>
+<span class="stat"><strong>5</strong> profiles at 250 MiB</span>
+<span class="stat"><strong>1,076.0 MiB</strong> maximum sampled process RSS</span></div>
+<div class="notice"><strong>Import budget: 120 seconds for release; initial goal: 60 seconds.</strong>
+Six initial tall-data import failures remain in the evidence. Successful ingest maxima include later release and risk runs.</div>
+<div class="table-wrap"><table><thead><tr><th>Profile</th><th>Size<br>MiB</th><th>Successful<br>imports</th><th>Failed<br>imports</th>
+<th>Slowest successful<br>ingest</th><th>Peak sampled<br>RSS MiB</th><th>Exact count<br>checks passed</th><th>Expected<br>guards</th><th>Count/shape<br>failures</th></tr></thead>
+<tbody><tr><td>tall numeric</td><td>1.000</td><td>3</td><td>0</td><td>0.27 s</td><td>110.0</td><td>9</td><td>0</td><td>0</td></tr>
+<tr><td>tall numeric</td><td>20.000</td><td>3</td><td>0</td><td>3.52 s</td><td>158.8</td><td>9</td><td>0</td><td>0</td></tr>
+<tr><td>tall numeric</td><td>50.000</td><td>3</td><td>0</td><td>11.07 s</td><td>240.7</td><td>9</td><td>0</td><td>0</td></tr>
+<tr><td>tall numeric</td><td>100.000</td><td>3</td><td>0</td><td>21.47 s</td><td>353.2</td><td>9</td><td>0</td><td>0</td></tr>
+<tr><td>tall numeric</td><td>250.000</td><td>4</td><td class="failure">6</td><td>93.34 s</td><td>824.4</td><td>13</td><td>0</td><td>0</td></tr>
+<tr><td>high unique strings</td><td>250.000</td><td>7</td><td>0</td><td>41.80 s</td><td>730.2</td><td>22</td><td>0</td><td>0</td></tr>
+<tr><td>null heavy</td><td>250.000</td><td>3</td><td>0</td><td>96.98 s</td><td>1,076.0</td><td>9</td><td>0</td><td>0</td></tr>
+<tr><td>quoted unicode</td><td>250.000</td><td>3</td><td>0</td><td>23.62 s</td><td>1,002.4</td><td>9</td><td>0</td><td>0</td></tr>
+<tr><td>wide numeric</td><td>250.000</td><td>3</td><td>0</td><td>78.98 s</td><td>959.2</td><td>6</td><td>3</td><td>0</td></tr></tbody></table></div>
+<div class="notes"><p><strong>Memory scope:</strong> harness process and recursive children. Streamlit uploader and browser memory are excluded;
+this table does not establish end-to-end upload memory. Filesystem cache and other desktop load were uncontrolled.</p>
+<p><strong>Correctness scope:</strong> expected wide-schema skips validate guards; the skipped duplicate count remains unassessed.
+Statistical tools have independent small-fixture parity tests; these scale runs do not independently prove their statistics.
+At least three release imports per size/profile were recorded; extra risk runs can increase the count.</p></div>
+<p class="sources">Source evidence: <a href="benchmarks/benchmark_verified_summary.md">Verified summary</a> · <a href="benchmarks/benchmark_results_verified.csv">Verified CSV</a> · <a href="benchmarks/benchmark_verification_audit.json">Verification audit</a> · <a href="benchmarks/benchmark_results.csv">Original results</a></p>
+</main></body></html>

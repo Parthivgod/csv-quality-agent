@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "exported_utc": "2026-10-01T05:41:45.496291+00:00",
+  "dataset": {
+    "filename": "corrupted_outliers_corr.csv",
+    "sha256": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+    "file_bytes": 293,
+    "rows": 30,
+    "column_count": 3,
+    "backend": "duckdb",
+    "encoding": "utf-8-sig"
+  },
+  "question": "Do the numerical features contain suspicious values or relationships?",
+  "target": null,
+  "run": {
+    "backend": "duckdb",
+    "rows": 30,
+    "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0566,
+    "total_seconds": 8.1534,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "tool": "outlier_check",
+      "arguments": {},
+      "status": "ok",
+      "summary": "2 numeric columns have IQR outliers.",
+      "result": {
+        "status": "ok",
+        "tool": "outlier_check",
+        "summary": "2 numeric columns have IQR outliers.",
+        "data": {
+          "columns": [
+            {
+              "column": "feature_x",
+              "outlier_count": 1,
+              "outlier_pct": 3.33,
+              "lower_bound": -13.5,
+              "upper_bound": 44.5,
+              "non_null_count": 30
+            },
+            {
+              "column": "feature_y",
+              "outlier_count": 1,
+              "outlier_pct": 3.33,
+              "lower_bound": -26.0,
+              "upper_bound": 90.0,
+              "non_null_count": 30
+            },
+            {
+              "column": "feature_z",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -6.0,
+              "upper_bound": 16.0,
+              "non_null_count": 30
+            }
+          ],
+          "method": "1.5 x IQR"
+        },
+        "findings": [
+          {
+            "issue": "IQR outliers",
+            "severity": "medium",
+            "column": "feature_x",
+            "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+            "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+            "recommendation": "Inspect these observations and the domain before any capping or removal."
+          },
+          {
+            "issue": "IQR outliers",
+            "severity": "medium",
+            "column": "feature_y",
+            "evidence": "1/30 values outside [-26, 90] (3.33%)",
+            "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+            "recommendation": "Inspect these observations and the domain before any capping or removal."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+          "rows": 30,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 50.834,
+          "cache_hit": false,
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "ignored_columns": []
+          },
+          "findings_total": 2,
+          "findings_omitted": 0
+        }
+      }
+    },
+    {
+      "sequence": 2,
+      "tool": "correlation_check",
+      "arguments": {},
+      "status": "ok",
+      "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+      "result": {
+        "status": "ok",
+        "tool": "correlation_check",
+        "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+        "data": {
+          "pairs": [
+            {
+              "left": "feature_x",
+              "right": "feature_y",
+              "correlation": 1.0
+            }
+          ],
+          "threshold": 0.95
+        },
+        "findings": [
+          {
+            "issue": "Strong feature correlation",
+            "severity": "medium",
+            "column": "feature_x, feature_y",
+            "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+            "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+            "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+          }
+        ],
+        "execution": {
+          "backend": "duckdb",
+          "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+          "rows": 30,
+          "exact": true,
+          "method": "exact SQL aggregates over typed Parquet",
+          "elapsed_ms": 4.498,
+          "cache_hit": false,
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": 0,
+          "coverage": {
+            "columns_checked": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "ignored_columns": []
+          },
+          "findings_total": 1,
+          "findings_omitted": 0
+        }
+      }
+    }
+  ],
+  "full_tool_results": [
+    {
+      "status": "ok",
+      "tool": "outlier_check",
+      "summary": "2 numeric columns have IQR outliers.",
+      "data": {
+        "columns": [
+          {
+            "column": "feature_x",
+            "outlier_count": 1,
+            "outlier_pct": 3.33,
+            "lower_bound": -13.5,
+            "upper_bound": 44.5,
+            "non_null_count": 30
+          },
+          {
+            "column": "feature_y",
+            "outlier_count": 1,
+            "outlier_pct": 3.33,
+            "lower_bound": -26.0,
+            "upper_bound": 90.0,
+            "non_null_count": 30
+          },
+          {
+            "column": "feature_z",
+            "outlier_count": 0,
+            "outlier_pct": 0.0,
+            "lower_bound": -6.0,
+            "upper_bound": 16.0,
+            "non_null_count": 30
+          }
+        ],
+        "method": "1.5 x IQR"
+      },
+      "findings": [
+        {
+          "issue": "IQR outliers",
+          "severity": "medium",
+          "column": "feature_x",
+          "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+          "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+          "recommendation": "Inspect these observations and the domain before any capping or removal."
+        },
+        {
+          "issue": "IQR outliers",
+          "severity": "medium",
+          "column": "feature_y",
+          "evidence": "1/30 values outside [-26, 90] (3.33%)",
+          "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+          "recommendation": "Inspect these observations and the domain before any capping or removal."
+        }
+      ],
+      "execution": {
+        "backend": "duckdb",
+        "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+        "rows": 30,
+        "exact": true,
+        "method": "exact SQL aggregates over typed Parquet",
+        "elapsed_ms": 50.834,
+        "cache_hit": false,
+        "columns_checked": [
+          "feature_x",
+          "feature_y",
+          "feature_z"
+        ],
+        "columns_omitted": 0,
+        "coverage": {
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "ignored_columns": []
+        }
+      }
+    },
+    {
+      "status": "ok",
+      "tool": "correlation_check",
+      "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+      "data": {
+        "pairs": [
+          {
+            "left": "feature_x",
+            "right": "feature_y",
+            "correlation": 1.0
+          }
+        ],
+        "threshold": 0.95
+      },
+      "findings": [
+        {
+          "issue": "Strong feature correlation",
+          "severity": "medium",
+          "column": "feature_x, feature_y",
+          "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+          "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+          "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+        }
+      ],
+      "execution": {
+        "backend": "duckdb",
+        "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+        "rows": 30,
+        "exact": true,
+        "method": "exact SQL aggregates over typed Parquet",
+        "elapsed_ms": 4.498,
+        "cache_hit": false,
+        "columns_checked": [
+          "feature_x",
+          "feature_y",
+          "feature_z"
+        ],
+        "columns_omitted": 0,
+        "coverage": {
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "ignored_columns": []
+        }
+      }
+    }
+  ],
+  "report": {
+    "summary": "3 supported finding(s) from 2 completed diagnostic(s). Results apply to the selected checks and their stated coverage.",
+    "issues": [
+      {
+        "issue": "IQR outliers",
+        "severity": "medium",
+        "column": "feature_x",
+        "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+        "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+        "recommendation": "Inspect these observations and the domain before any capping or removal.",
+        "source_tool": "outlier_check"
+      },
+      {
+        "issue": "IQR outliers",
+        "severity": "medium",
+        "column": "feature_y",
+        "evidence": "1/30 values outside [-26, 90] (3.33%)",
+        "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+        "recommendation": "Inspect these observations and the domain before any capping or removal.",
+        "source_tool": "outlier_check"
+      },
+      {
+        "issue": "Strong feature correlation",
+        "severity": "medium",
+        "column": "feature_x, feature_y",
+        "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+        "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+        "recommendation": "Review feature provenance and model assumptions before dropping either feature.",
+        "source_tool": "correlation_check"
+      }
+    ],
+    "tools_used": [
+      "outlier_check",
+      "correlation_check"
+    ],
+    "limitations": []
+  }
+}
