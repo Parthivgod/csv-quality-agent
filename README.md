@@ -125,7 +125,7 @@ The last command uses the configured API and may encounter account rate limits. 
 - [6:30 recording script: exact files, prompts, actions and narration](docs/PHASE3_DEMO_SCRIPT.md)
 - [Evaluation, screenshot steps and remaining submission tasks](docs/PHASE3_EVALUATION_AND_SUBMISSION.md)
 - [Technical report](submission/Phase3_Technical_Report.pdf) and editable source in `submission/`
-- [Contribution statement drafts for author review](submission/Contribution_Statements.md)
+- [Individual contribution statement PDF](submission/Individual_Contribution_Statement.pdf), [editable Word document](submission/Individual_Contribution_Statement.docx), and [text source](submission/Contribution_Statements.md); responsibility split confirmed, signatures to be completed by each member.
 
 The video will be recorded by the students using the script/screenshots. Instructor feedback, roster/deadline confirmation, and the course feedback form require real course information. Historical [Phase 2 evidence](docs/PHASE2_PROGRESS.md) and source assignment documents are preserved.
 
