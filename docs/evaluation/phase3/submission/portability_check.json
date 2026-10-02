@@ -1,0 +1,9 @@
+{
+  "reviewed_on": "2 October 2026",
+  "indexed_git_snapshot": "pass",
+  "verified_artifacts": 93,
+  "text_line_endings": "Git LF blobs checked against normalized manifest; original recorded JSON uses exact bytes",
+  "checksum_mismatch_control": "rejected with exit 1",
+  "provider_calls": 0,
+  "benchmarks_rerun": false
+}

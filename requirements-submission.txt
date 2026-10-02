@@ -1,0 +1,4 @@
+# Optional report-generation dependencies; application setup uses requirements.txt.
+reportlab>=4,<5
+Pillow>=10,<13
+pypdf>=5,<7

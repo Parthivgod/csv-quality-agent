@@ -1,0 +1,41 @@
+{
+  "file": "C:\\Users\\Parthiv\\OneDrive\\Desktop\\College\\Gen AI\\csv-data-quality-agent\\submission\\Phase3_CSV_Data_Quality_Demo.mp4",
+  "bytes": 8207440,
+  "sha256": "d43a6c39b1da9181f77291fbe126c67f7637b616094b043e19aa6e0b072d3883",
+  "duration_seconds": 390.0,
+  "tracks": [
+    "vide"
+  ],
+  "stream_description": [
+    "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], 165 kb/s, 30 fps, 30 tbr, 15360 tbn (default)"
+  ],
+  "faststart": true,
+  "full_decode_exit": 0,
+  "decode_errors": "",
+  "native_capture_fps": 20,
+  "final_fps": 30,
+  "fresh_run_evidence": [
+    {
+      "file": "case_A_numeric_recorded.json",
+      "rows": 30,
+      "tools": [
+        "outlier_check",
+        "correlation_check"
+      ],
+      "verified_issues": 3,
+      "total_run_seconds": 24.5545,
+      "sha256": "e1b6d053cbd08af9896b452a19a41b35d8d3993c765aba0992d3f80c252b0c3b"
+    },
+    {
+      "file": "case_B_moderate_recorded.json",
+      "rows": 100,
+      "tools": [
+        "class_imbalance_check"
+      ],
+      "verified_issues": 0,
+      "total_run_seconds": 11.5414,
+      "sha256": "a8fd44293a5476ae6f5b656a089cc7298695ddc994bd9e86b78d59c79230981e"
+    }
+  ],
+  "editing": "Trimmed navigation and waits; source/evidence screens reordered; informational holds extended only."
+}

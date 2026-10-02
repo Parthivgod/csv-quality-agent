@@ -38,7 +38,7 @@ Original automated baseline: **122 passed**. [Original test, dependency and comp
 
 Release upload limit recorded for this report: 250 MiB. Release import budget: 120s. The original 60s import goal failed on 250MiB tall data; budget revision is documented and does not erase failure.
 
-The PDF includes latest recorded results. Video, real feedback form, roster/deadline confirmation and individually confirmed contribution statements remain human deliverables.
+The silent two-case demo is 6:30 with a matched script; contributions follow the confirmed split. Add narration, sign statements, complete the real feedback form and confirm course instructions. The brief's deadline was 30 September 2026. See submission/README.md.
 
 ## Actual browser upload
 

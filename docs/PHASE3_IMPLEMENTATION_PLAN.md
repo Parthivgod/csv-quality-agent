@@ -1,6 +1,6 @@
 # Phase 3 implementation and completion record
 
-**Status: implementation and benchmark work completed on 1 October 2026.** The release supports the confirmed **250 MB local target** within the measured workload and explicit diagnostic guards below. The UI label MB means MiB here: the limit is **262,144,000 bytes**. The final browser evidence is maintained in [UI validation](evaluation/phase3/ui/UI_VALIDATION.md). The demonstration video, author-confirmed contribution statements, and course submission steps remain student actions.
+**Status: implementation and benchmark work completed on 1 October 2026.** The release supports the confirmed **250 MB local target** within the measured workload and explicit diagnostic guards below. The UI label MB means MiB here: the limit is **262,144,000 bytes**. The final browser evidence is maintained in [UI validation](evaluation/phase3/ui/UI_VALIDATION.md). The silent demonstration is recorded and contribution roles are confirmed. Narration, signatures and course submission steps remain student actions; see the [current package](../submission/README.md).
 
 Companion documents:
 
@@ -23,7 +23,7 @@ The project is **Activity 2: Tool-Augmented/Agentic LLM Application**. Lab 9 req
 | One failed or unexpected tool response | Unsuitable-target skip and explicitly labeled controlled duplicate-tool exception |
 | 5–7 minute video with two live cases | [6:30 script](PHASE3_DEMO_SCRIPT.md); the students must record and check the video |
 | 3–4 page technical report | Final saved report and render/page-count evidence belong to the submission package; verify the delivered PDF |
-| Individual contribution statements | [Author-review templates](../submission/Contribution_Statements.md); students must complete actual work and confirm |
+| Individual contribution statements | [Confirmed statements](../submission/Individual_Contribution_Statement.pdf) with editable Word copy; review and signatures remain |
 | Feedback form | Obtain the real instructor form/link and submit it |
 
 The rubric assigns 1 mark to problem/architecture, 2 to LangChain integration, 2 to implementation, 2 to evaluation/problem solving, and 1 each to demonstration, reflection and contribution.
@@ -148,7 +148,7 @@ Nine live Groq scenarios have successful recorded attempts, including the contro
 Implementation, automated validation, local benchmarks, fresh live traces, actual architecture, and evidence export are complete. The final saved browser record controls claims about screenshots and actual upload-buffer measurements. Before submission the students must:
 
 1. Record and verify the 5–7 minute video using the 6:30 script and two actual live cases.
-2. Complete and confirm truthful individual contribution statements, including AI/tool assistance.
+2. Review, sign and date the prepared individual contribution statements, including AI/tool assistance.
 3. Confirm the instructor's roster/deadline instructions, incorporate any real feedback, and submit the actual feedback form.
 4. Verify the final report is 3–4 pages, the repository/evidence links work, and the instructor can access the video and package.
 
@@ -157,3 +157,7 @@ Future engineering improvements are a genuine streaming upload service, a broade
 ## LLM synthesis revision - 1 October 2026
 
 The current report preserves an LLM-written summary, source-linked interpretation and suggested next steps. Brief tool-choice explanations appear in progress and beside trace entries. Verified findings and deterministic scope/limitations remain separate. **149 tests passed in 10.31s**; fresh Groq runs and captures 11-13 are documented in [synthesis validation](evaluation/phase3/llm_synthesis/README.md). The 122-test run, original screenshots, live attempts and size measurements above describe the prior release and remain preserved. The current 6:30 demo script demonstrates a no-finding 60/40 target distribution with a useful explanation. No benchmark rerun is claimed.
+
+## Final package update 2 October 2026
+
+The completed silent recording, matched narration and confirmed contribution documents are listed in the [submission package](../submission/README.md). Use that checklist for current hand-in status; earlier preparation instructions remain historical.

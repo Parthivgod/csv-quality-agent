@@ -4,6 +4,17 @@ A local Streamlit application for investigating CSV quality before model trainin
 
 **Phase 3:** disk-backed analysis for CSVs up to **250 MB (250 MiB / 262,144,000 bytes)** on the measured local setup. Groq-hosted `openai/gpt-oss-120b` is the default model. See [measured results and limits](docs/PHASE3_RESULTS.md).
 
+## Submission files
+
+**Team:** Parthiv Godrihal (I024), Nilay Jain (I029). Start with the [submission package and hand-in checklist](submission/README.md).
+
+| Item | Location | Status |
+| --- | --- | --- |
+| Technical report | [Four-page PDF](submission/Phase3_Technical_Report.pdf) | Complete |
+| Demo | [6:30 silent MP4](submission/Phase3_CSV_Data_Quality_Demo.mp4) and [matched narration](submission/Phase3_Voiceover_Script.md) | Recorded; your voice-over remains |
+| Individual contributions | [Two-page PDF](submission/Individual_Contribution_Statement.pdf) and [Word copy](submission/Individual_Contribution_Statement.docx) | Confirmed responsibility split; signatures remain |
+| Architecture and results | [Documentation index](docs/README.md) | Diagrams, screenshots, sample outputs and measured evidence |
+
 ## Features
 
 - Strict CSV validation, full-column type inference, bounded preview, and cached basic metadata.
@@ -122,12 +133,12 @@ The last command uses the configured API and may encounter account rate limits. 
 - [Measured implementation results](docs/PHASE3_RESULTS.md) and [work log](docs/PHASE3_WORK_LOG.md)
 - [Architecture](docs/ARCHITECTURE.md) with editable diagram source
 - [Implementation plan and requirement mapping](docs/PHASE3_IMPLEMENTATION_PLAN.md)
-- [6:30 recording script: exact files, prompts, actions and narration](docs/PHASE3_DEMO_SCRIPT.md)
+- [Recorded 6:30 silent demo](submission/Phase3_CSV_Data_Quality_Demo.mp4), [matched voice-over script](submission/Phase3_Voiceover_Script.md), and [recording log](docs/VIDEO_RECORDING_2026-10-01.md)
 - [Evaluation, screenshot steps and remaining submission tasks](docs/PHASE3_EVALUATION_AND_SUBMISSION.md)
 - [Technical report](submission/Phase3_Technical_Report.pdf) and editable source in `submission/`
 - [Individual contribution statement PDF](submission/Individual_Contribution_Statement.pdf), [editable Word document](submission/Individual_Contribution_Statement.docx), and [text source](submission/Contribution_Statements.md); responsibility split confirmed, signatures to be completed by each member.
 
-The video will be recorded by the students using the script/screenshots. Instructor feedback, roster/deadline confirmation, and the course feedback form require real course information. Historical [Phase 2 evidence](docs/PHASE2_PROGRESS.md) and source assignment documents are preserved.
+The silent video is recorded and checked; add your narration before a narrated course submission. Sign the confirmed contribution statements and complete the actual course feedback form. Instructor feedback, roster and applicable submission instructions require real course information. See the [final package checklist](submission/README.md) and [package verification](docs/evaluation/phase3/submission/README.md). Historical [Phase 2 evidence](docs/PHASE2_PROGRESS.md) and source assignment documents are preserved.
 
 ## Troubleshooting
 

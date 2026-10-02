@@ -7,6 +7,7 @@ Run only after evaluation is finished; earlier attempts remain in the evidence.
 import argparse
 from collections import defaultdict
 import csv
+import hashlib
 from html import escape
 import json
 from pathlib import Path
@@ -134,6 +135,8 @@ def main():
     parser.add_argument("--upload-evidence", type=Path)
     parser.add_argument("--synthesis-manifest", type=Path,
                         help="Separate revision evidence: test_count, test_record, cases[{id,status,actual_calls,latency_seconds,evidence}]")
+    parser.add_argument("--video-validation", type=Path, help="Saved validation for the completed silent demo")
+    parser.add_argument("--report-date", default="1 October 2026", help="Editorial date; does not change measurement dates")
     parser.add_argument("--draft", action="store_true", help="Write layout preview only under ignored tmp/pdfs")
     args = parser.parse_args()
     if args.test_count < 1:
@@ -143,6 +146,21 @@ def main():
     upload = json.loads(args.upload_evidence.read_text(encoding="utf-8")) if args.upload_evidence else None
     revision = json.loads(args.synthesis_manifest.read_text(encoding="utf-8")) if args.synthesis_manifest else None
     revision_ui = None
+    delivery_text = "The user records the planned 6:30 two-case video. Confirm individual statements, the real feedback form, roster and late-submission instructions; the brief's deadline was 30 September 2026."
+    if args.video_validation:
+        video_record = json.loads(args.video_validation.read_text(encoding="utf-8"))
+        video_path = SUBMISSION / "Phase3_CSV_Data_Quality_Demo.mp4"
+        if (not video_path.is_file()
+                or hashlib.sha256(video_path.read_bytes()).hexdigest() != video_record["sha256"]
+                or video_record["duration_seconds"] != 390.0
+                or video_record["tracks"] != ["vide"]
+                or video_record["full_decode_exit"] != 0):
+            parser.error("Completed video must match its original silent 6:30 validation")
+        if not all((SUBMISSION / name).is_file() for name in (
+                "Individual_Contribution_Statement.pdf", "Individual_Contribution_Statement.docx",
+                "Phase3_Voiceover_Script.md")):
+            parser.error("Contribution statements and final narration script must exist")
+        delivery_text = "The silent two-case demo is 6:30 with a matched script; contributions follow the confirmed split. Add narration, sign statements, complete the real feedback form and confirm course instructions. The brief's deadline was 30 September 2026. See submission/README.md."
     if not args.draft and not revision:
         parser.error("The final synthesis revision requires a separate verified evidence manifest")
     if revision:
@@ -203,7 +221,7 @@ def main():
         markdown.extend(["<!-- page break -->", ""])
 
     heading("CSV Data Quality Triage Agent", True)
-    paragraph("Lab 9 - Activity 2 | Phase 3 technical report | 1 October 2026 | LLM synthesis revision" + (" | DRAFT" if args.draft else ""))
+    paragraph(f"Lab 9 - Activity 2 | Phase 3 technical report | {args.report_date} | LLM synthesis revision" + (" | DRAFT" if args.draft else ""))
     heading("1. Problem and implemented workflow")
     paragraph("CSV defects can distort machine-learning preparation. The application answers a user's diagnostic question using selected deterministic checks, with evidence and contextual recommendations. It does not clean datasets or train models. The local release upload limit is " + str(args.verified_limit_mb) + " MiB (MiB = 1,048,576 bytes); supported shapes and measured boundaries are reported on page 4.")
     story.append(Image(str(ASSETS / "phase3_architecture.png"), width=500, height=256))
@@ -288,7 +306,7 @@ def main():
         paragraph(f"Actual browser upload: {data['file_bytes']:,} bytes, {data['rows']:,} rows and {data['column_count']} columns loaded into DuckDB in {data['import_seconds']:.3f}s, excluding HTTP transfer. Sampled peak app/worker RSS was {upload['peak_app_and_worker_rss_bytes']/1024**2:.2f} MiB including the Streamlit upload buffer; browser RSS was excluded. A live Groq missing-value run took {upload['live_run_seconds']:.4f}s. This is one desktop upload, not a concurrency test. Original downloaded evidence and resource record are in docs/evaluation/phase3/ui/.")
     paragraph("Streamlit UploadedFile retains an in-memory buffer. Disk-backed analysis avoids full DataFrames and extra complete byte copies but is not an end-to-end streaming upload service. The demonstrated envelope concerns tested shapes, not every possible 250 MiB CSV. Wider schemas, huge labels, holistic quartile allocations, disk pressure and provider rate limits can lead to explicit skips/errors. Outliers, duplicates and correlations require domain interpretation.")
     heading("Reproducibility and remaining human deliverables")
-    paragraph("Reproduce using README commands, saved environment/source hashes, and scripts/build_phase3_report.py with the verified test count. The user records the planned 6:30 two-case video. Confirm individual statements, the real feedback form, roster and late-submission instructions; the brief's deadline was 30 September 2026.")
+    paragraph("Reproduce using README commands, saved environment/source hashes, and scripts/build_phase3_report.py with the verified test count. " + delivery_text)
     heading("Sources")
     paragraph("Assignment: docs/source/Lab 9_2026_27.docx (Activity 2, Phase 3 and rubric); Phase 1 proposal in docs/source. Technical references: docs.streamlit.io/develop/api-reference/widgets/st.file_uploader; duckdb.org/docs/current/guides/performance/how_to_tune_workloads; duckdb.org/docs/current/sql/functions/aggregates. Implementation, saved traces and benchmark manifests are the sources for measured claims.")
 
@@ -297,7 +315,7 @@ def main():
         canvas.line(47,40,548,40)
         canvas.setFont("Helvetica", 8)
         canvas.setFillColor(BLUE)
-        canvas.drawString(47,27,"CSV Data Quality Triage Agent | Phase 3 synthesis revision | 1 October 2026")
+        canvas.drawString(47,27,f"CSV Data Quality Triage Agent | Phase 3 synthesis revision | {args.report_date}")
         canvas.drawRightString(548,27,str(doc.page))
     pdf = destination / "Phase3_Technical_Report.pdf"
     doc = SimpleDocTemplate(str(pdf), pagesize=A4, leftMargin=47, rightMargin=47,
@@ -313,7 +331,7 @@ def main():
     results.extend(["", "[All attempts and evidence](evaluation/phase3/scenarios/scenario_results.md)", "", "## Diagnostic benchmarks", "", "| Profile | MiB | Runs | Max import s | Peak RSS MiB | Peak temp MiB | Gate |", "| --- | --- | --- | --- | --- | --- | --- |"])
     for b in benchmarks:
         results.append(f"| {b['profile']} | {b['size']:g} | {b['runs']} | {b['ingest']:.2f} | {b['rss']:.1f} | {b['temp']:.1f} | {b['status']} |")
-    results.extend(["", "[Verified benchmark CSV](evaluation/phase3/benchmarks/benchmark_results_verified.csv), [verification audit](evaluation/phase3/benchmarks/benchmark_verification_audit.json), and [original raw CSV](evaluation/phase3/benchmarks/benchmark_results.csv). Pass covers independently checked counts/shape and resource gates; statistical large-file correctness without independent truth remains unassessed. Guarded means expected scope skips, not computed exact statistics. Process plus child RSS excludes browser/uploader. OS cache uncontrolled. Latest run per profile/size/repeat selected; initial failed attempts remain in raw records.", "", f"Release upload limit recorded for this report: {args.verified_limit_mb} MiB. Release import budget: {args.import_budget_seconds}s. The original 60s import goal failed on 250MiB tall data; budget revision is documented and does not erase failure.", "", "The PDF includes latest recorded results. Video, real feedback form, roster/deadline confirmation and individually confirmed contribution statements remain human deliverables."])
+    results.extend(["", "[Verified benchmark CSV](evaluation/phase3/benchmarks/benchmark_results_verified.csv), [verification audit](evaluation/phase3/benchmarks/benchmark_verification_audit.json), and [original raw CSV](evaluation/phase3/benchmarks/benchmark_results.csv). Pass covers independently checked counts/shape and resource gates; statistical large-file correctness without independent truth remains unassessed. Guarded means expected scope skips, not computed exact statistics. Process plus child RSS excludes browser/uploader. OS cache uncontrolled. Latest run per profile/size/repeat selected; initial failed attempts remain in raw records.", "", f"Release upload limit recorded for this report: {args.verified_limit_mb} MiB. Release import budget: {args.import_budget_seconds}s. The original 60s import goal failed on 250MiB tall data; budget revision is documented and does not erase failure.", "", delivery_text])
     if upload:
         data = upload["dataset"]
         results.extend(["", "## Actual browser upload", "", f"Completed **{data['file_bytes']:,} bytes / {data['rows']:,} rows / {data['column_count']} columns** in DuckDB. Import **{data['import_seconds']:.3f}s**, excluding HTTP transfer; live Groq missing-value diagnosis **{upload['live_run_seconds']:.4f}s**. Sampled peak app/worker RSS **{upload['peak_app_and_worker_rss_bytes']/1024**2:.2f} MiB** includes the Streamlit buffer but excludes browser RSS. One desktop upload; OS cache and desktop load uncontrolled.", "", "[Original downloaded app evidence](evaluation/phase3/ui/large_evidence.json), [resource record](evaluation/phase3/ui/large_upload_resources.json), and [browser validation](evaluation/phase3/ui/UI_VALIDATION.md). Earlier idle/rejected sampling windows are not successful upload evidence."])

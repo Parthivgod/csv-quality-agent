@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "exported_utc": "2026-10-01T14:09:31.831160+00:00",
+  "dataset": {
+    "filename": "class_distribution_moderate.csv",
+    "sha256": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+    "file_bytes": 2115,
+    "rows": 100,
+    "column_count": 3,
+    "backend": "pandas",
+    "encoding": "utf-8-sig",
+    "import_seconds": 0.297
+  },
+  "question": "Is my target distribution a problem? Explain what the observed distribution means and suggest next steps.",
+  "target": "label",
+  "run": {
+    "backend": "pandas",
+    "rows": 100,
+    "dataset_hash": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+    "target": "label",
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0052,
+    "total_seconds": 11.5414,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "tool": "class_imbalance_check",
+      "arguments": {
+        "reason": "Check the distribution of the selected target column 'label' to see if class imbalance may be an issue."
+      },
+      "status": "ok",
+      "summary": "Target label has 2 classes; majority/minority ratio 1.5:1.",
+      "selection_reason": "Check the distribution of the selected target column 'label' to see if class imbalance may be an issue.",
+      "result": {
+        "status": "ok",
+        "tool": "class_imbalance_check",
+        "summary": "Target label has 2 classes; majority/minority ratio 1.5:1.",
+        "data": {
+          "target": "label",
+          "classes": [
+            {
+              "class": "negative",
+              "count": 60,
+              "proportion": 0.6,
+              "percentage": 60.0
+            },
+            {
+              "class": "positive",
+              "count": 40,
+              "proportion": 0.4,
+              "percentage": 40.0
+            }
+          ],
+          "majority_class": "negative",
+          "minority_class": "positive",
+          "majority_minority_ratio": 1.5,
+          "thresholds_ratio": {
+            "medium": 3.0,
+            "high": 9.0
+          },
+          "missing_target_count": 0
+        },
+        "findings": [],
+        "execution": {
+          "backend": "pandas",
+          "dataset_hash": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+          "rows": 100,
+          "columns_checked": [
+            "label"
+          ],
+          "exact": true,
+          "method": "pandas-reference",
+          "elapsed_ms": 3.779,
+          "cache_hit": false,
+          "contract_version": "phase3-v1",
+          "coverage": {
+            "columns_checked": [
+              "label"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "label"
+            ],
+            "ignored_columns": [
+              "record_id",
+              "feature"
+            ]
+          },
+          "columns_omitted": 0,
+          "findings_total": 0,
+          "findings_omitted": 0
+        }
+      }
+    }
+  ],
+  "full_tool_results": [
+    {
+      "status": "ok",
+      "tool": "class_imbalance_check",
+      "summary": "Target label has 2 classes; majority/minority ratio 1.5:1.",
+      "data": {
+        "target": "label",
+        "classes": [
+          {
+            "class": "negative",
+            "count": 60,
+            "proportion": 0.6,
+            "percentage": 60.0
+          },
+          {
+            "class": "positive",
+            "count": 40,
+            "proportion": 0.4,
+            "percentage": 40.0
+          }
+        ],
+        "majority_class": "negative",
+        "minority_class": "positive",
+        "majority_minority_ratio": 1.5,
+        "thresholds_ratio": {
+          "medium": 3.0,
+          "high": 9.0
+        },
+        "missing_target_count": 0
+      },
+      "findings": [],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "c8528d12375f205cddea473b6ee646a465e103d16342c7b15129c9855fc9965e",
+        "rows": 100,
+        "columns_checked": [
+          "label"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 3.779,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "label"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "label"
+          ],
+          "ignored_columns": [
+            "record_id",
+            "feature"
+          ]
+        },
+        "columns_omitted": 0
+      }
+    }
+  ],
+  "report": {
+    "summary": "The class imbalance check examined the target column \"label\" (100 rows) and found two classes: negative (60 rows, 60%) and positive (40 rows, 40%). The majority/minority ratio is 1.5:1, which is below the medium concern threshold of 3.0 and the high threshold of 9.0. Therefore, the observed distribution does not trigger an imbalance warning, though the ratio indicates a modest skew that could influence model performance depending on the algorithm used.",
+    "issues": [],
+    "tools_used": [
+      "class_imbalance_check"
+    ],
+    "limitations": [],
+    "interpretation": [
+      {
+        "text": "A 1.5:1 majority/minority ratio reflects a mild imbalance; it is not severe enough to raise an automatic flag, but some algorithms (e.g., those sensitive to class frequency) may still benefit from techniques such as class weighting or stratified sampling.",
+        "source_tools": [
+          "class_imbalance_check"
+        ]
+      }
+    ],
+    "next_steps": [
+      "Consider using stratified train‑test splits to preserve the class proportion.",
+      "Monitor model performance with metrics that account for class imbalance (e.g., balanced accuracy, F1).",
+      "If performance on the minority class is unsatisfactory, explore class weighting or resampling methods.",
+      "Review whether additional data collection for the positive class is feasible.",
+      "Validate the impact of the imbalance on the specific model architecture you plan to use."
+    ],
+    "assessment_summary": "0 verified finding(s) from 1 completed diagnostic(s). Results apply to the selected checks and their stated coverage."
+  }
+}

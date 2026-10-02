@@ -1,0 +1,31 @@
+{
+  "start_epoch": 1790863119.090098,
+  "pid": 14736,
+  "command": [
+    "C:\\Users\\Parthiv\\OneDrive\\Desktop\\College\\Gen AI\\csv-data-quality-agent\\tmp\\video_preflight\\tools\\ffmpeg.exe",
+    "-hide_banner",
+    "-y",
+    "-f",
+    "gdigrab",
+    "-framerate",
+    "20",
+    "-draw_mouse",
+    "1",
+    "-i",
+    "desktop",
+    "-t",
+    "1800",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "ultrafast",
+    "-crf",
+    "18",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "C:\\Users\\Parthiv\\OneDrive\\Desktop\\College\\Gen AI\\csv-data-quality-agent\\tmp\\video_recording_20261001\\raw_session_01.mp4"
+  ]
+}

@@ -28,11 +28,15 @@ Failed and throttled attempts remain in the evidence directory. Latest summaries
 
 ## Remaining human actions
 
-- Record the real 5-7 minute video using the timed script and at least two live cases.
-- Confirm each individual's actual work and AI assistance in the contribution statements.
+- Add narration to the recorded silent 6:30 demo using its matched script.
+- Review, sign and date the prepared contribution statements; the two-member responsibility split is confirmed.
 - Obtain the instructor's feedback form and Phase 2 feedback.
 - Confirm roster and late/revised submission instructions. The brief's deadline was 30 September 2026; no extension is asserted.
 
 ## LLM synthesis revision - 1 October 2026
 
 User requested model-written summary, interpretation/next steps, and short tool-choice explanations. The summary is now retained while exact tool findings and deterministic scope/limits remain separate. Class percentages and configured thresholds are exposed in tool results without changing trigger rules. Numeric/source checks reject unsupported narrative values and citations; they are not semantic proof of model prose. Regression tests found and fixed sentence-final numeric parsing and negation leaking across clauses. **149 tests passed in 10.31s**, plus three fresh CLI Groq cases and one actual browser run; a 429 attempt was retained before retry. Captures 11-13 and the original UI JSON are in [revision evidence](evaluation/phase3/llm_synthesis/README.md). Earlier 250 MiB benchmarks and upload records were preserved and not rerun. The technical report/architecture/demo script were updated; prior report artifacts are archived.
+
+## Submission cleanup 2 October 2026
+
+Added a submission index and documentation index, included the verified silent demo and filmed-run evidence, updated stale recording/contribution instructions, and ignored local Word lock and operating-system files. Current final artifacts are distinct from retained historical reports and measurements. The technical report now reflects the recorded silent video and prepared contributions without changing earlier measured results. Package verification checks hashes, Markdown links and credential exclusions; final validation is recorded in [submission checks](evaluation/phase3/submission/README.md). Application behavior and large-file measurements were preserved.

@@ -1,6 +1,6 @@
 # CSV Data Quality Triage Agent
 
-Lab 9 - Activity 2 | Phase 3 technical report | 1 October 2026 | LLM synthesis revision
+Lab 9 - Activity 2 | Phase 3 technical report | 2 October 2026 | LLM synthesis revision
 
 ## 1. Problem and implemented workflow
 
@@ -116,7 +116,7 @@ Streamlit UploadedFile retains an in-memory buffer. Disk-backed analysis avoids 
 
 ## Reproducibility and remaining human deliverables
 
-Reproduce using README commands, saved environment/source hashes, and scripts/build_phase3_report.py with the verified test count. The user records the planned 6:30 two-case video. Confirm individual statements, the real feedback form, roster and late-submission instructions; the brief's deadline was 30 September 2026.
+Reproduce using README commands, saved environment/source hashes, and scripts/build_phase3_report.py with the verified test count. The silent two-case demo is 6:30 with a matched script; contributions follow the confirmed split. Add narration, sign statements, complete the real feedback form and confirm course instructions. The brief's deadline was 30 September 2026. See submission/README.md.
 
 ## Sources
 

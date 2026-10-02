@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "manifest": "submission\\SUBMISSION_MANIFEST.json",
+  "verified_artifacts": 93,
+  "checked_markdown_files": 29,
+  "checked_local_links": 235,
+  "credential_and_local_file_check": "completed",
+  "video": {
+    "duration_seconds": 390.0,
+    "audio_tracks": 0,
+    "integrity_matches_original_validation": true
+  },
+  "pending_human_actions": [
+    "Add narration and validate the narrated video",
+    "Each member reviews, signs and dates their contribution statement",
+    "Obtain and complete the real course feedback form",
+    "Confirm accepted roster, submission instructions and instructor access"
+  ],
+  "errors": []
+}

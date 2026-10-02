@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "exported_utc": "2026-10-01T14:02:31.537937+00:00",
+  "dataset": {
+    "filename": "corrupted_outliers_corr.csv",
+    "sha256": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+    "file_bytes": 293,
+    "rows": 30,
+    "column_count": 3,
+    "backend": "pandas",
+    "encoding": "utf-8-sig",
+    "import_seconds": 0.468
+  },
+  "question": "Do the numerical features contain suspicious values or relationships?",
+  "target": null,
+  "run": {
+    "backend": "pandas",
+    "rows": 30,
+    "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+    "target": null,
+    "selected_numeric_columns": null,
+    "local_compute_seconds": 0.0134,
+    "total_seconds": 24.5545,
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b"
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "tool": "outlier_check",
+      "arguments": {
+        "reason": "Check for extreme numeric values or outliers in the three integer features."
+      },
+      "status": "ok",
+      "summary": "2 numeric columns have IQR outliers.",
+      "selection_reason": "Check for extreme numeric values or outliers in the three integer features.",
+      "result": {
+        "status": "ok",
+        "tool": "outlier_check",
+        "summary": "2 numeric columns have IQR outliers.",
+        "data": {
+          "columns": [
+            {
+              "column": "feature_x",
+              "outlier_count": 1,
+              "outlier_pct": 3.33,
+              "lower_bound": -13.5,
+              "upper_bound": 44.5,
+              "non_null_count": 30
+            },
+            {
+              "column": "feature_y",
+              "outlier_count": 1,
+              "outlier_pct": 3.33,
+              "lower_bound": -26.0,
+              "upper_bound": 90.0,
+              "non_null_count": 30
+            },
+            {
+              "column": "feature_z",
+              "outlier_count": 0,
+              "outlier_pct": 0.0,
+              "lower_bound": -6.0,
+              "upper_bound": 16.0,
+              "non_null_count": 30
+            }
+          ],
+          "method": "1.5 x IQR"
+        },
+        "findings": [
+          {
+            "issue": "IQR outliers",
+            "severity": "medium",
+            "column": "feature_x",
+            "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+            "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+            "recommendation": "Inspect these observations and the domain before any capping or removal."
+          },
+          {
+            "issue": "IQR outliers",
+            "severity": "medium",
+            "column": "feature_y",
+            "evidence": "1/30 values outside [-26, 90] (3.33%)",
+            "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+            "recommendation": "Inspect these observations and the domain before any capping or removal."
+          }
+        ],
+        "execution": {
+          "backend": "pandas",
+          "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+          "rows": 30,
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "exact": true,
+          "method": "pandas-reference",
+          "elapsed_ms": 7.792,
+          "cache_hit": false,
+          "contract_version": "phase3-v1",
+          "coverage": {
+            "columns_checked": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "ignored_columns": []
+          },
+          "columns_omitted": 0,
+          "findings_total": 2,
+          "findings_omitted": 0
+        }
+      }
+    },
+    {
+      "sequence": 2,
+      "tool": "correlation_check",
+      "arguments": {
+        "reason": "Identify strong linear relationships between the three integer features that might indicate redundancy or leakage."
+      },
+      "status": "ok",
+      "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+      "selection_reason": "Identify strong linear relationships between the three integer features that might indicate redundancy or leakage.",
+      "result": {
+        "status": "ok",
+        "tool": "correlation_check",
+        "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+        "data": {
+          "pairs": [
+            {
+              "left": "feature_x",
+              "right": "feature_y",
+              "correlation": 1.0
+            }
+          ],
+          "threshold": 0.95
+        },
+        "findings": [
+          {
+            "issue": "Strong feature correlation",
+            "severity": "medium",
+            "column": "feature_x, feature_y",
+            "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+            "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+            "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+          }
+        ],
+        "execution": {
+          "backend": "pandas",
+          "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+          "rows": 30,
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "exact": true,
+          "method": "pandas-reference",
+          "elapsed_ms": 3.084,
+          "cache_hit": false,
+          "contract_version": "phase3-v1",
+          "coverage": {
+            "columns_checked": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "columns_omitted": [],
+            "eligible_columns": [
+              "feature_x",
+              "feature_y",
+              "feature_z"
+            ],
+            "ignored_columns": []
+          },
+          "columns_omitted": 0,
+          "findings_total": 1,
+          "findings_omitted": 0
+        }
+      }
+    }
+  ],
+  "full_tool_results": [
+    {
+      "status": "ok",
+      "tool": "outlier_check",
+      "summary": "2 numeric columns have IQR outliers.",
+      "data": {
+        "columns": [
+          {
+            "column": "feature_x",
+            "outlier_count": 1,
+            "outlier_pct": 3.33,
+            "lower_bound": -13.5,
+            "upper_bound": 44.5,
+            "non_null_count": 30
+          },
+          {
+            "column": "feature_y",
+            "outlier_count": 1,
+            "outlier_pct": 3.33,
+            "lower_bound": -26.0,
+            "upper_bound": 90.0,
+            "non_null_count": 30
+          },
+          {
+            "column": "feature_z",
+            "outlier_count": 0,
+            "outlier_pct": 0.0,
+            "lower_bound": -6.0,
+            "upper_bound": 16.0,
+            "non_null_count": 30
+          }
+        ],
+        "method": "1.5 x IQR"
+      },
+      "findings": [
+        {
+          "issue": "IQR outliers",
+          "severity": "medium",
+          "column": "feature_x",
+          "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+          "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+          "recommendation": "Inspect these observations and the domain before any capping or removal."
+        },
+        {
+          "issue": "IQR outliers",
+          "severity": "medium",
+          "column": "feature_y",
+          "evidence": "1/30 values outside [-26, 90] (3.33%)",
+          "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+          "recommendation": "Inspect these observations and the domain before any capping or removal."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+        "rows": 30,
+        "columns_checked": [
+          "feature_x",
+          "feature_y",
+          "feature_z"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 7.792,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0
+      }
+    },
+    {
+      "status": "ok",
+      "tool": "correlation_check",
+      "summary": "1 numeric feature pairs meet |r| >= 0.95.",
+      "data": {
+        "pairs": [
+          {
+            "left": "feature_x",
+            "right": "feature_y",
+            "correlation": 1.0
+          }
+        ],
+        "threshold": 0.95
+      },
+      "findings": [
+        {
+          "issue": "Strong feature correlation",
+          "severity": "medium",
+          "column": "feature_x, feature_y",
+          "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+          "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+          "recommendation": "Review feature provenance and model assumptions before dropping either feature."
+        }
+      ],
+      "execution": {
+        "backend": "pandas",
+        "dataset_hash": "fc7f939b1e22416b9176b3fde22b2de49f8708aaf1eadc058a6bda7838b9a758",
+        "rows": 30,
+        "columns_checked": [
+          "feature_x",
+          "feature_y",
+          "feature_z"
+        ],
+        "exact": true,
+        "method": "pandas-reference",
+        "elapsed_ms": 3.084,
+        "cache_hit": false,
+        "contract_version": "phase3-v1",
+        "coverage": {
+          "columns_checked": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "columns_omitted": [],
+          "eligible_columns": [
+            "feature_x",
+            "feature_y",
+            "feature_z"
+          ],
+          "ignored_columns": []
+        },
+        "columns_omitted": 0
+      }
+    }
+  ],
+  "report": {
+    "summary": "The outlier check identified IQR outliers in two of the three numeric features (feature_x and feature_y), each affecting 1 of 30 rows (3.33%). The correlation check found a perfect Pearson correlation of 1.0 between feature_x and feature_y, exceeding the 0.95 threshold. Thus, the numeric features contain both isolated extreme values and a strong linear relationship that may indicate redundancy or leakage. No outliers were found in feature_z and no other high correlations were detected.",
+    "issues": [
+      {
+        "issue": "IQR outliers",
+        "severity": "medium",
+        "column": "feature_x",
+        "evidence": "1/30 values outside [-13.5, 44.5] (3.33%)",
+        "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+        "recommendation": "Inspect these observations and the domain before any capping or removal.",
+        "source_tool": "outlier_check"
+      },
+      {
+        "issue": "IQR outliers",
+        "severity": "medium",
+        "column": "feature_y",
+        "evidence": "1/30 values outside [-26, 90] (3.33%)",
+        "impact": "Extreme values may affect some models or preprocessing steps; they can also be valid.",
+        "recommendation": "Inspect these observations and the domain before any capping or removal.",
+        "source_tool": "outlier_check"
+      },
+      {
+        "issue": "Strong feature correlation",
+        "severity": "medium",
+        "column": "feature_x, feature_y",
+        "evidence": "Pearson r(feature_x, feature_y) = 1.0",
+        "impact": "Possible redundancy or leakage candidate; correlation alone does not prove leakage.",
+        "recommendation": "Review feature provenance and model assumptions before dropping either feature.",
+        "source_tool": "correlation_check"
+      }
+    ],
+    "tools_used": [
+      "outlier_check",
+      "correlation_check"
+    ],
+    "limitations": [],
+    "interpretation": [
+      {
+        "text": "The single outlier in feature_x (value outside [-13.5, 44.5]) could be a data entry error, measurement anomaly, or a legitimate extreme; with only 30 rows, its impact on some models may be disproportionate.",
+        "source_tools": [
+          "outlier_check"
+        ]
+      },
+      {
+        "text": "Similarly, the outlier in feature_y (outside [-26, 90]) warrants domain review before any automatic capping or removal.",
+        "source_tools": [
+          "outlier_check"
+        ]
+      },
+      {
+        "text": "A Pearson correlation of 1.0 between feature_x and feature_y indicates they move together perfectly, suggesting they may be duplicate measurements or derived from each other; retaining both could cause multicollinearity in linear models.",
+        "source_tools": [
+          "correlation_check"
+        ]
+      },
+      {
+        "text": "The perfect correlation does not alone prove data leakage, but it raises a flag to examine feature provenance and whether one encodes information about the target.",
+        "source_tools": [
+          "correlation_check"
+        ]
+      },
+      {
+        "text": "Only three numeric columns were examined; other columns (if any) were not assessed, limiting the scope of the findings.",
+        "source_tools": [
+          "outlier_check",
+          "correlation_check"
+        ]
+      },
+      {
+        "text": "Because the dataset contains only 30 rows, percentages like 3.33% outlier rate and a correlation >=0.95 may be less reliable; results should be interpreted with caution.",
+        "source_tools": [
+          "outlier_check",
+          "correlation_check"
+        ]
+      }
+    ],
+    "next_steps": [
+      "Review the specific rows flagged as outliers in feature_x and feature_y with domain experts.",
+      "Consider applying robust scaling or transformation to mitigate the effect of the identified outliers.",
+      "Evaluate whether to drop or combine feature_x and feature_y due to their perfect correlation.",
+      "Compute additional correlation metrics (e.g., Spearman) and assess multicollinearity diagnostics.",
+      "Document the provenance of feature_x and feature_y to rule out leakage.",
+      "If more numeric features exist, run outlier and correlation checks on them."
+    ],
+    "assessment_summary": "3 verified finding(s) from 2 completed diagnostic(s). Results apply to the selected checks and their stated coverage."
+  }
+}

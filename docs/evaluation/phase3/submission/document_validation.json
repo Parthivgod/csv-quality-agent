@@ -1,0 +1,18 @@
+{
+  "reviewed_on": "2 October 2026",
+  "documents": [
+    {
+      "path": "submission/Phase3_Technical_Report.pdf",
+      "pages": 4,
+      "sha256": "5b96140cc626051d3810680a105da952263c92a6138c5372f6ec7ca2e96ebcfa",
+      "render_review": "passed"
+    },
+    {
+      "path": "submission/Individual_Contribution_Statement.pdf",
+      "pages": 2,
+      "sha256": "6074754cbd432f7e2b36472433b17eeae5eb191e9278e08c48aa467135adb284",
+      "render_review": "passed"
+    }
+  ],
+  "notes": "Technical report rebuilt and all four pages inspected; contribution PDF unchanged from reviewed two-page Word export."
+}

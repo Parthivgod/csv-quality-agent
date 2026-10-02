@@ -189,14 +189,14 @@ Lab 9 asks for **3–4 pages**. The final PDF must be rendered and its page coun
 | Sample outputs, tests, live and benchmark evidence | `docs/evaluation/phase3/` |
 | Fresh computer-use images | `docs/screenshots/phase3/` with captions above |
 | Technical report | `submission/Phase3_Technical_Report.pdf`; verify 3–4 pages |
-| Demo recording | Student creates `submission/Phase3_CSV_Data_Quality_Demo.mp4` or course-accessible link using the ready script |
-| Individual contributions | Complete [Contribution_Statements.md](../submission/Contribution_Statements.md) truthfully, confirm names/work/AI assistance, export per course requirements |
+| Demo recording | [Recorded silent MP4](../submission/Phase3_CSV_Data_Quality_Demo.mp4) and [matched voice-over](../submission/Phase3_Voiceover_Script.md); narration remains |
+| Individual contributions | [PDF](../submission/Individual_Contribution_Statement.pdf) and [Word](../submission/Individual_Contribution_Statement.docx); responsibility split confirmed; review and sign each page |
 | Course feedback form | Obtain actual instructor link/template and submit |
 
 ## 6. Clear remaining actions for the students
 
-1. **Record the video:** use the ready 6:30 script; two live cases; readable trace/report; explain one challenge and limitations; check audio, duration and access.
-2. **Confirm contributions:** fill actual personally completed/reviewed tasks and evidence; do not submit the templates as certified statements.
+1. **Add narration:** the silent 6:30 demo is recorded with two actual live cases. Use the matched voice-over script, then check final audio, duration, playback and instructor access.
+2. **Sign contributions:** the two-member responsibility split is confirmed and the statements are prepared. Each member reviews, signs and dates their page.
 3. **Resolve course instructions:** the brief's 30 September deadline is past, group-size wording is inconsistent, and actual feedback/form link must come from the instructor.
 4. **Check the final package:** report page count, current screenshot/capture log, final commit and instructor access; submit the real feedback form.
 
@@ -205,3 +205,7 @@ Implementation, generators, CLI measurements, live scenario evidence and reprodu
 ## LLM synthesis revision - 1 October 2026
 
 The current report preserves an LLM-written summary, source-linked interpretation and suggested next steps. Brief tool-choice explanations appear in progress and beside trace entries. Verified findings and deterministic scope/limitations remain separate. **149 tests passed in 10.31s**; fresh Groq runs and captures 11-13 are documented in [synthesis validation](evaluation/phase3/llm_synthesis/README.md). The 122-test run, original screenshots, live attempts and size measurements above describe the prior release and remain preserved. The current 6:30 demo script demonstrates a no-finding 60/40 target distribution with a useful explanation. No benchmark rerun is claimed.
+
+## Final package update 2 October 2026
+
+The [submission index](../submission/README.md) now identifies all current deliverables and remaining hand-in steps. The silent demo and its original run exports are included in the repository. Historical evidence remains unchanged; voice-over, signatures, real feedback form and course instructions are still human actions.

@@ -4,3 +4,8 @@
 *.jpg binary
 *.jpeg binary
 *.parquet binary
+*.mp4 binary
+# Preserve the original downloaded run exports byte for byte.
+submission/recording_evidence_20261001/*.json -text whitespace=cr-at-eol
+# Sample bytes match the recorded Windows CSV fixtures on every checkout.
+data/samples/*.csv text eol=crlf

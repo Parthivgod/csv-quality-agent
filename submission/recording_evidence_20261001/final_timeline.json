@@ -1,0 +1,218 @@
+[
+  {
+    "label": "Purpose - CSV investigation",
+    "final_start": 0,
+    "final_end": 12,
+    "raw_start": 0,
+    "raw_end": 12,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Bundled synthetic CSV inputs",
+    "final_start": 12,
+    "final_end": 30,
+    "raw_start": 23,
+    "raw_end": 41,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Local dataset profile",
+    "final_start": 30,
+    "final_end": 45,
+    "raw_start": 118,
+    "raw_end": 133,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Architecture - local evidence and model synthesis",
+    "final_start": 45,
+    "final_end": 75,
+    "raw_start": 1015,
+    "raw_end": 1045,
+    "hold_seconds": 0
+  },
+  {
+    "label": "LangChain - actual system prompt",
+    "final_start": 75,
+    "final_end": 95,
+    "raw_start": 895,
+    "raw_end": 910,
+    "hold_seconds": 5
+  },
+  {
+    "label": "LangChain - agent constructor",
+    "final_start": 95,
+    "final_end": 110,
+    "raw_start": 918,
+    "raw_end": 926,
+    "hold_seconds": 7
+  },
+  {
+    "label": "LangChain - structured tools",
+    "final_start": 110,
+    "final_end": 120,
+    "raw_start": 941,
+    "raw_end": 951,
+    "hold_seconds": 0
+  },
+  {
+    "label": "LangChain - LCEL and Pydantic validation",
+    "final_start": 120,
+    "final_end": 135,
+    "raw_start": 963,
+    "raw_end": 978,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - load numerical sample",
+    "final_start": 135,
+    "final_end": 143,
+    "raw_start": 110,
+    "raw_end": 118,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - dataset and selected scope",
+    "final_start": 143,
+    "final_end": 151,
+    "raw_start": 120,
+    "raw_end": 128,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - question and run (waiting trimmed)",
+    "final_start": 151,
+    "final_end": 171,
+    "raw_start": 195,
+    "raw_end": 215,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - two completed checks",
+    "final_start": 171,
+    "final_end": 179,
+    "raw_start": 254,
+    "raw_end": 262,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - local outlier evidence",
+    "final_start": 179,
+    "final_end": 185,
+    "raw_start": 268,
+    "raw_end": 274,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - verified outlier finding",
+    "final_start": 185,
+    "final_end": 193,
+    "raw_start": 287,
+    "raw_end": 295,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - correlation is not proof of leakage",
+    "final_start": 193,
+    "final_end": 201,
+    "raw_start": 300,
+    "raw_end": 308,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case A - original JSON export",
+    "final_start": 201,
+    "final_end": 205,
+    "raw_start": 430,
+    "raw_end": 434,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - load target sample",
+    "final_start": 205,
+    "final_end": 213,
+    "raw_start": 518,
+    "raw_end": 526,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - selected label target",
+    "final_start": 213,
+    "final_end": 221,
+    "raw_start": 578,
+    "raw_end": 586,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - question and run (waiting trimmed)",
+    "final_start": 221,
+    "final_end": 237,
+    "raw_start": 631,
+    "raw_end": 647,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - 60/40 distribution; no threshold finding",
+    "final_start": 237,
+    "final_end": 247,
+    "raw_start": 671,
+    "raw_end": 681,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - observed class imbalance check",
+    "final_start": 247,
+    "final_end": 255,
+    "raw_start": 744,
+    "raw_end": 752,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - interpretation and proposed next steps",
+    "final_start": 255,
+    "final_end": 265,
+    "raw_start": 760,
+    "raw_end": 770,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Live case B - original JSON export",
+    "final_start": 265,
+    "final_end": 270,
+    "raw_start": 770,
+    "raw_end": 775,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Saved benchmark evidence - original failures retained",
+    "final_start": 270,
+    "final_end": 310,
+    "raw_start": 1096,
+    "raw_end": 1116,
+    "hold_seconds": 20
+  },
+  {
+    "label": "Saved controlled exception injection - earlier live run",
+    "final_start": 310,
+    "final_end": 330,
+    "raw_start": 1122,
+    "raw_end": 1134,
+    "hold_seconds": 8
+  },
+  {
+    "label": "Evaluation - automated and live evidence are distinct",
+    "final_start": 330,
+    "final_end": 350,
+    "raw_start": 1138,
+    "raw_end": 1158,
+    "hold_seconds": 0
+  },
+  {
+    "label": "Limits and proposed improvements",
+    "final_start": 350,
+    "final_end": 390,
+    "raw_start": 1172,
+    "raw_end": 1212,
+    "hold_seconds": 0
+  }
+]

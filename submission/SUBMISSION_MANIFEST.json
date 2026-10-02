@@ -1,0 +1,573 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2 October 2026",
+  "measurement_policy": "Original recording, live scenarios and benchmark records keep their original measurement dates. No new provider calls or large benchmarks during package cleanup.",
+  "video_validation": "submission/recording_evidence_20261001/final_validation.json",
+  "pending_human_actions": [
+    "Add narration and validate the narrated video",
+    "Each member reviews, signs and dates their contribution statement",
+    "Obtain and complete the real course feedback form",
+    "Confirm accepted roster, submission instructions and instructor access"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 615,
+      "sha256": "26191241f95906709e7f091ea166d03f9d3e9978447cd07fda26786a59cc67ec",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": ".streamlit/config.toml",
+      "bytes": 139,
+      "sha256": "2c6399f56dc92268e41404309f84e03dbb744c633366532d915552a4eb16ff0e",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12783,
+      "sha256": "54fd86b3597dc10c02990a5e482dc7d9cce0d41324434043d06a2951800f2cf9",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "app.py",
+      "bytes": 10603,
+      "sha256": "46b03afaa45ae140c5f29c1afdf6bec55f560fdb75a69e9a66c119885dab549f",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/expected/corrupted_class_imbalance.json",
+      "bytes": 287,
+      "sha256": "daa317b6c996da752de306eca4bb486b58c405238be27361f36ec5be813b11f2",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/expected/corrupted_missing_duplicates.json",
+      "bytes": 353,
+      "sha256": "5f93ecdb85de3d8220e1afa7b28703487ed9aa88024e4b53480480e1640f1f65",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/expected/corrupted_outliers_corr.json",
+      "bytes": 246,
+      "sha256": "9aff6722a862db7c6709ae834fb2d312a6a16b307f73d7e73e70da15de18b7af",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/samples/class_distribution_moderate.csv",
+      "bytes": 2115,
+      "sha256": "6294ca62edace08d48cec02037d1a7076aaea53f9dab718f71d1e4f0936171f8",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/samples/clean_small.csv",
+      "bytes": 185,
+      "sha256": "813412565cd5f47186dca56950d16bfb16af454579ebcfaf34da42855cd31133",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/samples/corrupted_class_imbalance.csv",
+      "bytes": 1959,
+      "sha256": "8d5ae558c778df3fbe6a20d0fa85052ccb9a3b41bce61f1534ada0620679d3be",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/samples/corrupted_missing_duplicates.csv",
+      "bytes": 738,
+      "sha256": "83873e04ae65b96f4f6c823a94bb3963b1914b64fe3410c8b57c1cec2f1fe474",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/samples/corrupted_outliers_corr.csv",
+      "bytes": 293,
+      "sha256": "f1d66ed7cd8371f8e8b0ab3b584ff466b2f9f841c70669c91296937c7457fa6d",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "data/samples/invalid_header_only.csv",
+      "bytes": 11,
+      "sha256": "0188d75befa224cca295b1c2ccb91dc3ea72f399aabc4772028f6edecf4889df",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 9147,
+      "sha256": "fdbdf6f7412cb8154bff6edd10422595b2001f520de60ee9e994c7d4e18eac0a",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "docs/assets/phase3_architecture.png",
+      "bytes": 62898,
+      "sha256": "a8096ad34d40c23598aaaa9d3fd345187a71b6dd736364f65bcac128cf797d4a",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "docs/assets/phase3_architecture.svg",
+      "bytes": 5203,
+      "sha256": "76b1ba37676ff83c258efc01dace37c91789537eaa7c26ea532d2919481f3e4f",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "docs/evaluation/phase3/submission/document_validation.json",
+      "bytes": 625,
+      "sha256": "5aee9e05eaa420e06777ef93ec37bdf295c6ca76d50dfd49de0ee192fc35cd7c",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "docs/evaluation/phase3/submission/test_results.txt",
+      "bytes": 511,
+      "sha256": "44d91ba92c2dcffe5f73d4b5a37fa276917911e03b3ebc52a3ba90a6e7d7e6f4",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "requirements-submission.txt",
+      "bytes": 127,
+      "sha256": "54b8b8520d36bbfb860e6c39948a99a8bd74aaa815d10ec22904c6a4d13e8f14",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 239,
+      "sha256": "c17147ca4e0a72d2c86daa755b4a43e6f1946666bbc93348138bee0f6d663df8",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/benchmark_phase3.py",
+      "bytes": 24185,
+      "sha256": "8ee7feaa372c25085019be4d85038c4fdd2e28893e0c1229f46ab31fde0fc4c6",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/build_phase3_evidence_page.py",
+      "bytes": 6591,
+      "sha256": "f14ad3bded8aa0477ea2adae40f348140b72de120e64267c7d64328e48384aa0",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/build_phase3_report.py",
+      "bytes": 34028,
+      "sha256": "e1accd459b025b402f7258e10d7c0791f1d67ac798c43ed26b7140704feb8632",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/evaluate_phase3.py",
+      "bytes": 15145,
+      "sha256": "5c3883b23142184cb5018a1dc6633b8ebb0d962fa190150bd83923372ade0bb0",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/generate_architecture.py",
+      "bytes": 2214,
+      "sha256": "789cd63e2462be34c1d54a54871a117f7aee0bac26195b97c6622efc0fe1d03d",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/generate_benchmarks.py",
+      "bytes": 6785,
+      "sha256": "895055b84c2d1ea0e375324f65e6c1cab40dbc8efca1cea625275a1863621440",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/generate_samples.py",
+      "bytes": 2328,
+      "sha256": "35eeebe5f182cbfe3025521afddb0eb55ba24f2eaff27b89c051fe19e990b84e",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/monitor_streamlit_upload.py",
+      "bytes": 3117,
+      "sha256": "57b70502c6cfeff2d8fc26ad558f2bd16abb5cb1158c7c5c4cfc6593e1c9e632",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/phase3_failure_demo.py",
+      "bytes": 2095,
+      "sha256": "d3607ca62d8d741e9429b5346d1131ace37d896554116afa1cd042ed7bc2e7e8",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "scripts/verify_submission.py",
+      "bytes": 6324,
+      "sha256": "7737dfcfae322cae04e6d1664724def84f0d0a204b41a9fd6eda2729415f7a81",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 45,
+      "sha256": "028e8fbb7a012c910c1a83d1971564f570101caeea44e7c2264530ed454c6be4",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/agent/__init__.py",
+      "bytes": 49,
+      "sha256": "fc6d971715d08a12c8c19ab4b1002b7efc6534edd208551d2f47512a542ace2e",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/agent/factory.py",
+      "bytes": 1948,
+      "sha256": "0b34fa28667d7192fd8016fd87694e606e59fbfbeca8cb2bfbeb20775adf0203",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/agent/prompt.py",
+      "bytes": 4610,
+      "sha256": "0d3e81bd9f665f78d48f8ba170608cd6f7e60dbf0ef7c05036f62625908e42c3",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/agent/report_chain.py",
+      "bytes": 7869,
+      "sha256": "315d5f884e0718415e76900109f001e4be7d454b53effeebe3e429fdb2853e57",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/agent/tools.py",
+      "bytes": 10644,
+      "sha256": "39d26a538c229b332b9b2ea8c6227f17a875f6209295874d013e04ea0435e4b7",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/config.py",
+      "bytes": 3604,
+      "sha256": "a418c23d3a542333adb09df33b32b91c136830358b9446cd3ca1ad7466d15ae3",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/__init__.py",
+      "bytes": 49,
+      "sha256": "c3962e0ada102d7162bd0b19df2eae708803f6de896bec590304b1da7444f458",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/backends/__init__.py",
+      "bytes": 58,
+      "sha256": "9b375b722283ce6658c2c4a2846b0d9f5d65d3ebbe51e7badd5768e3e8f3ae37",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/backends/duckdb_backend.py",
+      "bytes": 25593,
+      "sha256": "3d713ac7b4604857c55e051581fd4ec9bd85086a2e48df770ff4c7db3516c44c",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/backends/pandas_backend.py",
+      "bytes": 9089,
+      "sha256": "2590494da2bf54651c2d976098008f8008f6c098bb5642aa72fe4aa3f16a1aac",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/context_builder.py",
+      "bytes": 1407,
+      "sha256": "e0621c0f656b4660a844ef386d57861a1bd1149bee67c08fc1a8e9d9a4b97bd6",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/csv_contract.py",
+      "bytes": 8292,
+      "sha256": "1f5501936ebb523e2abf04b788bd0f946a29dc81490e6d7efeb9a62f04859c20",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/dataset.py",
+      "bytes": 1013,
+      "sha256": "3d21d85a8f86c96a7fba7dfd7e1bffcf8ee5e92b3b2cf1fb94ec1e5bf8d45e47",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/loader.py",
+      "bytes": 6041,
+      "sha256": "11bcc388526c820310f3c3129f9c48cb485eaa7493fb58e1d7e50e58746c445f",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/data/upload_store.py",
+      "bytes": 6067,
+      "sha256": "4696364ad90a2386eca6e99091dbb4cfde34c10220af32e58e790c1037e20622",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/__init__.py",
+      "bytes": 42,
+      "sha256": "f50d7a2c7ed7eebc2bd6eceb975d8c8068c10d87ed716ed394901bcbf6ea45be",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/cardinality.py",
+      "bytes": 1952,
+      "sha256": "f0632eac4ec74437bf421603b39dceca0e47776781dbf8042a8a451af487e1e5",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/constants.py",
+      "bytes": 1617,
+      "sha256": "0aa747de24058fe59c9897530897ede8a6d60f590806de06c6b80ba4e577b1dd",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/correlation.py",
+      "bytes": 1656,
+      "sha256": "cb48c51c952d5907c1d3cc129873a81381b90934c52db8cc137cf9672c898550",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/duplicates.py",
+      "bytes": 875,
+      "sha256": "62857611081f84c53fa9142d720a81a901c251199d46b8f21f532230cb051b57",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/imbalance.py",
+      "bytes": 2296,
+      "sha256": "22e20b6ceadd9ae6e24db582994b0cb7013825c9ee510fc26ee6a6ceab48828d",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/missing.py",
+      "bytes": 1301,
+      "sha256": "502237971a7212010adc94769ad838869d9eea06d04972f7faa7f1bf65aacbe8",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/outliers.py",
+      "bytes": 1758,
+      "sha256": "29c1c45fb4722d4a974c7a9770da128dd278cfb5f2a226078e910a26720c1f4e",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/diagnostics/profile.py",
+      "bytes": 939,
+      "sha256": "dd40ddb938434427fa65494374e70d874c08fc5aad8f6c6708b396304cbd8b53",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/models/__init__.py",
+      "bytes": 36,
+      "sha256": "6656a7eba9163d27246c4ffd2e24d113c3bb6021aeb06b89eb20917907611824",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/models/schemas.py",
+      "bytes": 1135,
+      "sha256": "65317699bbdfe0ad35bf0e855ebc7c6dafb880bccd6fbd17af1a044bc8956113",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/services/__init__.py",
+      "bytes": 52,
+      "sha256": "0f04835a5a96d63dffb7e217c770a5170d01915d338511c168d405e4b9ad5b5a",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/services/evidence.py",
+      "bytes": 1792,
+      "sha256": "3915bbd577fa3b1bcaf2d34770262a2a0c1e4d0391adfa5697061b11c83b384e",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/services/jobs.py",
+      "bytes": 1983,
+      "sha256": "259e9574e210ccefe0f3934c920a58aa522c1450155c0dad133edd314ac39458",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/services/trace.py",
+      "bytes": 1719,
+      "sha256": "f65927473d3f18e89d45bdfbcefabcab877eeb75354233b349d3c1947e92010c",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/services/triage_service.py",
+      "bytes": 3525,
+      "sha256": "21cc0b63ab3d74c216335afcc145a62969e4aefec15305b64d583d5c95e34178",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/ui/__init__.py",
+      "bytes": 33,
+      "sha256": "a968213b8d665cb2d251bc111b2f0b5401f075e56e7efa1e15ff51ed846712f2",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "src/ui/components.py",
+      "bytes": 2789,
+      "sha256": "888ac3ccf4b67db76bdfe032281d2c1fc5e6bb95e1d7898bf0efc4175b9aa5b4",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "submission/Contribution_Statements.md",
+      "bytes": 3956,
+      "sha256": "7bd17fc40521648b13e032f584143ef402a3f7054ebf6a2bcd87902b7a5d6973",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "submission/Individual_Contribution_Statement.docx",
+      "bytes": 38273,
+      "sha256": "5b1699edb168157b1f13fb27cc77a6babc6c2271cd876a46aa392adbc3380680",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/Individual_Contribution_Statement.pdf",
+      "bytes": 277583,
+      "sha256": "6074754cbd432f7e2b36472433b17eeae5eb191e9278e08c48aa467135adb284",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/Phase3_CSV_Data_Quality_Demo.mp4",
+      "bytes": 8207440,
+      "sha256": "d43a6c39b1da9181f77291fbe126c67f7637b616094b043e19aa6e0b072d3883",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/Phase3_Technical_Report.md",
+      "bytes": 12168,
+      "sha256": "8053d7afa48f8245aacec22a66566ee2d687cbea46131c18ad4676073c5840eb",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "submission/Phase3_Technical_Report.pdf",
+      "bytes": 81157,
+      "sha256": "5b96140cc626051d3810680a105da952263c92a6138c5372f6ec7ca2e96ebcfa",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/Phase3_Voiceover_Script.md",
+      "bytes": 6515,
+      "sha256": "dd633da83a10771c391bc5f0bbc7b1fd75df5a31ab0c4655413d82cdfaf7dbc7",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "submission/README.md",
+      "bytes": 5344,
+      "sha256": "7893b6c9aa0b9a5646848bccad0e63624cdfb6da52ae4dbd63605868e06e35ac",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/capture_complete.json",
+      "bytes": 58,
+      "sha256": "5b0815f13df4efe53c199758001306729ecbc53be0fb9cb15354396201664630",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/capture_manifest.json",
+      "bytes": 683,
+      "sha256": "17fc118d1a6a42602a5e306cf42672b361f685689c22aa6bef82b5b96434490a",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/case_A_numeric_recorded.json",
+      "bytes": 14718,
+      "sha256": "e1b6d053cbd08af9896b452a19a41b35d8d3993c765aba0992d3f80c252b0c3b",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/case_B_moderate_recorded.json",
+      "bytes": 6183,
+      "sha256": "a8fd44293a5476ae6f5b656a089cc7298695ddc994bd9e86b78d59c79230981e",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/dependencies.txt",
+      "bytes": 31,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/final_timeline.json",
+      "bytes": 4945,
+      "sha256": "fc31f4e181ad5ea05d8db81ae7e4b39baab5685357b1985a3fa2bf74e27d06d4",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/final_validation.json",
+      "bytes": 1386,
+      "sha256": "ef505de3fec129198af801a03114e2d1ccb281df70fdcc85b5323cdd34bfa239",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "submission/recording_evidence_20261001/tests.txt",
+      "bytes": 265,
+      "sha256": "4d9288a0b650118446fd8f7c02b4a99752cc277c8893c565f24752121b576033",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_app_smoke.py",
+      "bytes": 303,
+      "sha256": "4f4aa3956e98b2942334712695ea5f2abb45ce2b3e183cc9d7e17b1e48bbef18",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_dataset_pipeline.py",
+      "bytes": 10055,
+      "sha256": "43518867a04c96afad7ad0ffaa865cfe8112ea9820dd8d7cfd71d30e53772030",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_llm_synthesis.py",
+      "bytes": 12208,
+      "sha256": "dc4eaa0517888963f599c4bd72ba99e32702aff0c8fa785389505bc1cff550f2",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_phase3_app.py",
+      "bytes": 4770,
+      "sha256": "8f9ee7c18b9b9551b5d938affeb98d0b14f6f6f943485984a350989ed1698ab6",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_phase3_controls.py",
+      "bytes": 3451,
+      "sha256": "7640e52caa0b588a37a9d40babd7b91910499be25f35b7da3907a6b9ea0550df",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_phase3_evaluation.py",
+      "bytes": 4898,
+      "sha256": "263f8bc81915850d9c1b7412eadee619985be50744076f2c32cd4f3e57c0a754",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/integration/test_pipeline.py",
+      "bytes": 7496,
+      "sha256": "db5168fc7c3442b728618133ff77250be9289a4e70f7ead436bd837c38185dcb",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/unit/test_dataset_loading.py",
+      "bytes": 7769,
+      "sha256": "adff259e1e973ec9b6655af29b5822ff51bc989e8d21b585361d2dc5eb83c4d1",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/unit/test_diagnostics.py",
+      "bytes": 3827,
+      "sha256": "fa0fd0b1bb38b3828b7af6ba66b95a96ff0313c16ae58860839e35d37bfae871",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/unit/test_duckdb_backend.py",
+      "bytes": 10877,
+      "sha256": "ab7a5b11d0eded2d28dd9e1318e8a6d64c53413a811ef8ff8998fafacb164c1a",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/unit/test_loader.py",
+      "bytes": 1232,
+      "sha256": "12480430deb51f5234b878a7aa8bb18684a0cdfddcab5d178ee0077033e69f8f",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/unit/test_provider_config.py",
+      "bytes": 1320,
+      "sha256": "a997b0befafdb433c167cdb596880089b87d6d70a4df0ced2759ba2d59ff739f",
+      "hash_mode": "lf_normalized"
+    },
+    {
+      "path": "tests/unit/test_tool_selection_reason.py",
+      "bytes": 3621,
+      "sha256": "f73a6d656a0c65d89a7b2fe0313e7d9a00f8a40906e4d4b5a07c1c71376356f0",
+      "hash_mode": "lf_normalized"
+    }
+  ],
+  "hash_policy": "Exact bytes for binary artifacts and original filmed-run JSON; CRLF-to-LF normalization for other text. Byte sizes describe the reviewed local files."
+}
