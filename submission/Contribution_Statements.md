@@ -1,6 +1,7 @@
 # Individual contribution statements
 
-**Project:** CSV Data Quality Triage Agent  
+**Project:** CSV Data Quality Triage Agent
+
 **Activity:** Lab 9 Phase 3 final submission
 
 The contributions below follow the team responsibility split confirmed on 2 October 2026. Each member should review and sign their own statement before submission.
